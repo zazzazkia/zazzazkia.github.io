@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Applying Without the Dread — Saskia Tobreluts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f4f1ea;
+  --ink: #111111;
+  --muted: #8a857a;
+  --rule: rgba(17,17,17,0.12);
+  --accent: #ff5b1f;
+  --card: #ece8df;
+  --ff-display: "Fraunces", "Times New Roman", serif;
+  --ff-body: "Inter", system-ui, sans-serif;
+  --ff-mono: "JetBrains Mono", ui-monospace, monospace;
+  --pad: 40px;
+}
+[data-theme="dark"]  { --bg:#0e0e0e; --ink:#f2efe7; --muted:#817c72; --rule:rgba(242,239,231,.14); --card:#181715; }
+[data-theme="paper"] { --bg:#ebe6d9; --ink:#1a1a1a; --muted:#7a7365; --rule:rgba(26,26,26,.14); --card:#e2dcca; }
+[data-theme="cool"]  { --bg:#eef0f2; --ink:#0d1117; --muted:#6b7280; --rule:rgba(13,17,23,.12); --card:#e5e7ea; }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { overflow-x: hidden; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--ff-body); font-size: 16px; line-height: 1.6;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  transition: background .35s, color .35s;
+}
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: none; padding: 0; cursor: pointer; }
+
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 var(--pad); }
+@media (max-width: 600px) { :root { --pad: 20px; } }
+
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px var(--pad);
+  font-family: var(--ff-mono); font-size: 12px; letter-spacing: .04em;
+  background: var(--bg); border-bottom: 1px solid var(--rule);
+  transition: background .35s, border-color .35s;
+}
+.nav-back { display: flex; align-items: center; gap: 10px; transition: opacity .2s; }
+.nav-back:hover { opacity: .6; }
+.nav-back .arr { display: inline-block; transition: transform .25s; }
+.nav-back:hover .arr { transform: translateX(-4px); }
+.nav-right { display: flex; align-items: center; gap: 24px; }
+.nav-counter { color: var(--muted); }
+.nav-theme { display: none; }
+.nav-theme:hover { border-color: var(--accent); color: var(--accent); }
+.nav-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); animation: pulse 2.4s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.4);opacity:.5} }
+
+.cs-hero { padding-top: 120px; }
+.cs-hero-grid {
+  display: grid; grid-template-columns: 0.8fr 1.55fr;
+  gap: 40px; align-items: center;
+}
+@media (max-width: 900px) {
+  .cs-hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .cs-hero-media { margin-right: 0; }
+}
+.cs-hero-media { margin-right: calc(-1 * var(--pad)); }
+.cs-hero-media .cs-cover { border-radius: 8px; }
+.cs-cursor-dot {
+  position: fixed; left: 0; top: 0;
+  width: 480px; height: 480px; border-radius: 50%;
+  background: var(--accent);
+  pointer-events: none; z-index: -1;
+  transform: translate(-50%, -50%) scale(0);
+}
+@media (hover: none) { .cs-cursor-dot { display: none; } }
+.cs-kicker {
+  font-family: var(--ff-mono); font-size: 11px; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--muted);
+  display: flex; align-items: center; gap: 12px; margin-bottom: 28px;
+}
+.cs-kicker .line { width: 36px; height: 1px; background: var(--muted); flex-shrink: 0; }
+.cs-title {
+  font-family: var(--ff-display); font-weight: 300;
+  font-size: clamp(38px, 4.6vw, 68px); line-height: .98; letter-spacing: -.03em;
+  margin-bottom: 0; font-variation-settings: "opsz" 144;
+}
+.cs-title em { font-style: italic; color: var(--accent); font-variation-settings: "opsz" 9; }
+.cs-cover {
+  width: 100%; border-radius: 6px; overflow: hidden; position: relative;
+}
+.cs-hero-img {
+  width: 100%; height: auto; display: block;
+  animation: heroReveal 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes heroReveal {
+  from { opacity: 0; transform: scale(1.06) translateY(24px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0);    }
+}
+.cs-meta {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 20px; padding: 28px 0;
+  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+  margin-top: 36px;
+}
+@media (max-width: 700px) { .cs-meta { grid-template-columns: 1fr 1fr; } }
+.cs-meta-item .label { font-family: var(--ff-mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.cs-meta-item .val { font-size: 14px; line-height: 1.4; }
+
+.cs-body { padding-top: 80px; padding-bottom: 40px; }
+.cs-section {
+  display: grid; grid-template-columns: 180px 1fr;
+  gap: 0 72px; padding: 56px 0; border-top: 1px solid var(--rule);
+}
+.cs-section--brief { border-top: none; }
+@media (max-width: 800px) { .cs-section { grid-template-columns: 1fr; gap: 16px; } }
+.cs-section-label { font-family: var(--ff-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding-top: 6px; }
+.cs-section-num { display: block; margin-bottom: 4px; font-size: 10px; }
+
+.prose p { font-size: 17px; line-height: 1.75; color: var(--ink); margin-bottom: 20px; }
+.prose p:last-child { margin-bottom: 0; }
+.prose .lead { font-family: var(--ff-display); font-weight: 300; font-size: clamp(20px, 2.2vw, 28px); line-height: 1.3; letter-spacing: -.01em; margin-bottom: 24px; }
+.prose .lead em { font-style: italic; color: var(--accent); }
+.prose .sec-title { font-family: var(--ff-display); font-weight: 300; font-size: clamp(24px, 2.8vw, 38px); line-height: 1.1; letter-spacing: -.02em; margin-bottom: 24px; font-variation-settings: "opsz" 80; }
+.prose .sec-title em { font-style: italic; color: var(--accent); font-variation-settings: "opsz" 9; }
+
+.ph-img {
+  width: 100%; border-radius: 4px;
+  background: repeating-linear-gradient(45deg, rgba(255,91,31,.07) 0px, rgba(255,91,31,.07) 8px, transparent 8px, transparent 16px), var(--card);
+  margin: 28px 0 8px;
+}
+.ph-img.wide  { aspect-ratio: 16/9; }
+.ph-img.half  { aspect-ratio: 4/3; }
+.ph-img.tall  { aspect-ratio: 9/16; max-width: 280px; }
+.cs-img { width: 100%; max-width: 960px; display: block; border-radius: 4px; margin: 28px auto 8px; }
+.ph-caption { font-family: var(--ff-mono); font-size: 11px !important; color: #8A857A !important; letter-spacing: .04em; margin-bottom: 24px; }
+/* Pipeline-style showcase: dark frame, inset video, caption below */
+.video-wrap {
+  width: 100%;
+  margin: 28px 0 0;
+  box-sizing: border-box;
+  background: #1C1410;
+  border-radius: 28px;
+  padding: clamp(20px, 4.5vw, 52px);
+}
+.video-wrap video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  vertical-align: top;
+}
+.video-wrap + .ph-caption { margin-top: 16px; }
+/* Floating phone — no frame, corners clipped to the device edge */
+.device-mobile { width: 100%; max-width: 300px; margin: 36px auto 0; }
+.device-mobile video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 14.5% / 7.1%;
+  filter: drop-shadow(0 26px 50px rgba(0,0,0,.22));
+}
+.device-mobile + .ph-caption { margin-top: 20px; text-align: center; }
+/* Desktop / mobile media toggle — centered */
+.media-tabs { margin: 28px 0 0; text-align: center; }
+.media-tabs-bar { display: inline-flex; gap: 4px; padding: 4px; border: 1px solid var(--rule); border-radius: 999px; margin-bottom: 20px; }
+.media-tab {
+  font-family: var(--ff-mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--muted); background: transparent; border: none; cursor: pointer;
+  padding: 7px 16px; border-radius: 999px; transition: background .2s, color .2s;
+}
+.media-tab:hover { color: var(--ink); }
+.media-tab.active { background: var(--accent); color: #fff; }
+.media-panel { display: none; }
+.media-panel.active { display: block; }
+.media-panel .video-wrap, .media-panel .device-mobile, .media-panel .browser-mock { margin-top: 0; }
+.media-tabs + .ph-caption { text-align: center; margin-top: 16px; }
+.cs-img + .ph-caption { text-align: center; }
+/* Browser-window mockup for the desktop video */
+.browser-mock {
+  width: 100%;
+  margin: 28px 0 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  background: var(--card);
+  box-shadow: 0 24px 60px rgba(0,0,0,.16);
+}
+.browser-bar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--rule);
+}
+.browser-dots { display: flex; gap: 7px; }
+.browser-dots i { width: 11px; height: 11px; border-radius: 50%; display: block; }
+.browser-dots i:nth-child(1) { background: #ff5f57; }
+.browser-dots i:nth-child(2) { background: #febc2e; }
+.browser-dots i:nth-child(3) { background: #28c840; }
+.browser-mock video, .browser-mock img { width: 100%; height: auto; display: block; vertical-align: top; }
+.browser-mock + .ph-caption { margin-top: 16px; text-align: center; }
+.ph-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 28px 0 8px; }
+.ph-grid .ph-img { margin: 0; }
+.ph-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 28px 0 8px; }
+.ph-grid-3 .ph-img { margin: 0; }
+@media (max-width: 600px) { .ph-grid, .ph-grid-3 { grid-template-columns: 1fr; } }
+
+.pull {
+  font-family: var(--ff-display); font-style: italic; font-weight: 300;
+  font-size: clamp(24px, 3.5vw, 44px); line-height: 1.15; letter-spacing: -.02em;
+  color: var(--accent); padding: 36px 0;
+  border-top: 2px solid var(--accent); border-bottom: 1px solid var(--rule);
+  margin: 32px 0; font-variation-settings: "opsz" 9;
+}
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.chip { font-family: var(--ff-mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--rule); border-radius: 999px; padding: 7px 14px; transition: border-color .2s, color .2s; }
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+
+.cs-next { border-top: 1px solid var(--rule); padding: 56px 0 40px; }
+.cs-next-label { font-family: var(--ff-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+.cs-next-link { display: inline-block; }
+.cs-next-title { font-family: var(--ff-display); font-weight: 300; font-size: clamp(24px, 3.5vw, 52px); letter-spacing: -.02em; transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+.cs-next-title em { font-style: italic; color: var(--accent); }
+.cs-next-link:hover .cs-next-title { transform: translateX(10px); }
+
+.foot { border-top: 1px solid var(--rule); padding: 24px 40px; font-family: var(--ff-mono); font-size: 11px; color: var(--muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+.foot a { border-bottom: 1px solid var(--muted); padding-bottom: 1px; transition: border-color .2s, color .2s; }
+.foot a:hover { color: var(--ink); border-color: var(--ink); }
+
+.tweaks { position: fixed; right: 20px; bottom: 20px; z-index: 200; width: 220px; background: var(--bg); border: 1px solid var(--rule); border-radius: 8px; padding: 16px; font-family: var(--ff-mono); font-size: 11px; box-shadow: 0 16px 40px rgba(0,0,0,.14); display: none; transition: background .35s, border-color .35s; }
+.tweaks.open { display: block; }
+.tweaks-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+.tweaks-head span { font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+.tweaks-close { font-size: 18px; line-height: 1; color: var(--muted); transition: color .2s; }
+.tweaks-close:hover { color: var(--ink); }
+.tweaks-group { margin-bottom: 12px; }
+.tweaks-group-label { font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 6px; }
+.tweaks-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+.tweaks-opts button { padding: 5px 4px; font-size: 10px; text-transform: uppercase; letter-spacing: .06em; border: 1px solid var(--rule); border-radius: 4px; transition: background .15s, color .15s, border-color .15s; }
+.tweaks-opts button.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.swatches { display: flex; gap: 6px; flex-wrap: wrap; }
+.swatch { width: 22px; height: 22px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; transition: border-color .15s; }
+.swatch.active { border-color: var(--ink); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+<body data-theme="light">
+
+<nav class="nav">
+  <a class="nav-back" href="index.html">
+    <span class="arr">←</span>
+    <span>Saskia Tobreluts</span>
+  </a>
+  <div class="nav-right">
+    <span class="nav-counter">02 / 02</span>
+    <button class="nav-theme" id="tweaks-trigger">Theme</button>
+    <span class="nav-dot"></span>
+  </div>
+</nav>
+
+<div class="cs-hero wrap">
+  <div class="cs-hero-grid">
+    <div class="cs-hero-text">
+      <div class="cs-kicker">
+        <span class="line"></span>
+        <span>Toggl Hire · B2B SaaS · Candidate-facing</span>
+      </div>
+      <h1 class="cs-title">
+        Applying without the <em>dread</em>
+      </h1>
+    </div>
+    <div class="cs-hero-media">
+      <div class="cs-cover">
+        <img src="images/candidate%20case%20study%20grid%20nobg.png" alt="Candidate experience case study" class="cs-hero-img">
+      </div>
+    </div>
+  </div>
+  <div class="cs-meta">
+    <div class="cs-meta-item">
+      <div class="label">Role</div>
+      <div class="val">Solo designer</div>
+    </div>
+    <div class="cs-meta-item">
+      <div class="label">Timeline</div>
+      <div class="val">Jun 2021 – Sep 2025</div>
+    </div>
+    <div class="cs-meta-item">
+      <div class="label">Disciplines</div>
+      <div class="val">Product Strategy · UX/UI Design · User Research</div>
+    </div>
+  </div>
+</div>
+
+<div class="cs-body wrap">
+
+  <div class="cs-section cs-section--brief">
+    <div class="cs-section-label">
+      <span class="cs-section-num">(01)</span>Brief
+    </div>
+    <div class="prose">
+      <h2 class="sec-title">It grew. It stayed <em>simple</em>.</h2>
+      <p>For four years I owned the candidate side of Toggl Hire on my own. It started as one skills test and kept growing: async interviews, homework, a careers page and a full application flow when we pivoted to ATS. The hard part was never adding the features. It was adding all of them without the experience ever getting heavier or more confusing. Every new piece had to feel like it had always been there. Since candidates applied from anywhere, it had to work on every device.</p>
+      <p>Around a million candidates went through it, with satisfaction holding at 90–95%. A million people voting with their time.</p>
+    </div>
+  </div>
+
+  <div class="cs-section">
+    <div class="cs-section-label">
+      <span class="cs-section-num">(02)</span>Application
+    </div>
+    <div class="prose">
+      <h2 class="sec-title">The front <em>door</em></h2>
+      <p>When we pivoted to ATS, the hiring flow needed a front door. So I built one: careers pages, job descriptions and a full application flow, so the whole process could live inside Hire, from posting a job to hiring someone.</p>
+      <p>The careers page and job descriptions are the candidate's way in: find the open roles, read the one they want, start applying. Their only job is getting the candidate to the form without friction.</p>
+      <p>The form itself I kept deliberately simple. A form is not the place to get creative. The only thing that matters is that the candidate makes it through, so the real design work went into feedback: clear errors, expected formats shown upfront, no guessing what we need from them. An unsure user is an abandoning user, and every abandoned application is a lost candidate for the employer.</p>
+      <div class="media-tabs">
+        <div class="media-tabs-bar" role="tablist">
+          <button class="media-tab active" role="tab" data-target="app-mobile">Mobile</button>
+          <button class="media-tab" role="tab" data-target="app-desktop">Desktop</button>
+        </div>
+        <div class="media-panel active" id="app-mobile">
+          <div class="device-mobile">
+            <video id="vid-application-mobile" src="application-mobile-cropped.mov" loop muted playsinline></video>
+          </div>
+        </div>
+        <div class="media-panel" id="app-desktop">
+          <div class="browser-mock">
+            <div class="browser-bar">
+              <span class="browser-dots"><i></i><i></i><i></i></span>
+            </div>
+            <video id="vid-application" src="Application.mov" loop muted playsinline></video>
+          </div>
+        </div>
+      </div>
+      <p class="ph-caption">↑ Careers page, job description and application form</p>
+    </div>
+  </div>
+
+  <div class="cs-section">
+    <div class="cs-section-label">
+      <span class="cs-section-num">(03)</span>Skills test
+    </div>
+    <div class="prose">
+      <h2 class="sec-title">The <em>core</em></h2>
+      <p>The skills test was the core, the thing everything else grew around. It started as a literal Google Form, and it worked so well that people who weren't even job-hunting would take one just because it showed up on social. A quiz is hard to scroll past.</p>
+      <img class="cs-img" src="images/socials.png" alt="The skills test shared on social">
+      <p class="ph-caption">↑ The skills test out in the wild, shared on social.</p>
+      <p>When I came on, the experience was already built around candidate control. The candidate could skip a question, come back later, review before submitting, and get instant feedback. My job wasn't to reinvent that, just to keep it sharp and update the UI as the product grew. The discipline was knowing what not to touch.</p>
+      <p>The timer was the weak spot. It was there, but too quiet, and candidates kept getting caught off guard when time ran out. So I made it visible without making it stressful: calm and green, then a red blink when time got tight. Awareness without anxiety.</p>
+      <div class="media-tabs">
+        <div class="media-tabs-bar" role="tablist">
+          <button class="media-tab active" role="tab" data-target="st-mobile">Mobile</button>
+          <button class="media-tab" role="tab" data-target="st-desktop">Desktop</button>
+        </div>
+        <div class="media-panel active" id="st-mobile">
+          <div class="device-mobile">
+            <video id="vid-skillstest-mobile" src="skills-test-mobile-cropped.mov" loop muted playsinline></video>
+          </div>
+        </div>
+        <div class="media-panel" id="st-desktop">
+          <div class="browser-mock">
+            <div class="browser-bar">
+              <span class="browser-dots"><i></i><i></i><i></i></span>
+            </div>
+            <video id="vid-skillstest" src="skills%20test.mov" loop muted playsinline></video>
+          </div>
+        </div>
+      </div>
+      <p class="ph-caption">↑ The same skills test on desktop and mobile.</p>
+      <p>Even after we pivoted to ATS, plenty of employers kept the skills test as their entry point.</p>
+    </div>
+  </div>
+
+  <div class="cs-section">
+    <div class="cs-section-label">
+      <span class="cs-section-num">(04)</span>Async interview
+    </div>
+    <div class="prose">
+      <h2 class="sec-title">Own your <em>time</em></h2>
+      <p>First-round interviews are a scheduling dance: finding a slot across time zones, blocking calendars, all to ask five screening questions. Async interviews replaced that. Candidates recorded on their own time, employers reviewed on theirs.</p>
+      <p>Recording yourself on camera is nerve-wracking, so the whole experience was built to take the edge off. It opened with an intro video from the employer, so a real face came first. Then a camera and mic check before the real test. Questions came one at a time. And like the skills test, the candidate stayed in control: any take could be re-recorded, as often as the clock allowed.</p>
+      <div class="media-tabs">
+        <div class="media-tabs-bar" role="tablist">
+          <button class="media-tab active" role="tab" data-target="async-mobile">Mobile</button>
+          <button class="media-tab" role="tab" data-target="async-desktop">Desktop</button>
+        </div>
+        <div class="media-panel active" id="async-mobile">
+          <div class="device-mobile">
+            <video id="vid-async-mobile" src="async-mobile-cropped.mov" loop muted playsinline></video>
+          </div>
+        </div>
+        <div class="media-panel" id="async-desktop">
+          <div class="browser-mock">
+            <div class="browser-bar">
+              <span class="browser-dots"><i></i><i></i><i></i></span>
+            </div>
+            <video id="vid-async" src="async-desktop-cropped.mov" loop muted playsinline></video>
+          </div>
+        </div>
+      </div>
+      <p class="ph-caption">↑ Intro video, device check, recording and upload states</p>
+      <p>Submitting turned out to be its own problem. Video files are big and uploads take time, and we kept seeing interviews fail because candidates closed the window before everything finished uploading. So I added feedback at every step: a clear confirmation before submitting, visible progress as each video uploaded, and a proper &ldquo;your videos are in&rdquo; at the end. No more closing too soon and losing the whole interview.</p>
+    </div>
+  </div>
+
+  <div class="cs-section">
+    <div class="cs-section-label">
+      <span class="cs-section-num">(05)</span>Homework
+    </div>
+    <div class="prose">
+      <h2 class="sec-title">Room to <em>think</em></h2>
+      <p>Homework was a new test type for open-ended work, free text, code, or a file upload, built on the same skills-test flow.</p>
+      <div class="browser-mock">
+        <div class="browser-bar">
+          <span class="browser-dots"><i></i><i></i><i></i></span>
+        </div>
+        <img src="homework.png" alt="Homework — the same test screen, just open-ended answers">
+      </div>
+      <p class="ph-caption">↑ Homework — the same test screen, just open-ended answers.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer class="foot">
+  <span>© 2026 Saskia Tobreluts</span>
+  <a href="index.html">← All work</a>
+</footer>
+
+<div class="tweaks" id="tweaks">
+  <div class="tweaks-head">
+    <span>Tweaks</span>
+    <button class="tweaks-close" id="tweaks-close">×</button>
+  </div>
+  <div class="tweaks-group">
+    <div class="tweaks-group-label">Theme</div>
+    <div class="tweaks-opts" id="theme-opts">
+      <button data-val="light">Light</button>
+      <button data-val="paper">Paper</button>
+      <button data-val="cool">Cool</button>
+      <button data-val="dark">Dark</button>
+    </div>
+  </div>
+  <div class="tweaks-group">
+    <div class="tweaks-group-label">Accent</div>
+    <div class="swatches" id="accent-swatches"></div>
+  </div>
+</div>
+
+<script>
+const ACCENTS = ['#ff5b1f','#3d5afe','#16a34a','#e11d48','#c084fc','#111111'];
+let theme = 'light', accent = '#ff5b1f';
+function applyTheme() {
+  document.body.dataset.theme = theme;
+  document.documentElement.style.setProperty('--accent', accent);
+  document.querySelectorAll('#theme-opts button').forEach(b => b.classList.toggle('active', b.dataset.val === theme));
+  document.querySelectorAll('.swatch').forEach(s => s.classList.toggle('active', s.dataset.val === accent));
+}
+const sc = document.getElementById('accent-swatches');
+ACCENTS.forEach(c => {
+  const s = document.createElement('button');
+  s.className = 'swatch'; s.style.background = c; s.dataset.val = c;
+  s.addEventListener('click', () => { accent = c; applyTheme(); });
+  sc.appendChild(s);
+});
+document.querySelectorAll('#theme-opts button').forEach(b => {
+  b.addEventListener('click', () => { theme = b.dataset.val; applyTheme(); });
+});
+applyTheme();
+const panel = document.getElementById('tweaks');
+document.getElementById('tweaks-trigger').addEventListener('click', () => panel.classList.toggle('open'));
+document.getElementById('tweaks-close').addEventListener('click', () => panel.classList.remove('open'));
+// desktop / mobile media toggle
+document.querySelectorAll('.media-tabs').forEach(group => {
+  const tabs = group.querySelectorAll('.media-tab');
+  const panels = group.querySelectorAll('.media-panel');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => {
+        p.classList.remove('active');
+        const v = p.querySelector('video');
+        if (v) v.pause();
+      });
+      tab.classList.add('active');
+      const target = group.querySelector('#' + tab.dataset.target);
+      target.classList.add('active');
+      const v = target.querySelector('video');
+      if (v) v.play().catch(() => {});
+    });
+  });
+});
+// scroll-triggered video playback
+const vidObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.play(); }
+    else { e.target.pause(); }
+  });
+}, { threshold: 0.4 });
+['vid-application', 'vid-application-mobile', 'vid-skillstest', 'vid-skillstest-mobile', 'vid-async', 'vid-async-mobile'].forEach(id => {
+  const v = document.getElementById(id);
+  if (v) vidObs.observe(v);
+});
+// cursor circle — accent dot trails the cursor, blooming over the hero image
+(function() {
+  if (matchMedia('(hover: none)').matches) return;
+  const hero = document.querySelector('.cs-hero');
+  const cover = document.querySelector('.cs-cover');
+  if (!hero || !cover) return;
+  const dot = document.createElement('div');
+  dot.className = 'cs-cursor-dot';
+  document.body.appendChild(dot);
+  let x = 0, y = 0, tx = 0, ty = 0, scale = 0, tScale = 0, raf = null;
+  const tick = () => {
+    x += (tx - x) * 0.12;
+    y += (ty - y) * 0.12;
+    scale += (tScale - scale) * 0.15;
+    if (Math.abs(tx - x) > .1 || Math.abs(ty - y) > .1 || Math.abs(tScale - scale) > .01) {
+      dot.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%) scale(${scale})`;
+      raf = requestAnimationFrame(tick);
+    } else {
+      x = tx; y = ty; scale = tScale;
+      dot.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%) scale(${scale})`;
+      raf = null;
+    }
+  };
+  const start = () => { if (!raf) raf = requestAnimationFrame(tick); };
+  const overCover = (e) => {
+    const r = cover.getBoundingClientRect();
+    return e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+  };
+  hero.addEventListener('mousemove', (e) => { tx = e.clientX; ty = e.clientY; tScale = overCover(e) ? 1 : 0; start(); });
+  hero.addEventListener('mouseenter', (e) => { x = tx = e.clientX; y = ty = e.clientY; tScale = overCover(e) ? 1 : 0; start(); });
+  hero.addEventListener('mouseleave', () => { tScale = 0; start(); });
+})();
+// hero parallax
+(function() {
+  const img = document.querySelector('.cs-hero-img');
+  if (!img) return;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY * 0.12;
+    img.style.transform = `translateY(${y}px)`;
+  }, { passive: true });
+})();
+</script>
+</body>
+</html>

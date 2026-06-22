@@ -1,0 +1,23 @@
+# OS / editor junk
+.DS_Store
+**/.DS_Store
+
+# Local tooling
+.claude/
+
+# Dev server helpers (not needed for static hosting)
+serve.js
+serve.py
+
+# Archived / superseded material
+archive/
+
+# Broken orphan page (references frame images that don't exist)
+pipeline-animation.html
+
+# Unreferenced source videos (cropped versions are used instead)
+Application mobile.mov
+async desktop.mov
+async mob.mov
+skills test mobile.mov
+skills test.jpg

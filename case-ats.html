@@ -1,0 +1,943 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Skills-based ATS — Saskia Tobreluts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ── tokens ── */
+:root {
+  --bg: #f4f1ea;
+  --ink: #1C1410;
+  --muted: #8a857a;
+  --rule: rgba(17,17,17,0.12);
+  --accent: #ff5b1f;
+  --card: #ece8df;
+  --ff-display: "Fraunces", "Times New Roman", serif;
+  --ff-body: "Inter", system-ui, sans-serif;
+  --ff-mono: "JetBrains Mono", ui-monospace, monospace;
+  --pad: 40px;
+}
+[data-theme="dark"]  { --bg:#0e0e0e; --ink:#f2efe7; --muted:#817c72; --rule:rgba(242,239,231,.14); --card:#181715; }
+[data-theme="paper"] { --bg:#ebe6d9; --ink:#1a1a1a; --muted:#7a7365; --rule:rgba(26,26,26,.14); --card:#e2dcca; }
+[data-theme="cool"]  { --bg:#eef0f2; --ink:#0d1117; --muted:#6b7280; --rule:rgba(13,17,23,.12); --card:#e5e7ea; }
+
+/* ── reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { overflow-x: hidden; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--ff-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background .35s, color .35s;
+}
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: none; padding: 0; cursor: pointer; }
+
+/* ── layout ── */
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 var(--pad); }
+@media (max-width: 600px) { :root { --pad: 20px; } }
+
+/* ── nav ── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px var(--pad);
+  font-family: var(--ff-mono); font-size: 12px; letter-spacing: .04em;
+  background: var(--bg);
+  border-bottom: 1px solid var(--rule);
+  transition: background .35s, border-color .35s;
+}
+.nav-back {
+  display: flex; align-items: center; gap: 10px;
+  font-weight: 400;
+  transition: opacity .2s;
+}
+.nav-back:hover { opacity: .6; }
+.nav-back .arr { display: inline-block; transition: transform .25s; }
+.nav-back:hover .arr { transform: translateX(-4px); }
+.nav-right { display: flex; align-items: center; gap: 24px; }
+.nav-counter { color: var(--muted); }
+.nav-theme { display: none; }
+.nav-theme:hover { border-color: var(--accent); color: var(--accent); }
+.nav-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); animation: pulse 2.4s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.4);opacity:.5} }
+
+/* ── hero ── */
+.cs-hero { padding-top: 120px; }
+.cs-hero-grid {
+  display: grid; grid-template-columns: 0.8fr 1.55fr;
+  gap: 40px; align-items: center;
+}
+@media (max-width: 900px) {
+  .cs-hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .cs-hero-media { margin-right: 0; }
+}
+.cs-hero-media { margin-right: calc(-1 * var(--pad)); }
+.cs-hero-media .cs-cover { border-radius: 8px; }
+.cs-kicker {
+  font-family: var(--ff-mono); font-size: 11px; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--muted);
+  display: flex; align-items: center; gap: 12px; margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+/* cursor circle — accent dot that trails the cursor in the hero */
+.cs-cursor-dot {
+  position: fixed; left: 0; top: 0;
+  width: 480px; height: 480px; border-radius: 50%;
+  background: var(--accent);
+  pointer-events: none; z-index: -1;
+  transform: translate(-50%, -50%) scale(0);
+}
+@media (hover: none) { .cs-cursor-dot { display: none; } }
+.cs-kicker .line { width: 36px; height: 1px; background: var(--muted); flex-shrink: 0; }
+.cs-title {
+  font-family: var(--ff-display); font-weight: 300;
+  font-size: clamp(38px, 4.6vw, 68px); line-height: .98; letter-spacing: -.03em;
+  margin-bottom: 0;
+  font-variation-settings: "opsz" 144;
+}
+.cs-title em { font-style: italic; color: var(--accent); font-variation-settings: "opsz" 9; }
+
+.cs-cover {
+  width: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+.cs-hero-img {
+  width: 100%; height: auto; display: block;
+  animation: heroReveal 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes heroReveal {
+  from { opacity: 0; transform: scale(1.06) translateY(24px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0);    }
+}
+
+.cs-meta {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 20px; padding: 28px 0;
+  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+  margin-top: 36px;
+}
+@media (max-width: 700px) { .cs-meta { grid-template-columns: 1fr 1fr; } }
+.cs-meta-item .label {
+  font-family: var(--ff-mono); font-size: 10px; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 6px;
+}
+.cs-meta-item .val { font-size: 14px; line-height: 1.4; }
+
+/* ── sections ── */
+.cs-body { padding-top: 80px; padding-bottom: 40px; }
+.cs-section {
+  display: grid; grid-template-columns: 180px 1fr;
+  gap: 0 72px;
+  padding: 56px 0;
+  border-top: 1px solid var(--rule);
+}
+.cs-section--brief {
+  border-top: none;
+  border-bottom: 1px solid var(--rule);
+}
+@media (max-width: 800px) { .cs-section { grid-template-columns: 1fr; gap: 16px; } }
+.cs-section--no-rule { border-top: none; }
+.cs-section-label {
+  font-family: var(--ff-mono); font-size: 11px; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--muted);
+  padding-top: 6px;
+}
+.cs-section-num { display: block; margin-bottom: 4px; font-size: 10px; }
+
+/* ── prose ── */
+.prose p { font-size: 17px; line-height: 1.75; color: var(--ink); margin-bottom: 20px; }
+.prose p:last-child { margin-bottom: 0; }
+.prose .lead {
+  font-family: var(--ff-display); font-weight: 300;
+  font-size: clamp(20px, 2.2vw, 28px); line-height: 1.3; letter-spacing: -.01em;
+  margin-bottom: 24px;
+}
+.prose .lead em { font-style: italic; color: var(--accent); }
+.prose .lead .lead-accent {
+  font-family: "Instrument Serif", serif;
+  font-style: italic;
+  color: #FF5B1F;
+}
+.prose .sec-title {
+  font-family: var(--ff-display); font-weight: 300;
+  font-size: clamp(24px, 2.8vw, 38px); line-height: 1.1; letter-spacing: -.02em;
+  margin-bottom: 24px; font-variation-settings: "opsz" 80;
+}
+.prose .sec-title em { font-style: italic; color: var(--accent); font-variation-settings: "opsz" 9; }
+
+/* ── case-study sub-blocks: problem / insight / decisions / impact ── */
+.cs-block { margin-top: 40px; }
+.cs-block:first-child { margin-top: 0; }
+.cs-block-label {
+  font-family: var(--ff-mono); font-size: 11px; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: 14px;
+}
+.cs-block > p { font-size: 17px; line-height: 1.75; color: var(--ink); margin-bottom: 20px; }
+.cs-block > p:last-child { margin-bottom: 0; }
+
+/* a single design decision: accent dot + statement, media follows below */
+.cs-decision {
+  display: grid; grid-template-columns: 8px 1fr; gap: 14px;
+  align-items: start;
+  margin: 0 0 4px;
+}
+.cs-decision .dot {
+  position: relative;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent); margin-top: 10px;
+}
+/* radar ping — two expanding accent rings radiate from the dot */
+.cs-decision .dot::before,
+.cs-decision .dot::after {
+  content: ""; position: absolute; inset: 0;
+  border-radius: 50%; background: var(--accent);
+  opacity: 0; pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .cs-decision.in-view .dot::before { animation: ping 2.6s ease-out infinite; }
+  .cs-decision.in-view .dot::after  { animation: ping 2.6s ease-out infinite 1.3s; }
+  /* hover the decision row to quicken the ping */
+  .cs-decision:hover .dot::before { animation-duration: 1.1s; }
+  .cs-decision:hover .dot::after  { animation-duration: 1.1s; animation-delay: .55s; }
+}
+@keyframes ping {
+  0%        { transform: scale(1);   opacity: .5; }
+  70%, 100% { transform: scale(3.4); opacity: 0;  }
+}
+.cs-decision p { font-size: 17px; line-height: 1.75; color: var(--ink); margin: 0; }
+
+/* impact bullet list */
+.cs-impact-list { list-style: none; margin-top: 4px; }
+.cs-impact-list li {
+  position: relative; padding-left: 22px; margin-bottom: 18px;
+  font-size: 17px; line-height: 1.75; color: var(--ink);
+}
+.cs-impact-list li:last-child { margin-bottom: 0; }
+.cs-impact-list li::before {
+  content: ""; position: absolute; left: 4px; top: 12px;
+  width: 6px; height: 6px; border-radius: 50%; background: var(--muted);
+}
+
+/* ── image placeholders ── */
+.ph-img {
+  width: 100%; border-radius: 4px;
+  margin: 28px 0 8px;
+  object-fit: cover;
+}
+.ph-img.wide  { aspect-ratio: 16/9; }
+.ph-img.half  { aspect-ratio: 4/3; }
+.ph-img.sq    { aspect-ratio: 1; }
+.ph-caption {
+  font-family: var(--ff-mono); font-size: 11px !important; color: #8A857A !important;
+  letter-spacing: .04em; margin-bottom: 24px;
+}
+.ph-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 28px 0 8px; }
+.ph-grid .ph-img { margin: 0; }
+@media (max-width: 600px) { .ph-grid { grid-template-columns: 1fr; } }
+
+/* carousel (compact, scroll-snap) */
+.carousel { position: relative; margin: 28px 0 8px; }
+.carousel-track {
+  display: flex; gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 2px 10px;
+}
+.carousel-track::-webkit-scrollbar { display: none; }
+.carousel-track { -ms-overflow-style: none; scrollbar-width: none; }
+
+.carousel-item {
+  flex: 0 0 min(720px, 86%);
+  scroll-snap-align: start;
+  padding: 0;
+}
+.carousel-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+}
+.carousel--shadow .carousel-item img {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.06);
+}
+.carousel-controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 10px;
+}
+.carousel-btn {
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 8px 12px;
+  color: var(--ink);
+  background: transparent;
+}
+.carousel-btn:hover { border-color: var(--ink); }
+.carousel-btn:active { transform: translateY(1px); }
+
+/* Pipeline-style showcase: dark frame, inset video, caption below */
+.video-wrap {
+  width: 100%;
+  margin: 28px 0 0;
+  box-sizing: border-box;
+  background: #1C1410;
+  border-radius: 28px;
+  padding: clamp(20px, 4.5vw, 52px);
+}
+.video-wrap video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  vertical-align: top;
+}
+.video-wrap + .ph-caption {
+  margin-top: 16px;
+}
+.video-wrap--blend video { mix-blend-mode: multiply; }
+
+/* Browser-window mockup for desktop videos */
+.browser-mock {
+  width: 100%;
+  margin: 28px 0 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  background: var(--card);
+  box-shadow: 0 24px 60px rgba(0,0,0,.16);
+}
+.browser-bar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--rule);
+}
+.browser-dots { display: flex; gap: 7px; }
+.browser-dots i { width: 11px; height: 11px; border-radius: 50%; display: block; }
+.browser-dots i:nth-child(1) { background: #ff5f57; }
+.browser-dots i:nth-child(2) { background: #febc2e; }
+.browser-dots i:nth-child(3) { background: #28c840; }
+.browser-mock video { width: 100%; height: auto; display: block; vertical-align: top; }
+.browser-mock + .ph-caption { margin-top: 16px; }
+
+
+/* ── outcome chips ── */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.chip {
+  font-family: var(--ff-mono); font-size: 11px; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--muted);
+  border: 1px solid var(--rule); border-radius: 999px; padding: 7px 14px;
+  transition: border-color .2s, color .2s;
+}
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ── collapsible section ── */
+.cs-section--collapsible { cursor: default; }
+.cs-section-toggle {
+  font-family: var(--ff-mono); font-size: 11px; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--muted);
+  padding-top: 6px;
+  display: flex; align-items: flex-start; gap: 10px;
+  width: 100%; text-align: left;
+  background: none; border: none; cursor: pointer;
+  transition: color .2s;
+}
+.cs-section-toggle:hover { color: var(--ink); }
+.cs-toggle-icon {
+  margin-left: auto; flex-shrink: 0;
+  transition: transform .3s cubic-bezier(.4,0,.2,1);
+}
+.cs-section-toggle[aria-expanded="true"] .cs-toggle-icon { transform: rotate(180deg); }
+.cs-collapsible-body {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height .4s cubic-bezier(.4,0,.2,1);
+}
+
+/* ── next project ── */
+.cs-next {
+  border-top: 1px solid var(--rule);
+  padding: 56px 0 40px;
+  display: flex; align-items: center; justify-content: space-between; gap: 32px;
+}
+.cs-next-label {
+  font-family: var(--ff-mono); font-size: 11px; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 12px;
+}
+.cs-next-link { display: block; }
+.cs-next-title {
+  font-family: var(--ff-display); font-weight: 300;
+  font-size: clamp(24px, 3.5vw, 52px); letter-spacing: -.02em;
+  transition: transform .35s cubic-bezier(.2,.8,.2,1);
+}
+.cs-next-title em { font-style: italic; color: var(--accent); }
+.cs-next-link:hover .cs-next-title { transform: translateX(10px); }
+.cs-next-arrow {
+  font-size: clamp(28px, 3.5vw, 52px); color: var(--muted); flex-shrink: 0;
+  transition: transform .35s, color .2s;
+}
+.cs-next-link:hover .cs-next-arrow { transform: translateX(6px); color: var(--accent); }
+
+/* ── footer ── */
+.foot {
+  border-top: 1px solid var(--rule);
+}
+.foot-inner {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  font-family: var(--ff-mono); font-size: 12px; letter-spacing: .04em;
+  display: flex; align-items: center; justify-content: space-between;
+  color: var(--muted);
+}
+.foot-inner a { transition: color .2s; }
+.foot-inner a:hover { color: var(--accent); }
+
+/* ── tweaks ── */
+.tweaks {
+  position: fixed; bottom: 20px; right: 20px; z-index: 200;
+  background: var(--bg); border: 1px solid var(--rule); border-radius: 8px;
+  padding: 20px; font-family: var(--ff-mono); font-size: 11px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.08);
+  max-width: 240px; opacity: 0; pointer-events: none;
+  transition: opacity .2s, transform .2s;
+  transform: translateY(8px);
+}
+.tweaks.open { opacity: 1; pointer-events: all; transform: translateY(0); }
+.tweaks-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; font-weight: 600; }
+.tweaks-close { font-size: 18px; opacity: .6; transition: opacity .2s; }
+.tweaks-close:hover { opacity: 1; }
+.tweaks-group { margin-bottom: 16px; }
+.tweaks-group:last-child { margin-bottom: 0; }
+.tweaks-group-label { color: var(--muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: .08em; font-size: 9px; }
+.tweaks-opts { display: flex; flex-wrap: wrap; gap: 6px; }
+.tweaks-opts button {
+  padding: 5px 4px; font-size: 10px; text-transform: uppercase; letter-spacing: .06em;
+  border: 1px solid var(--rule); border-radius: 4px;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.tweaks-opts button.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.swatches { display: flex; gap: 6px; flex-wrap: wrap; }
+.swatch {
+  width: 22px; height: 22px; border-radius: 50%;
+  border: 2px solid transparent; cursor: pointer;
+  transition: border-color .15s;
+}
+.swatch.active { border-color: var(--ink); }
+</style>
+</head>
+<body data-theme="light">
+
+<!-- nav -->
+<nav class="nav">
+  <a class="nav-back" href="index.html">
+    <span class="arr">←</span>
+    <span>Saskia Tobreluts</span>
+  </a>
+  <div class="nav-right">
+    <span class="nav-counter">01 / 02</span>
+    <button class="nav-theme" id="tweaks-trigger">Theme</button>
+    <span class="nav-dot"></span>
+  </div>
+</nav>
+
+<!-- hero -->
+<div class="cs-hero wrap">
+  <div class="cs-hero-grid">
+    <div class="cs-hero-text">
+      <div class="cs-kicker">
+        <span class="line"></span>
+        <span>Toggl Hire · B2B SaaS · Recruiter-facing</span>
+      </div>
+      <h1 class="cs-title">
+        From skills test to <em>full-cycle ATS.</em>
+      </h1>
+    </div>
+    <div class="cs-hero-media">
+      <div class="cs-cover">
+        <img src="images/ATS%20case%20study%20grid%20nobg.png" alt="Toggl Hire ATS" class="cs-hero-img">
+      </div>
+    </div>
+  </div>
+  <div class="cs-meta">
+    <div class="cs-meta-item">
+      <div class="label">Role</div>
+      <div class="val">Solo designer</div>
+    </div>
+    <div class="cs-meta-item">
+      <div class="label">Timeline</div>
+      <div class="val">Jun 2021 – Sep 2025<br><span style="color:var(--muted)">(4 years of iteration)</span></div>
+    </div>
+    <div class="cs-meta-item">
+      <div class="label">Disciplines</div>
+      <div class="val">Product Strategy · UX/UI Design · User&nbsp;Research</div>
+    </div>
+  </div>
+</div>
+
+<!-- body -->
+<div class="cs-body wrap">
+
+  <div class="cs-section cs-section--brief">
+    <div class="cs-section-label">
+      <span class="cs-section-num">(01)</span>The challenge
+    </div>
+    <div class="prose">
+      <h2 class="sec-title">Add everything. <em>Keep it simple.</em></h2>
+      <p>Toggl Hire started as a single skills test, built for Toggl's own hiring. Over four years I helped grow it into the whole funnel — pipeline, interviews, analytics, careers pages. Each new feature was a chance to make it heavier. The job was to add everything an ATS does, without the weight that usually comes with it.</p>
+    </div>
+  </div>
+
+  <div class="cs-section cs-section--no-rule">
+    <div class="cs-section-label">
+      <span class="cs-section-num">(02)</span>Pipeline
+    </div>
+    <div class="prose">
+      <h2 class="sec-title">The <em>home</em> base</h2>
+
+      <div class="cs-block">
+        <div class="cs-block-label">The problem</div>
+        <p>Hiring managers don't just look at a funnel, they run it. Add a test, change the criteria, clear out a stage. In most ATS tools that means leaving the board and digging through settings menus that sit nowhere near the actual work. Every change breaks your flow.</p>
+      </div>
+
+      <div class="cs-block">
+        <div class="cs-block-label">The insight</div>
+        <p>Managers need one high-trust home base. If they can't see what's running in the background, or act on people at volume without drilling into every profile, they stop trusting that the board reflects what's actually happening.</p>
+      </div>
+
+      <div class="cs-block">
+        <div class="cs-block-label">Design decisions</div>
+        <div class="cs-decision">
+          <span class="dot"></span>
+          <p>I put the structural controls on the board itself. Changing test settings happens inline, where you're already working, instead of three menus deep.</p>
+        </div>
+        <div class="browser-mock">
+          <div class="browser-bar">
+            <span class="browser-dots"><i></i><i></i><i></i></span>
+          </div>
+          <video id="vid-testsettings" src="TestSettingsClean.mov" loop muted playsinline></video>
+        </div>
+        <p class="ph-caption">↑ Assessment settings — manager can tweak the test without leaving the pipeline. The board stays the home base. Configuration comes to it.</p>
+        <div class="cs-decision">
+          <span class="dot"></span>
+          <p>I made bulk actions work wherever you're looking, the full board or a single stage. When you're moving through volume, you reject or advance a whole group at once, without needing to open them one by one.</p>
+        </div>
+        <div class="browser-mock">
+          <div class="browser-bar">
+            <span class="browser-dots"><i></i><i></i><i></i></span>
+          </div>
+          <video id="vid-pipeline" src="pipelineClean.mov" loop muted playsinline></video>
+        </div>
+        <p class="ph-caption">↑ Candidate pipeline — each column is a hiring stage. Managers see status at a glance, act inline, move people forward without ceremony.</p>
+        <div class="cs-decision">
+          <span class="dot"></span>
+          <p>The cards carry their own context too. I made each card highlight the score that matters at that stage. Previous scores stay visible at a glance, so you never click in just to see how someone did before.</p>
+        </div>
+      </div>
+
+      <div class="cs-block">
+        <div class="cs-block-label">Business &amp; UX impact</div>
+        <ul class="cs-impact-list">
+          <li>Managers stopped leaving the pipeline to change the settings. They adjust the strategy in place, without losing sight of where everyone stands.</li>
+          <li>In post-launch interviews, managers kept landing on the same relief: the full assessment history sitting right on the card. One said it took the "guesswork and endless clicking" out of their day.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-section">
+    <div class="cs-section-label">
+      <span class="cs-section-num">(03)</span>Candidate view
+    </div>
+    <div class="prose">
+      <h2 class="sec-title">The <em>whole</em> picture</h2>
+
+      <div class="cs-block">
+        <div class="cs-block-label">The problem</div>
+        <p>Hiring is collaborative, which means the evidence ends up everywhere. Teams scored skills in Toggl Hire, read resumes in email, left feedback in Slack. Three places, one decision, no single view of the person. So people decided on whatever fragment happened to be in front of them.</p>
+      </div>
+
+      <div class="cs-block">
+        <div class="cs-block-label">The insight</div>
+        <p>The problem wasn't too little data, it was scattered data. To decide well, a team needs the whole candidate in one place and organized, so no one's hiring on a hunch or half the story.</p>
+      </div>
+
+      <div class="cs-block">
+        <div class="cs-block-label">Design decisions</div>
+        <div class="cs-decision">
+          <span class="dot"></span>
+          <p>I pulled every scattered source into one candidate record. Application, tests and interviews, email, history, notes, attachments, each its own tab, so the full context of a candidate sits in one place instead of across different tools.</p>
+        </div>
+        <div class="cs-decision">
+          <span class="dot"></span>
+          <p>I kept the team's collaboration on the candidate, not off in another tool. Notes live in the Notes tab, with @mentions to pull the right person in, and the History tab logs who moved a candidate and when. No more ghost decisions, no more "wait, who rejected this person?"</p>
+        </div>
+        <div class="browser-mock">
+          <div class="browser-bar">
+            <span class="browser-dots"><i></i><i></i><i></i></span>
+          </div>
+          <video id="vid-candidatecard" src="candidatecard.mov" loop muted playsinline></video>
+        </div>
+        <p class="ph-caption">↑ Candidate card — all the information that matters, stacked in one place. Application, assessments, notes, history. See the full picture without jumping around.</p>
+      </div>
+
+      <div class="cs-block">
+        <div class="cs-block-label">Business &amp; UX impact</div>
+        <ul class="cs-impact-list">
+          <li>Tickets about unexplained candidate moves dropped once the History tab logged every action with a name and a time.</li>
+          <li>The single-record view turned into a selling point in demos, instead of scattered context being something to explain away.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-section">
+    <div class="cs-section-label">
+      <span class="cs-section-num">(04)</span>Assessment flow
+    </div>
+    <div class="prose">
+      <h2 class="sec-title"><em>Clarity</em> over options</h2>
+
+      <div class="cs-block">
+        <div class="cs-block-label">The problem</div>
+        <p>The product started with one skills test. Then it grew to four ways to assess someone: a skills test, an interview, an async interview, a homework task. The old setup piled all of that onto one option-heavy screen, and people bailed before they finished building anything.</p>
+      </div>
+
+      <div class="cs-block">
+        <div class="cs-block-label">The insight</div>
+        <p>Nobody likes a blank canvas. People move faster reacting to a starting point than building from scratch, and they want a little proof they're choosing right before they commit. Templates and a "best for" line on every option give them both: a path to follow and the reassurance to follow it.</p>
+      </div>
+
+      <div class="cs-block">
+        <div class="cs-block-label">Design decisions</div>
+        <p>I turned the setup into two plain questions on one screen, each doing one job.</p>
+        <div class="cs-decision">
+          <span class="dot"></span>
+          <p>First: how do you want to assess candidates in this stage? Four types, each with a short "best for" line, so the choice is obvious instead of a guess. The most common one, the skills test, is flagged popular, so anyone unsure has a default to reach for.</p>
+        </div>
+        <div class="cs-decision">
+          <span class="dot"></span>
+          <p>Then: how do you want to build it? Three routes, led by templates, because a starting point beats a blank page. Custom build and copy-from-another-job sit alongside for the people who already know what they want.</p>
+        </div>
+        <div class="browser-mock">
+          <div class="browser-bar">
+            <span class="browser-dots"><i></i><i></i><i></i></span>
+          </div>
+          <video id="vid-assessment" src="Assessment%20flow.mov" loop muted playsinline></video>
+        </div>
+        <p class="ph-caption">↑ Assessment setup — two questions instead of one overwhelming screen. What assessment type, and how do you want to build it? Templates lead, because blank pages are daunting.</p>
+      </div>
+
+      <div class="cs-block">
+        <div class="cs-block-label">Business &amp; UX impact</div>
+        <ul class="cs-impact-list">
+          <li>Setup drop-off fell after the redesign, measured across the full funnel.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-section">
+    <div class="cs-section-label">
+      <span class="cs-section-num">(05)</span>Analytics &amp; insights
+    </div>
+    <div class="prose">
+      <h2 class="sec-title">Raw data is <em>noise</em></h2>
+
+      <div class="cs-block">
+        <div class="cs-block-label">The problem</div>
+        <p>As a screening tool, top-of-funnel numbers were enough. You wanted to know how many people dropped off your test. As a full-cycle ATS, that stopped covering it. Leadership needed the macro picture to report up, and hiring managers needed the micro picture to find where the pipeline was leaking. One screen had to serve both.</p>
+      </div>
+
+      <div class="cs-block">
+        <div class="cs-block-label">The insight</div>
+        <p>A dashboard that tries to surface everything surfaces nothing. Managers didn't want raw data, they wanted to see exactly where a pipeline was stalling or bleeding candidates. The job of analytics is to point, not to dump.</p>
+      </div>
+
+      <div class="cs-block">
+        <div class="cs-block-label">Design decisions</div>
+        <p>I built two views for two needs, and cut everything that didn't serve them.</p>
+        <div class="cs-decision">
+          <span class="dot"></span>
+          <p>The workspace summary answers "how's hiring going?" at a glance: active, paused, and closed openings, average time to fill, average time to hire. The numbers a leader reports up, nothing more.</p>
+        </div>
+        <div class="cs-decision">
+          <span class="dot"></span>
+          <p>The per-job drilldown answers "where are we losing people?": active versus rejected candidates per stage, new-candidate volume over time, and how long the role's been open. The per-stage bars make a leaky stage obvious, the one where active shrinks and rejected balloons.</p>
+        </div>
+        <div class="browser-mock">
+          <div class="browser-bar">
+            <span class="browser-dots"><i></i><i></i><i></i></span>
+          </div>
+          <video id="vid-analytics" src="analytics.mov" loop muted playsinline></video>
+        </div>
+        <p class="ph-caption">↑ Analytics — workspace summary, job performance, time-to-fill, time-to-hire. The data that hiring managers actually need to see.</p>
+      </div>
+
+      <div class="cs-block">
+        <div class="cs-block-label">Business &amp; UX impact</div>
+        <ul class="cs-impact-list">
+          <li>Managers stopped rebuilding reports in Excel. The full hiring picture lived in the product instead.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-section">
+    <div class="cs-section-label">
+      <span class="cs-section-num">(06)</span>Judgment over polish
+    </div>
+    <div class="prose">
+      <p class="lead">Four years of this turned Toggl Hire from a single-feature screening tool into a full ATS that competed in a crowded B2B market.</p>
+      <p>Most ATS products have a design team. This one had me.</p>
+      <p>Over four years I took Toggl Hire from a single-feature screening tool to a full ATS. The pipeline, the candidate view, the assessments, the analytics, the components underneath, and plenty I'm not showing here. One person designed all of it.</p>
+      <p>A product that big, spread across several apps, means perfection across all of it was never on the table. So the real job was judgment: knowing where quality had to hold and where good enough kept things moving. Coming from the business side, I never mistook polish for value. I made those calls fast and kept the product shipping.</p>
+      <p>I produced.</p>
+    </div>
+  </div>
+
+  <div class="cs-section">
+    <div class="cs-section-label">
+      <span class="cs-section-num">(07)</span>Bonus
+    </div>
+    <div class="prose">
+      <div class="carousel" data-carousel>
+        <div class="carousel-track" data-track>
+          <div class="carousel-item"><img src="images/images_updated/Job%20application.png" alt="Job application"></div>
+          <div class="carousel-item"><img src="images/images_updated/Job%20description.png" alt="Job description"></div>
+          <div class="carousel-item"><img src="images/images_updated/Skills%20test%20onboarding.png" alt="Skills test onboarding"></div>
+          <div class="carousel-item"><img src="images/images_updated/Test%20Analytics.png" alt="Test Analytics"></div>
+        </div>
+        <div class="carousel-controls">
+          <button class="carousel-btn" type="button" data-prev>Prev</button>
+          <button class="carousel-btn" type="button" data-next>Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-section cs-section--collapsible" id="section-archive">
+    <button class="cs-section-label cs-section-toggle" aria-expanded="false" aria-controls="archive-body">
+      <span class="cs-section-num">(08)</span>Archive
+      <svg class="cs-toggle-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="cs-collapsible-body" id="archive-body">
+      <div class="prose">
+        <p class="lead">The baseline</p>
+        <p>for me really...</p>
+        <div class="carousel" data-carousel>
+          <div class="carousel-track" data-track>
+            <div class="carousel-item"><img src="images/old/Toggl%20Hire%20Candidate%20Details%20Q1%202022.png" alt="Toggl Hire Candidate Details Q1 2022"></div>
+            <div class="carousel-item"><img src="images/old/Toggl%20Hire%20Q1%202022.png" alt="Toggl Hire Q1 2022"></div>
+            <div class="carousel-item"><img src="images/old/Toggl%20Latest%20Launches%202026%20(1).avif" alt="Toggl Latest Launches 2026 1"></div>
+            <div class="carousel-item"><img src="images/old/Toggl%20Latest%20Launches%202026%20(2).avif" alt="Toggl Latest Launches 2026 2"></div>
+            <div class="carousel-item"><img src="images/old/Toggl%20Latest%20Launches%202026%20(3).avif" alt="Toggl Latest Launches 2026 3"></div>
+            <div class="carousel-item"><img src="images/old/Toggl%20Latest%20Launches%202026%20(4).avif" alt="Toggl Latest Launches 2026 4"></div>
+            <div class="carousel-item"><img src="images/old/Toggl%20Latest%20Launches%202026.avif" alt="Toggl Latest Launches 2026"></div>
+            <div class="carousel-item"><img src="images/old/Toggl%20Launches%202026.avif" alt="Toggl Launches 2026"></div>
+          </div>
+          <div class="carousel-controls">
+            <button class="carousel-btn" type="button" data-prev>Prev</button>
+            <button class="carousel-btn" type="button" data-next>Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- next project -->
+  <div class="cs-next">
+    <div>
+      <div class="cs-next-label">Next up</div>
+      <a class="cs-next-link" href="case-candidate.html">
+        <div class="cs-next-title">Applying without the <em>dread</em> →</div>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /cs-body -->
+
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <span>© 2026 Saskia Tobreluts</span>
+    <a href="index.html">← All work</a>
+  </div>
+</footer>
+
+<!-- tweaks -->
+<div class="tweaks" id="tweaks">
+  <div class="tweaks-head">
+    <span>Tweaks</span>
+    <button class="tweaks-close" id="tweaks-close">×</button>
+  </div>
+  <div class="tweaks-group">
+    <div class="tweaks-group-label">Theme</div>
+    <div class="tweaks-opts" id="theme-opts">
+      <button data-val="light">Light</button>
+      <button data-val="paper">Paper</button>
+      <button data-val="cool">Cool</button>
+      <button data-val="dark">Dark</button>
+    </div>
+  </div>
+  <div class="tweaks-group">
+    <div class="tweaks-group-label">Accent</div>
+    <div class="swatches" id="accent-swatches"></div>
+  </div>
+</div>
+
+<script>
+// cursor circle — accent dot trails the cursor, blooming over the hero image
+(function() {
+  if (matchMedia('(hover: none)').matches) return;
+  const hero = document.querySelector('.cs-hero');
+  const cover = document.querySelector('.cs-cover');
+  if (!hero || !cover) return;
+  const dot = document.createElement('div');
+  dot.className = 'cs-cursor-dot';
+  document.body.appendChild(dot);
+  let x = 0, y = 0, tx = 0, ty = 0, scale = 0, tScale = 0, raf = null;
+  const tick = () => {
+    x += (tx - x) * 0.12;
+    y += (ty - y) * 0.12;
+    scale += (tScale - scale) * 0.15;
+    if (Math.abs(tx - x) > .1 || Math.abs(ty - y) > .1 || Math.abs(tScale - scale) > .01) {
+      dot.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%) scale(${scale})`;
+      raf = requestAnimationFrame(tick);
+    } else {
+      // snap exactly to target on the final frame so a fully shrunk dot
+      // disappears instead of leaving a tiny residual circle on the page
+      x = tx; y = ty; scale = tScale;
+      dot.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%) scale(${scale})`;
+      raf = null;
+    }
+  };
+  const start = () => { if (!raf) raf = requestAnimationFrame(tick); };
+  const overCover = (e) => {
+    const r = cover.getBoundingClientRect();
+    return e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+  };
+  hero.addEventListener('mousemove', (e) => { tx = e.clientX; ty = e.clientY; tScale = overCover(e) ? 1 : 0; start(); });
+  hero.addEventListener('mouseenter', (e) => { x = tx = e.clientX; y = ty = e.clientY; tScale = overCover(e) ? 1 : 0; start(); });
+  hero.addEventListener('mouseleave', () => { tScale = 0; start(); });
+})();
+
+// hero parallax
+(function() {
+  const img = document.querySelector('.cs-hero-img');
+  if (!img) return;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY * 0.12;
+    img.style.transform = `translateY(${y}px)`;
+  }, { passive: true });
+})();
+
+const ACCENTS = ['#ff5b1f','#3d5afe','#16a34a','#e11d48','#c084fc','#111111'];
+let theme = 'light', accent = '#ff5b1f';
+
+function applyTheme() {
+  document.body.dataset.theme = theme;
+  document.documentElement.style.setProperty('--accent', accent);
+  document.querySelectorAll('#theme-opts button').forEach(b => {
+    b.classList.toggle('active', b.dataset.val === theme);
+  });
+  document.querySelectorAll('.swatch').forEach(s => {
+    s.classList.toggle('active', s.dataset.val === accent);
+  });
+}
+
+// build accent swatches
+const sc = document.getElementById('accent-swatches');
+ACCENTS.forEach(c => {
+  const s = document.createElement('button');
+  s.className = 'swatch';
+  s.style.background = c;
+  s.dataset.val = c;
+  s.addEventListener('click', () => { accent = c; applyTheme(); });
+  sc.appendChild(s);
+});
+
+// theme buttons
+document.querySelectorAll('#theme-opts button').forEach(b => {
+  b.addEventListener('click', () => { theme = b.dataset.val; applyTheme(); });
+});
+
+applyTheme();
+
+// carousel controls
+document.querySelectorAll('[data-carousel]').forEach((c) => {
+  const track = c.querySelector('[data-track]');
+  const prev = c.querySelector('[data-prev]');
+  const next = c.querySelector('[data-next]');
+
+  const step = () => {
+    const first = track?.querySelector('.carousel-item');
+    if (!first) return 400;
+    const styles = getComputedStyle(track);
+    const gap = parseFloat(styles.columnGap || styles.gap || '14') || 14;
+    return first.getBoundingClientRect().width + gap;
+  };
+
+  prev?.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+  next?.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
+});
+
+// scroll-triggered video playback
+const vidObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.play(); }
+    else { e.target.pause(); }
+  });
+}, { threshold: 0.4 });
+['vid-testsettings', 'vid-pipeline', 'vid-candidatecard', 'vid-assessment', 'vid-analytics'].forEach(id => {
+  const v = document.getElementById(id);
+  if (v) vidObs.observe(v);
+});
+
+// design-decision dots ping as they scroll into view
+const dotObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => e.target.classList.toggle('in-view', e.isIntersecting));
+}, { threshold: 0.6 });
+document.querySelectorAll('.cs-decision').forEach(d => dotObs.observe(d));
+
+// collapsible sections
+document.querySelectorAll('.cs-section-toggle').forEach(btn => {
+  const body = document.getElementById(btn.getAttribute('aria-controls'));
+  btn.addEventListener('click', () => {
+    const expanded = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!expanded));
+    if (!expanded) {
+      body.style.maxHeight = body.scrollHeight + 'px';
+    } else {
+      body.style.maxHeight = '0';
+    }
+  });
+});
+
+// tweaks panel
+const panel = document.getElementById('tweaks');
+document.getElementById('tweaks-trigger').addEventListener('click', () => panel.classList.toggle('open'));
+document.getElementById('tweaks-close').addEventListener('click', () => panel.classList.remove('open'));
+</script>
+</body>
+</html>

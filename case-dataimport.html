@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Data Import — Saskia Tobreluts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f4f1ea;
+  --ink: #111111;
+  --muted: #8a857a;
+  --rule: rgba(17,17,17,0.12);
+  --accent: #ff5b1f;
+  --card: #ece8df;
+  --ff-display: "Fraunces", "Times New Roman", serif;
+  --ff-body: "Inter", system-ui, sans-serif;
+  --ff-mono: "JetBrains Mono", ui-monospace, monospace;
+  --pad: 40px;
+}
+[data-theme="dark"]  { --bg:#0e0e0e; --ink:#f2efe7; --muted:#817c72; --rule:rgba(242,239,231,.14); --card:#181715; }
+[data-theme="paper"] { --bg:#ebe6d9; --ink:#1a1a1a; --muted:#7a7365; --rule:rgba(26,26,26,.14); --card:#e2dcca; }
+[data-theme="cool"]  { --bg:#eef0f2; --ink:#0d1117; --muted:#6b7280; --rule:rgba(13,17,23,.12); --card:#e5e7ea; }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { overflow-x: hidden; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--ff-body); font-size: 16px; line-height: 1.6;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  transition: background .35s, color .35s;
+}
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: none; padding: 0; cursor: pointer; }
+
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 var(--pad); }
+@media (max-width: 600px) { :root { --pad: 20px; } }
+
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px var(--pad);
+  font-family: var(--ff-mono); font-size: 12px; letter-spacing: .04em;
+  background: var(--bg); border-bottom: 1px solid var(--rule);
+  transition: background .35s, border-color .35s;
+}
+.nav-back { display: flex; align-items: center; gap: 10px; transition: opacity .2s; }
+.nav-back:hover { opacity: .6; }
+.nav-back .arr { display: inline-block; transition: transform .25s; }
+.nav-back:hover .arr { transform: translateX(-4px); }
+.nav-right { display: flex; align-items: center; gap: 24px; }
+.nav-counter { color: var(--muted); }
+.nav-theme { display: none; }
+.nav-theme:hover { border-color: var(--accent); color: var(--accent); }
+.nav-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); animation: pulse 2.4s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.4);opacity:.5} }
+
+.cs-hero { padding-top: 120px; }
+.cs-kicker {
+  font-family: var(--ff-mono); font-size: 11px; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--muted);
+  display: flex; align-items: center; gap: 12px; margin-bottom: 28px;
+}
+.cs-kicker .line { width: 36px; height: 1px; background: var(--muted); flex-shrink: 0; }
+.cs-title {
+  font-family: var(--ff-display); font-weight: 300;
+  font-size: clamp(38px, 4.6vw, 68px); line-height: .98; letter-spacing: -.03em;
+  margin-bottom: 56px; font-variation-settings: "opsz" 144;
+}
+.cs-title em { font-style: italic; color: var(--accent); font-variation-settings: "opsz" 9; }
+.cs-cover {
+  width: 100%; aspect-ratio: 16/9; border-radius: 6px;
+  background: repeating-linear-gradient(45deg, rgba(255,91,31,.08) 0px, rgba(255,91,31,.08) 8px, transparent 8px, transparent 16px), var(--card);
+}
+.cs-meta {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 20px; padding: 28px 0;
+  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+  margin-top: 36px;
+}
+@media (max-width: 700px) { .cs-meta { grid-template-columns: 1fr 1fr; } }
+.cs-meta-item .label { font-family: var(--ff-mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.cs-meta-item .val { font-size: 14px; line-height: 1.4; }
+
+.cs-body { padding-top: 80px; padding-bottom: 40px; }
+.cs-section {
+  display: grid; grid-template-columns: 180px 1fr;
+  gap: 0 72px; padding: 56px 0; border-top: 1px solid var(--rule);
+}
+@media (max-width: 800px) { .cs-section { grid-template-columns: 1fr; gap: 16px; } }
+.cs-section-label { font-family: var(--ff-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding-top: 6px; }
+.cs-section-num { display: block; margin-bottom: 4px; font-size: 10px; }
+
+.prose p { font-size: 17px; line-height: 1.75; color: var(--ink); margin-bottom: 20px; }
+.prose p:last-child { margin-bottom: 0; }
+.prose .lead { font-family: var(--ff-display); font-weight: 300; font-size: clamp(20px, 2.2vw, 28px); line-height: 1.3; letter-spacing: -.01em; margin-bottom: 24px; }
+.prose .lead em { font-style: italic; color: var(--accent); }
+
+.ph-img {
+  width: 100%; border-radius: 4px;
+  background: repeating-linear-gradient(45deg, rgba(255,91,31,.07) 0px, rgba(255,91,31,.07) 8px, transparent 8px, transparent 16px), var(--card);
+  margin: 28px 0 8px;
+}
+.ph-img.wide { aspect-ratio: 16/9; }
+.ph-img.half { aspect-ratio: 4/3; }
+.ph-img.sq   { aspect-ratio: 1; }
+.ph-caption { font-family: var(--ff-mono); font-size: 11px; color: var(--muted); letter-spacing: .04em; margin-bottom: 24px; }
+.ph-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 28px 0 8px; }
+.ph-grid .ph-img { margin: 0; }
+@media (max-width: 600px) { .ph-grid { grid-template-columns: 1fr; } }
+
+.pull {
+  font-family: var(--ff-display); font-style: italic; font-weight: 300;
+  font-size: clamp(24px, 3.5vw, 44px); line-height: 1.15; letter-spacing: -.02em;
+  color: var(--accent); padding: 36px 0;
+  border-top: 2px solid var(--accent); border-bottom: 1px solid var(--rule);
+  margin: 32px 0; font-variation-settings: "opsz" 9;
+}
+
+/* error callout — unique to this case study */
+.callout {
+  border-left: 3px solid var(--accent);
+  background: rgba(255,91,31,.05);
+  border-radius: 0 4px 4px 0;
+  padding: 18px 22px;
+  margin: 28px 0;
+  font-size: 15px; line-height: 1.65; color: var(--muted);
+}
+.callout strong { color: var(--ink); font-weight: 500; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.chip { font-family: var(--ff-mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--rule); border-radius: 999px; padding: 7px 14px; transition: border-color .2s, color .2s; }
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+
+.cs-next { border-top: 1px solid var(--rule); padding: 56px 0 40px; }
+.cs-next-label { font-family: var(--ff-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+.cs-next-link { display: inline-block; }
+.cs-next-title { font-family: var(--ff-display); font-weight: 300; font-size: clamp(24px, 3.5vw, 52px); letter-spacing: -.02em; transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+.cs-next-title em { font-style: italic; color: var(--accent); }
+.cs-next-link:hover .cs-next-title { transform: translateX(10px); }
+
+.foot { border-top: 1px solid var(--rule); padding: 24px 40px; font-family: var(--ff-mono); font-size: 11px; color: var(--muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+.foot a { border-bottom: 1px solid var(--muted); padding-bottom: 1px; transition: border-color .2s, color .2s; }
+.foot a:hover { color: var(--ink); border-color: var(--ink); }
+
+.tweaks { position: fixed; right: 20px; bottom: 20px; z-index: 200; width: 220px; background: var(--bg); border: 1px solid var(--rule); border-radius: 8px; padding: 16px; font-family: var(--ff-mono); font-size: 11px; box-shadow: 0 16px 40px rgba(0,0,0,.14); display: none; transition: background .35s, border-color .35s; }
+.tweaks.open { display: block; }
+.tweaks-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+.tweaks-head span { font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+.tweaks-close { font-size: 18px; line-height: 1; color: var(--muted); transition: color .2s; }
+.tweaks-close:hover { color: var(--ink); }
+.tweaks-group { margin-bottom: 12px; }
+.tweaks-group-label { font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 6px; }
+.tweaks-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+.tweaks-opts button { padding: 5px 4px; font-size: 10px; text-transform: uppercase; letter-spacing: .06em; border: 1px solid var(--rule); border-radius: 4px; transition: background .15s, color .15s, border-color .15s; }
+.tweaks-opts button.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.swatches { display: flex; gap: 6px; flex-wrap: wrap; }
+.swatch { width: 22px; height: 22px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; transition: border-color .15s; }
+.swatch.active { border-color: var(--ink); }
+</style>
+</head>
+<body data-theme="light">
+
+<nav class="nav">
+  <a class="nav-back" href="index.html">
+    <span class="arr">←</span>
+    <span>Saskia Tobreluts</span>
+  </a>
+  <div class="nav-right">
+    <span class="nav-counter">03 / 03</span>
+    <button class="nav-theme" id="tweaks-trigger">Theme</button>
+    <span class="nav-dot"></span>
+  </div>
+</nav>
+
+<div class="cs-hero wrap">
+  <div class="cs-kicker">
+    <span class="line"></span>
+    <span>Toggl OÜ · 2025 · Admin / Data management</span>
+  </div>
+  <h1 class="cs-title">
+    Data import that<br>doesn't <em>break</em> you.
+  </h1>
+  <div class="cs-cover"></div>
+  <div class="cs-meta">
+    <div class="cs-meta-item">
+      <div class="label">Role</div>
+      <div class="val">Senior Product Designer</div>
+    </div>
+    <div class="cs-meta-item">
+      <div class="label">Client</div>
+      <div class="val">Toggl OÜ</div>
+    </div>
+    <div class="cs-meta-item">
+      <div class="label">Timeline</div>
+      <div class="val">Sep 2025 – Jan 2026</div>
+    </div>
+    <div class="cs-meta-item">
+      <div class="label">Disciplines</div>
+      <div class="val">Admin UX · Data management · Web</div>
+    </div>
+  </div>
+</div>
+
+<div class="cs-body wrap">
+
+  <div class="cs-section">
+    <div class="cs-section-label">
+      <span class="cs-section-num">(01)</span>Brief
+    </div>
+    <div class="prose">
+      <p class="lead">Admin tools are where good intentions go to become <em>error messages</em>.</p>
+      <p>The data management team at Toggl needed a redesigned import experience — the flow admins use to bring their organisation's data into the platform. It sounds quiet. It was not.</p>
+      <p>This was also my first project at Toggl OÜ (the parent product, distinct from Toggl Hire), joining a 9-designer team after three years as a solo act. A different kind of challenge.</p>
+    </div>
+  </div>
+
+  <div class="cs-section">
+    <div class="cs-section-label">
+      <span class="cs-section-num">(02)</span>Problem
+    </div>
+    <div class="prose">
+      <p class="lead">Data import looks fine in demos. In <em>production</em>, it's a different story.</p>
+      <p>Files with unexpected columns. Character encoding that works until it doesn't. 40,000 rows and one error on row 39,847 — with a message that says "something went wrong" and no indication of what, where, or whether starting over would help.</p>
+      <div class="callout">
+        <strong>A real scenario from user research:</strong><br>
+        Admin uploads a CSV. Import appears to succeed. Data looks wrong. Admin re-uploads. Data is now duplicated. Admin contacts support. Support resolves it three days later. Admin never fully trusts the platform again.
+      </div>
+      <div class="ph-img wide"></div>
+      <p class="ph-caption">↑ Existing import flow mapped against failure states and support ticket themes</p>
+      <div class="pull">"Optimised for the happy path. Left everything else as the user's problem."</div>
+    </div>
+  </div>
+
+  <div class="cs-section">
+    <div class="cs-section-label">
+      <span class="cs-section-num">(03)</span>Approach
+    </div>
+    <div class="prose">
+      <p>I started with the failure states, not the happy path. Error states are where you learn what the product actually knows — and where you discover what engineering can and can't surface to the UI.</p>
+      <p>My main question to the engineering team, asked many times in many ways: <em>"If something goes wrong here, what can we actually tell the user?"</em> The answer was usually more than we were currently telling them. That gap — between what the system knew and what the interface communicated — was the design problem.</p>
+      <div class="ph-grid">
+        <div class="ph-img half"></div>
+        <div class="ph-img half"></div>
+      </div>
+      <p class="ph-caption">↑ Error state taxonomy — categorising failure modes by what the system could detect</p>
+      <p>I redesigned the import flow in stages: pre-upload validation (catch what you can before anything's processed), in-progress feedback (honest about what's happening), and post-import review (clear summary of what succeeded, what didn't, and what to do next).</p>
+      <div class="ph-img wide"></div>
+      <p class="ph-caption">↑ Redesigned import flow — pre-upload validation and progress states</p>
+      <p>Working within a 9-person design team after three years solo meant learning to advocate loudly for admin experience in a roadmap full of shinier priorities. I got good at framing unglamorous flows in terms of support costs and trust damage.</p>
+    </div>
+  </div>
+
+  <div class="cs-section">
+    <div class="cs-section-label">
+      <span class="cs-section-num">(04)</span>Outcome
+    </div>
+    <div class="prose">
+      <p class="lead">Clearer flows, <em>honest</em> error messages, and one less reason to email support.</p>
+      <p>The redesigned experience surfaced errors earlier, communicated them more specifically, and gave admins a clear path forward when something went wrong — rather than a generic message and a support ticket number.</p>
+      <div class="ph-img wide"></div>
+      <p class="ph-caption">↑ Final import flow — validation, progress, and review screens</p>
+      <p>The broader lesson: admin tools shape how much people trust a product. A confusing import flow doesn't just create support tickets — it creates doubt that persists long after the specific incident is resolved.</p>
+      <div class="chips">
+        <span class="chip">End-to-end flow redesigned</span>
+        <span class="chip">Error taxonomy defined</span>
+        <span class="chip">Pre-upload validation added</span>
+        <span class="chip">Post-import review designed</span>
+        <span class="chip">9-designer team collaboration</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-next">
+    <div class="cs-next-label">Back to the start</div>
+    <a class="cs-next-link" href="case-ats.html">
+      <div class="cs-next-title">From skills test to <em>full-cycle ATS</em> →</div>
+    </a>
+  </div>
+
+</div>
+
+<footer class="foot">
+  <span>© 2026 Saskia Tobreluts</span>
+  <a href="index.html">← All work</a>
+</footer>
+
+<div class="tweaks" id="tweaks">
+  <div class="tweaks-head">
+    <span>Tweaks</span>
+    <button class="tweaks-close" id="tweaks-close">×</button>
+  </div>
+  <div class="tweaks-group">
+    <div class="tweaks-group-label">Theme</div>
+    <div class="tweaks-opts" id="theme-opts">
+      <button data-val="light">Light</button>
+      <button data-val="paper">Paper</button>
+      <button data-val="cool">Cool</button>
+      <button data-val="dark">Dark</button>
+    </div>
+  </div>
+  <div class="tweaks-group">
+    <div class="tweaks-group-label">Accent</div>
+    <div class="swatches" id="accent-swatches"></div>
+  </div>
+</div>
+
+<script>
+const ACCENTS = ['#ff5b1f','#3d5afe','#16a34a','#e11d48','#c084fc','#111111'];
+let theme = 'light', accent = '#ff5b1f';
+function applyTheme() {
+  document.body.dataset.theme = theme;
+  document.documentElement.style.setProperty('--accent', accent);
+  document.querySelectorAll('#theme-opts button').forEach(b => b.classList.toggle('active', b.dataset.val === theme));
+  document.querySelectorAll('.swatch').forEach(s => s.classList.toggle('active', s.dataset.val === accent));
+}
+const sc = document.getElementById('accent-swatches');
+ACCENTS.forEach(c => {
+  const s = document.createElement('button');
+  s.className = 'swatch'; s.style.background = c; s.dataset.val = c;
+  s.addEventListener('click', () => { accent = c; applyTheme(); });
+  sc.appendChild(s);
+});
+document.querySelectorAll('#theme-opts button').forEach(b => {
+  b.addEventListener('click', () => { theme = b.dataset.val; applyTheme(); });
+});
+applyTheme();
+const panel = document.getElementById('tweaks');
+document.getElementById('tweaks-trigger').addEventListener('click', () => panel.classList.toggle('open'));
+document.getElementById('tweaks-close').addEventListener('click', () => panel.classList.remove('open'));
+</script>
+</body>
+</html>

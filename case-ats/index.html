@@ -524,30 +524,31 @@ button { font: inherit; color: inherit; background: none; border: none; padding:
         <p>Managers need one high-trust home base. If they can't see what's running in the background, or act on people at volume without drilling into every profile, they stop trusting that the board reflects what's actually happening.</p>
       </div>
 
+      <div class="browser-mock">
+        <div class="browser-bar">
+          <span class="browser-dots"><i></i><i></i><i></i></span>
+        </div>
+        <video id="vid-testsettings" src="/TestSettingsClean.mov" loop muted playsinline></video>
+      </div>
+      <p class="ph-caption">↑ Assessment settings — manager can tweak the test without leaving the pipeline. The board stays the home base. Configuration comes to it.</p>
+      <div class="browser-mock">
+        <div class="browser-bar">
+          <span class="browser-dots"><i></i><i></i><i></i></span>
+        </div>
+        <video id="vid-pipeline" src="/pipelineClean.mov" loop muted playsinline></video>
+      </div>
+      <p class="ph-caption">↑ Candidate pipeline — each column is a hiring stage. Managers see status at a glance, act inline, move people forward without ceremony.</p>
+
       <div class="cs-block">
         <div class="cs-block-label">Design decisions</div>
         <div class="cs-decision">
           <span class="dot"></span>
           <p>I put the structural controls on the board itself. Changing test settings happens inline, where you're already working, instead of three menus deep.</p>
         </div>
-        <div class="browser-mock">
-          <div class="browser-bar">
-            <span class="browser-dots"><i></i><i></i><i></i></span>
-          </div>
-          <video id="vid-testsettings" src="/TestSettingsClean.mov" loop muted playsinline></video>
-        </div>
-        <p class="ph-caption">↑ Assessment settings — manager can tweak the test without leaving the pipeline. The board stays the home base. Configuration comes to it.</p>
         <div class="cs-decision">
           <span class="dot"></span>
           <p>I made bulk actions work wherever you're looking, the full board or a single stage. When you're moving through volume, you reject or advance a whole group at once, without needing to open them one by one.</p>
         </div>
-        <div class="browser-mock">
-          <div class="browser-bar">
-            <span class="browser-dots"><i></i><i></i><i></i></span>
-          </div>
-          <video id="vid-pipeline" src="/pipelineClean.mov" loop muted playsinline></video>
-        </div>
-        <p class="ph-caption">↑ Candidate pipeline — each column is a hiring stage. Managers see status at a glance, act inline, move people forward without ceremony.</p>
         <div class="cs-decision">
           <span class="dot"></span>
           <p>The cards carry their own context too. I made each card highlight the score that matters at that stage. Previous scores stay visible at a glance, so you never click in just to see how someone did before.</p>
@@ -581,6 +582,14 @@ button { font: inherit; color: inherit; background: none; border: none; padding:
         <p>The problem wasn't too little data, it was scattered data. To decide well, a team needs the whole candidate in one place and organized, so no one's hiring on a hunch or half the story.</p>
       </div>
 
+      <div class="browser-mock">
+        <div class="browser-bar">
+          <span class="browser-dots"><i></i><i></i><i></i></span>
+        </div>
+        <video id="vid-candidatecard" src="/candidatecard.mov" loop muted playsinline></video>
+      </div>
+      <p class="ph-caption">↑ Candidate card — all the information that matters, stacked in one place. Application, assessments, notes, history. See the full picture without jumping around.</p>
+
       <div class="cs-block">
         <div class="cs-block-label">Design decisions</div>
         <div class="cs-decision">
@@ -591,13 +600,6 @@ button { font: inherit; color: inherit; background: none; border: none; padding:
           <span class="dot"></span>
           <p>I kept the team's collaboration on the candidate, not off in another tool. Notes live in the Notes tab, with @mentions to pull the right person in, and the History tab logs who moved a candidate and when. No more ghost decisions, no more "wait, who rejected this person?"</p>
         </div>
-        <div class="browser-mock">
-          <div class="browser-bar">
-            <span class="browser-dots"><i></i><i></i><i></i></span>
-          </div>
-          <video id="vid-candidatecard" src="/candidatecard.mov" loop muted playsinline></video>
-        </div>
-        <p class="ph-caption">↑ Candidate card — all the information that matters, stacked in one place. Application, assessments, notes, history. See the full picture without jumping around.</p>
       </div>
 
       <div class="cs-block">
@@ -627,6 +629,14 @@ button { font: inherit; color: inherit; background: none; border: none; padding:
         <p>Nobody likes a blank canvas. People move faster reacting to a starting point than building from scratch, and they want a little proof they're choosing right before they commit. Templates and a "best for" line on every option give them both: a path to follow and the reassurance to follow it.</p>
       </div>
 
+      <div class="browser-mock">
+        <div class="browser-bar">
+          <span class="browser-dots"><i></i><i></i><i></i></span>
+        </div>
+        <video id="vid-assessment" src="/Assessment%20flow.mov" loop muted playsinline></video>
+      </div>
+      <p class="ph-caption">↑ Assessment setup — two questions instead of one overwhelming screen. What assessment type, and how do you want to build it? Templates lead, because blank pages are daunting.</p>
+
       <div class="cs-block">
         <div class="cs-block-label">Design decisions</div>
         <p>I turned the setup into two plain questions on one screen, each doing one job.</p>
@@ -638,13 +648,6 @@ button { font: inherit; color: inherit; background: none; border: none; padding:
           <span class="dot"></span>
           <p>Then: how do you want to build it? Three routes, led by templates, because a starting point beats a blank page. Custom build and copy-from-another-job sit alongside for the people who already know what they want.</p>
         </div>
-        <div class="browser-mock">
-          <div class="browser-bar">
-            <span class="browser-dots"><i></i><i></i><i></i></span>
-          </div>
-          <video id="vid-assessment" src="/Assessment%20flow.mov" loop muted playsinline></video>
-        </div>
-        <p class="ph-caption">↑ Assessment setup — two questions instead of one overwhelming screen. What assessment type, and how do you want to build it? Templates lead, because blank pages are daunting.</p>
       </div>
 
       <div class="cs-block">
@@ -673,6 +676,14 @@ button { font: inherit; color: inherit; background: none; border: none; padding:
         <p>A dashboard that tries to surface everything surfaces nothing. Managers didn't want raw data, they wanted to see exactly where a pipeline was stalling or bleeding candidates. The job of analytics is to point, not to dump.</p>
       </div>
 
+      <div class="browser-mock">
+        <div class="browser-bar">
+          <span class="browser-dots"><i></i><i></i><i></i></span>
+        </div>
+        <video id="vid-analytics" src="/analytics.mov" loop muted playsinline></video>
+      </div>
+      <p class="ph-caption">↑ Analytics — workspace summary, job performance, time-to-fill, time-to-hire. The data that hiring managers actually need to see.</p>
+
       <div class="cs-block">
         <div class="cs-block-label">Design decisions</div>
         <p>I built two views for two needs, and cut everything that didn't serve them.</p>
@@ -684,13 +695,6 @@ button { font: inherit; color: inherit; background: none; border: none; padding:
           <span class="dot"></span>
           <p>The per-job drilldown answers "where are we losing people?": active versus rejected candidates per stage, new-candidate volume over time, and how long the role's been open. The per-stage bars make a leaky stage obvious, the one where active shrinks and rejected balloons.</p>
         </div>
-        <div class="browser-mock">
-          <div class="browser-bar">
-            <span class="browser-dots"><i></i><i></i><i></i></span>
-          </div>
-          <video id="vid-analytics" src="/analytics.mov" loop muted playsinline></video>
-        </div>
-        <p class="ph-caption">↑ Analytics — workspace summary, job performance, time-to-fill, time-to-hire. The data that hiring managers actually need to see.</p>
       </div>
 
       <div class="cs-block">

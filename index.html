@@ -68,6 +68,10 @@
     transition: background .4s ease, color .4s ease;
   }
   @media (max-width: 700px) { body { cursor: auto; } }
+  /* the resume iframe is a separate document — mousemove never reaches
+     the parent page inside it, so the fake cursor would freeze in place */
+  body.resume-open { cursor: auto; }
+  body.resume-open .cursor-dot, body.resume-open .cursor-ring { display: none; }
 
   a { color: inherit; text-decoration: none; }
   button { font: inherit; color: inherit; background: none; border: 0; cursor: none; }
@@ -120,14 +124,16 @@
   /* ------------- top nav ------------- */
   .nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 50;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 22px calc(36px * var(--dense));
     font-family: var(--font-mono);
     font-size: 12px;
     letter-spacing: .02em;
     backdrop-filter: blur(8px);
     background: color-mix(in srgb, var(--bg) 70%, transparent);
     border-bottom: 1px solid var(--rule);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 22px; padding-bottom: 22px;
   }
   #tweaks-trigger { display: none; }
   .nav .brand { display: flex; align-items: center; gap: 10px; position: relative; z-index: 60; }
@@ -623,6 +629,40 @@
   .tweaks .opts button.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
   .tweaks input[type="range"] { width: 100%; }
 
+  /* resume slide-in panel */
+  .resume-panel {
+    position: fixed; inset: 0; z-index: 201;
+    background: var(--bg);
+    transform: translateX(100%);
+    transition: transform .35s cubic-bezier(.2,.8,.2,1);
+    display: flex; flex-direction: column;
+  }
+  .resume-panel.open { transform: translateX(0); }
+  .resume-panel-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--font-mono);
+    font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+  }
+  .resume-panel-head .actions { display: flex; align-items: center; gap: 18px; }
+  .resume-panel-head a { color: var(--muted); }
+  .resume-panel-head a:hover { color: var(--ink); }
+  .resume-panel-head .close { font-family: var(--font-body); font-size: 20px; line-height: 1; cursor: pointer; color: var(--ink); }
+  .resume-panel iframe { flex: 1; width: 100%; border: 0; }
+
+  /* lightbox panel — full-page scrollable image viewer */
+  .lightbox-panel {
+    position: fixed; inset: 0; z-index: 201;
+    background: var(--bg);
+    transform: translateX(100%);
+    transition: transform .35s cubic-bezier(.2,.8,.2,1);
+    display: flex; flex-direction: column;
+  }
+  .lightbox-panel.open { transform: translateX(0); }
+  .lightbox-body { flex: 1; overflow-y: auto; }
+  .lightbox-body img { display: block; width: 100%; height: auto; }
+
   /* reveal — CSS animation, no JS required */
   .reveal { animation: revealUp .75s cubic-bezier(.2,.8,.2,1) both; }
   .reveal.in { animation: none; opacity: 1; transform: none; }
@@ -631,7 +671,7 @@
   /* builder section */
   .builder-empty {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: calc(32px * var(--dense));
     margin-top: 8px;
   }
@@ -660,7 +700,20 @@
     max-width: 480px;
     margin-bottom: 0;
   }
-  @media (max-width: 800px) { .builder-empty { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 800px) { .builder-empty { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+  /* other work — subsection inside My work */
+  .other-work { margin-top: calc(64px * var(--dense)); padding-top: calc(32px * var(--dense)); }
+  .other-work .bar { width: 40px; height: 1px; background: var(--rule); display: block; margin-bottom: 32px; }
+  .other-work .card .sub { margin-top: 16px; }
+  .other-work-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .1em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
 
   /* placeholder art styles */
   .ph {
@@ -710,20 +763,22 @@
 
 <!-- nav -->
 <nav class="nav">
-  <div class="brand">
-    <span class="dot"></span>
-    <span>Saskia Tobreluts</span>
+  <div class="wrap nav-inner">
+    <div class="brand">
+      <span class="dot"></span>
+      <span>Saskia Tobreluts</span>
+    </div>
+    <div class="nav-links">
+      <a href="#work" data-cursor="scroll">My work</a>
+      <a href="Resume_Saskia_Tobreluts.pdf" target="_blank" rel="noopener" data-cursor="resume" id="resume-trigger">Resume</a>
+      <a href="#contact" data-cursor="scroll">Contact</a>
+      <a href="#" data-cursor="play" id="tweaks-trigger">Theme</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+    </button>
   </div>
-  <div class="nav-links">
-    <a href="#work" data-cursor="scroll">My work</a>
-    <a href="#cv" data-cursor="scroll">CV</a>
-    <a href="#contact" data-cursor="scroll">Contact</a>
-    <a href="#" data-cursor="play" id="tweaks-trigger">Theme</a>
-  </div>
-  <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
-    <span></span>
-    <span></span>
-  </button>
 </nav>
 
 <!-- HERO -->
@@ -860,6 +915,25 @@
         </tbody>
       </table>
     </div>
+
+    <!-- OTHER WORK -->
+    <div class="other-work">
+      <span class="bar"></span>
+      <div class="builder-empty" style="display:grid">
+        <a class="card reveal" id="pricing-trigger" data-cursor="case">
+          <div class="thumb"><img src="images/Pricing%20page.png" alt="Pricing page"></div>
+          <div class="sub">Toggl Hire · Pricing</div>
+        </a>
+        <a class="card reveal" id="homepage-trigger" data-cursor="case">
+          <div class="thumb"><img src="images/Homepage.png" alt="Homepage"></div>
+          <div class="sub">Toggl Hire · Homepage</div>
+        </a>
+        <a class="card reveal" id="casestudy-trigger" data-cursor="case">
+          <div class="thumb"><img src="images/Case%20study.png" alt="Case study"></div>
+          <div class="sub">Toggl Hire · Case study</div>
+        </a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -867,7 +941,7 @@
 <section id="cv">
   <div class="wrap">
     <div class="section-head">
-      <div><div class="section-num">(02) — Resume</div></div>
+      <div><div class="section-num">(02) — Experience</div></div>
     </div>
 
     <div class="timeline">
@@ -969,6 +1043,29 @@
 <footer class="foot">
   <div>© 2026 Saskia Tobreluts</div>
 </footer>
+
+<!-- RESUME panel -->
+<aside class="resume-panel" id="resume-panel" aria-label="Resume">
+  <div class="resume-panel-head">
+    <span>Resume</span>
+    <div class="actions">
+      <a href="Resume_Saskia_Tobreluts.pdf" download>Download</a>
+      <button class="close" id="resume-close" aria-label="Close">×</button>
+    </div>
+  </div>
+  <iframe id="resume-frame" src="" title="Saskia Tobreluts — résumé"></iframe>
+</aside>
+
+<!-- LIGHTBOX panel -->
+<aside class="lightbox-panel" id="lightbox-panel" aria-label="Other work">
+  <div class="resume-panel-head">
+    <span id="lightbox-title"></span>
+    <div class="actions">
+      <button class="close" id="lightbox-close" aria-label="Close">×</button>
+    </div>
+  </div>
+  <div class="lightbox-body" id="lightbox-body"></div>
+</aside>
 
 <!-- TWEAKS panel -->
 <aside class="tweaks" id="tweaks">
@@ -1105,6 +1202,60 @@ document.getElementById('tweaks-trigger').addEventListener('click', e => {
 });
 document.getElementById('tweaks-close').addEventListener('click', () => panel.classList.remove('open'));
 
+/* ---------- resume slide-in panel ---------- */
+const resumePanel = document.getElementById('resume-panel');
+const resumeFrame = document.getElementById('resume-frame');
+function openResume() {
+  if (!resumeFrame.getAttribute('src')) resumeFrame.setAttribute('src', 'Resume_Saskia_Tobreluts.pdf#toolbar=1&navpanes=0');
+  resumePanel.classList.add('open');
+  document.body.classList.add('resume-open');
+}
+function closeResume() {
+  resumePanel.classList.remove('open');
+  document.body.classList.remove('resume-open');
+}
+document.getElementById('resume-trigger').addEventListener('click', e => {
+  if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+  e.preventDefault();
+  openResume();
+});
+document.getElementById('resume-close').addEventListener('click', closeResume);
+
+/* ---------- lightbox panel (other-work items) ---------- */
+const lightboxPanel = document.getElementById('lightbox-panel');
+const lightboxBody = document.getElementById('lightbox-body');
+const lightboxTitle = document.getElementById('lightbox-title');
+function openLightbox(src, alt, title) {
+  lightboxBody.scrollTop = 0;
+  lightboxBody.innerHTML = '';
+  const img = document.createElement('img');
+  img.src = src;
+  img.alt = alt;
+  lightboxBody.appendChild(img);
+  lightboxTitle.textContent = title;
+  lightboxPanel.classList.add('open');
+}
+function closeLightbox() { lightboxPanel.classList.remove('open'); }
+document.getElementById('pricing-trigger').addEventListener('click', e => {
+  e.preventDefault();
+  openLightbox('images/Pricing%20full.png', 'Pricing page — full', 'Pricing page');
+});
+document.getElementById('homepage-trigger').addEventListener('click', e => {
+  e.preventDefault();
+  openLightbox('images/Homepage%20full.png', 'Homepage — full', 'Homepage');
+});
+document.getElementById('casestudy-trigger').addEventListener('click', e => {
+  e.preventDefault();
+  openLightbox('images/Case%20study%20long.png', 'Case study — full', 'Case study');
+});
+document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+
+window.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  closeResume();
+  closeLightbox();
+});
+
 window.addEventListener('message', (ev) => {
   const d = ev.data || {};
   if (d.type === '__activate_edit_mode') panel.classList.add('open');
@@ -1136,7 +1287,8 @@ const CURSOR_LABELS = {
   scroll: 'scroll',
   play: 'tweak',
   send: 'say hi',
-  wave: 'hi :)'
+  wave: 'hi :)',
+  resume: 'read it here'
 };
 document.querySelectorAll('[data-cursor]').forEach(el => {
   el.addEventListener('mouseenter', () => {

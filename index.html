@@ -1242,11 +1242,9 @@ function unlockBodyScroll() {
 const resumePanel = document.getElementById('resume-panel');
 const resumeFrame = document.getElementById('resume-frame');
 function openResume() {
-  if (!resumeFrame.getAttribute('src')) {
-    const isMobile = window.matchMedia('(max-width: 700px)').matches;
-    const zoom = isMobile ? '' : '&zoom=100';
-    resumeFrame.setAttribute('src', 'Resume_Saskia_Tobreluts.pdf#toolbar=1&navpanes=0' + zoom);
-  }
+  // desktop-only panel now (see resume-trigger listener); mobile falls
+  // through to the native PDF viewer instead
+  if (!resumeFrame.getAttribute('src')) resumeFrame.setAttribute('src', 'Resume_Saskia_Tobreluts.pdf#toolbar=1&navpanes=0&zoom=100');
   resumePanel.classList.add('open');
   document.body.classList.add('resume-open');
   lockBodyScroll();
@@ -1258,6 +1256,11 @@ function closeResume() {
 }
 document.getElementById('resume-trigger').addEventListener('click', e => {
   if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+  // mobile PDF viewers inside an iframe are inconsistent about fitting page
+  // width (Safari mostly ignores the fit/zoom fragment hacks that work on
+  // desktop Chrome), so let mobile fall through to the native full-page
+  // viewer instead of the embedded slide-in panel
+  if (window.matchMedia('(max-width: 700px)').matches) return;
   e.preventDefault();
   openResume();
 });

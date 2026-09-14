@@ -302,8 +302,11 @@ button { font: inherit; color: inherit; background: none; border: none; padding:
   background: rgba(17,17,17,.6); backdrop-filter: blur(2px);
   display: flex; align-items: center; justify-content: center;
   pointer-events: none;
-  opacity: 1; transition: opacity .2s;
+  opacity: 0; transition: opacity .2s;
 }
+/* only shown once autoplay has actually failed — not on normal load, where
+   it would otherwise flash briefly before playback starts */
+.vid-frame.autoplay-blocked .vid-play-btn { opacity: 1; }
 .vid-frame video.is-playing ~ .vid-play-btn { opacity: 0; }
 .vid-play-btn svg { width: 18px; height: 18px; margin-left: 3px; fill: #fff; }
 
@@ -931,22 +934,23 @@ document.querySelectorAll('[data-carousel]').forEach((c) => {
 // scroll-triggered video playback
 const vidObs = new IntersectionObserver((entries) => {
   entries.forEach(e => {
-    if (e.isIntersecting) { e.target.play().catch(() => {}); }
-    else { e.target.pause(); }
+    if (e.isIntersecting) {
+      e.target.play().catch(() => { e.target.closest('.vid-frame')?.classList.add('autoplay-blocked'); });
+    } else { e.target.pause(); }
   });
 }, { threshold: 0.4 });
 ['vid-testsettings', 'vid-pipeline', 'vid-candidatecard', 'vid-assessment', 'vid-analytics'].forEach(id => {
   const v = document.getElementById(id);
   if (!v) return;
   vidObs.observe(v);
-  // visible play affordance — shown until playback actually starts, so a
-  // visitor whose browser blocked autoplay (e.g. iOS Low Power Mode) knows
-  // to tap. A real tap is a user gesture, so play() works even then.
+  // visible play affordance — only shown once autoplay actually fails
+  // (e.g. iOS Low Power Mode), not on normal load. A real tap is a user
+  // gesture, so play() works even when autoplay doesn't.
   const btn = document.createElement('div');
   btn.className = 'vid-play-btn';
   btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
   v.insertAdjacentElement('afterend', btn);
-  v.addEventListener('play', () => v.classList.add('is-playing'));
+  v.addEventListener('play', () => { v.classList.add('is-playing'); v.closest('.vid-frame')?.classList.remove('autoplay-blocked'); });
   v.addEventListener('pause', () => v.classList.remove('is-playing'));
   v.addEventListener('click', () => { if (v.paused) v.play().catch(() => {}); });
 });

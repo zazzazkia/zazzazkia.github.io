@@ -120,6 +120,12 @@
     white-space: nowrap;
   }
   .cursor-label.show { opacity: 1; transform: translate(20px, 20px) scale(1); }
+  /* touch devices have no real pointer to track, and iOS fires synthetic
+     mouseenter/mousemove on tap that never gets a matching mouseleave,
+     leaving the custom cursor stuck mid-page */
+  @media (hover: none), (pointer: coarse) {
+    .cursor-dot, .cursor-ring, .cursor-label { display: none !important; }
+  }
 
   /* ------------- top nav ------------- */
   .nav {
@@ -226,6 +232,11 @@
     font-variation-settings: "opsz" 144;
   }
   .hero-title .line { display: block; overflow: hidden; padding-bottom: .18em; margin-bottom: -.18em; }
+  .hero-title .lines-mobile { display: none; }
+  @media (max-width: 700px) {
+    .hero-title .lines-desktop { display: none; }
+    .hero-title .lines-mobile { display: block; }
+  }
   .hero-title .line span {
     display: inline-block;
     transform: translateY(120%);
@@ -790,9 +801,16 @@
     </div>
 
     <h1 class="hero-title">
-      <span class="line"><span>Four years as the <em>only</em></span></span>
-      <span class="line"><span>designer. Everything here</span></span>
-      <span class="line"><span><em>shipped</em>.</span></span>
+      <span class="lines-desktop">
+        <span class="line"><span>Four years as the <em>only</em></span></span>
+        <span class="line"><span>designer. Everything here</span></span>
+        <span class="line"><span><em>shipped</em>.</span></span>
+      </span>
+      <span class="lines-mobile">
+        <span class="line"><span>Four years as</span></span>
+        <span class="line"><span>the <em>only</em> designer.</span></span>
+        <span class="line"><span>Everything here <em>shipped</em>.</span></span>
+      </span>
     </h1>
 
     <div class="hero-footer">

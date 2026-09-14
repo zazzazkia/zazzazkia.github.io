@@ -405,7 +405,7 @@ button { font: inherit; color: inherit; background: none; border: none; padding:
         </div>
         <div class="media-panel active" id="app-mobile">
           <div class="device-mobile">
-            <video id="vid-application-mobile" src="/application-mobile-cropped.mov" loop muted playsinline preload="metadata"></video>
+            <video id="vid-application-mobile" src="/application-mobile-cropped.mov" loop muted playsinline preload="metadata" poster="/images/video-posters/application-mobile-cropped.jpg"></video>
           </div>
         </div>
         <div class="media-panel" id="app-desktop">
@@ -413,7 +413,7 @@ button { font: inherit; color: inherit; background: none; border: none; padding:
             <div class="browser-bar">
               <span class="browser-dots"><i></i><i></i><i></i></span>
             </div>
-            <video id="vid-application" src="/Application.mov" loop muted playsinline preload="metadata"></video>
+            <video id="vid-application" src="/Application.mov" loop muted playsinline preload="metadata" poster="/images/video-posters/Application.jpg"></video>
           </div>
         </div>
       </div>
@@ -444,7 +444,7 @@ button { font: inherit; color: inherit; background: none; border: none; padding:
         </div>
         <div class="media-panel active" id="st-mobile">
           <div class="device-mobile">
-            <video id="vid-skillstest-mobile" src="/skills-test-mobile-cropped.mov" loop muted playsinline preload="metadata"></video>
+            <video id="vid-skillstest-mobile" src="/skills-test-mobile-cropped.mov" loop muted playsinline preload="metadata" poster="/images/video-posters/skills-test-mobile-cropped.jpg"></video>
           </div>
         </div>
         <div class="media-panel" id="st-desktop">
@@ -452,7 +452,7 @@ button { font: inherit; color: inherit; background: none; border: none; padding:
             <div class="browser-bar">
               <span class="browser-dots"><i></i><i></i><i></i></span>
             </div>
-            <video id="vid-skillstest" src="/skills%20test.mov" loop muted playsinline preload="metadata"></video>
+            <video id="vid-skillstest" src="/skills%20test.mov" loop muted playsinline preload="metadata" poster="/images/video-posters/skills%20test.jpg"></video>
           </div>
         </div>
       </div>
@@ -499,7 +499,7 @@ button { font: inherit; color: inherit; background: none; border: none; padding:
         </div>
         <div class="media-panel active" id="async-mobile">
           <div class="device-mobile">
-            <video id="vid-async-mobile" src="/async-mobile-cropped.mov" loop muted playsinline preload="metadata"></video>
+            <video id="vid-async-mobile" src="/async-mobile-cropped.mov" loop muted playsinline preload="metadata" poster="/images/video-posters/async-mobile-cropped.jpg"></video>
           </div>
         </div>
         <div class="media-panel" id="async-desktop">
@@ -507,7 +507,7 @@ button { font: inherit; color: inherit; background: none; border: none; padding:
             <div class="browser-bar">
               <span class="browser-dots"><i></i><i></i><i></i></span>
             </div>
-            <video id="vid-async" src="/async-desktop-cropped.mov" loop muted playsinline preload="metadata"></video>
+            <video id="vid-async" src="/async-desktop-cropped.mov" loop muted playsinline preload="metadata" poster="/images/video-posters/async-desktop-cropped.jpg"></video>
           </div>
         </div>
       </div>
@@ -649,7 +649,11 @@ const vidObs = new IntersectionObserver((entries) => {
 }, { threshold: 0.4 });
 ['vid-application', 'vid-application-mobile', 'vid-skillstest', 'vid-skillstest-mobile', 'vid-async', 'vid-async-mobile'].forEach(id => {
   const v = document.getElementById(id);
-  if (v) vidObs.observe(v);
+  if (!v) return;
+  vidObs.observe(v);
+  // fallback for when autoplay is blocked (e.g. iOS Low Power Mode): a
+  // real tap is a user gesture, so play() works even when autoplay doesn't
+  v.addEventListener('click', () => { if (v.paused) v.play().catch(() => {}); });
 });
 // design-decision dots ping as they scroll into view
 const dotObs = new IntersectionObserver((entries) => {

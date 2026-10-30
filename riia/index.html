@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Riia retk · 5.–7. nov</title>
+<meta name="description" content="Reisikava: SADU kontsert, päevakava, kaart ja ilm.">
+<meta name="theme-color" content="#f0ebda">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&amp;family=Fraunces:wght@500;700;800&amp;family=DM+Serif+Display&amp;family=Syne:wght@500;700;800&amp;family=Unbounded:wght@500;700;800&amp;family=Young+Serif&amp;family=Major+Mono+Display&amp;family=Space+Mono:wght@400;700&amp;family=Instrument+Serif&amp;family=Playfair+Display:wght@500;700;800&amp;family=Archivo+Black&amp;family=Righteous&amp;family=Outfit:wght@500;700;800&amp;family=Figtree:wght@400;500;600;700&amp;family=DM+Sans:wght@400;500;600;700&amp;family=Work+Sans:wght@400;500;600;700&amp;family=Nunito+Sans:wght@400;500;600;700&amp;family=Karla:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Source+Serif+4:wght@400;500;600;700&amp;family=Lora:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;family=Atkinson+Hyperlegible:wght@400;700&amp;family=Caveat:wght@600&amp;display=swap">
+<style>
+body{margin:0}
+a{color:inherit}
+button{font:inherit}
+</style>
+<style>html,body{min-height:100%;background:#f0ebda}*{box-sizing:border-box}img{max-width:100%}</style>
+</head>
+<body>
+<div id="app"></div>
+<template id="tpl">
+
+<div style="min-height: 100%; background: {{cBg}}; color: {{cText}}; font-family: {{fBody}}; font-size: calc(16px * {{ts}}); line-height: {{lh}}">
+<div style="max-width: {{pageW}}; margin: 0 auto; padding: 20px {{sideM}} 64px; display: flex; flex-direction: column; gap: {{secGap}}; box-sizing: border-box">
+
+<header style="display: flex; justify-content: space-between; align-items: center; gap: {{cardGap}}; flex-wrap: wrap; padding-bottom: 12px">
+<div style="font-family: {{fHead}}; font-weight: 800; font-size: calc(18px * {{ts}})">triptrip</div>
+<nav style="display: flex; gap: 4px; background: {{cCard}}; border: 1px solid {{cLine}}; border-radius: 999px; padding: 3px" aria-label="Vaated">
+<span style="background: {{cText}}; color: {{cBg}}; font-weight: 600; font-size: calc(14px * {{ts}}); padding: 6px 14px; border-radius: 999px">Ülevaade</span>
+<a href="oobimine.html" style="color: {{cMuted}}; text-decoration: none; font-weight: 600; font-size: calc(14px * {{ts}}); padding: 6px 14px; border-radius: 999px">Ööbimine</a>
+</nav>
+</header>
+
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 24px">
+<div style="flex: 1 1 300px; min-width: 0">
+
+<h1 style="margin: 4px 0 0; font-family: {{fHead}}; font-weight: 800; font-size: calc(clamp(44px, 12vw, 64px) * {{hs}}); line-height: 1.05; letter-spacing: -0.03em; max-width: 100%; display: flex; align-items: flex-start; gap: 0.12em"><span>Riia</span><span style="font-family: {{fBody}}; font-size: calc(clamp(20px, 5.5vw, 32px) * {{hs}}); font-weight: 500; letter-spacing: -0.01em; line-height: 1; margin-top: 0.05em; white-space: nowrap"><span style="color: rgb(155, 183, 212)">5.–7.</span> nov</span></h1>
+
+</div>
+<div style="display: flex; background: {{accent}}; color: #FFFFFF; border-radius: {{radius}}; transform: rotate(-2deg); max-width: 100%" aria-label="SADU kontsert">
+<div style="padding: 14px 18px; display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: calc(13px * {{ts}}); opacity: 0.9">Riga Music Week · Angārs NA Events</span>
+<span style="font-family: {{fHead}}; font-weight: 800; font-size: calc(28px * {{hs}}); letter-spacing: 0.02em">SADU</span>
+<span style="font-size: calc(13px * {{ts}}); opacity: 0.9">N 5.11 · 18:00–18:40</span>
+<span style="font-size: calc(13px * {{ts}}); opacity: 0.9">Tallinas ielas kvartāls</span>
+</div>
+<div style="border-left: 2px dashed rgba(255,255,255,0.55); padding: {{cardPadY}} {{cardPad}}; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center">
+<span style="font-family: {{fHead}}; font-weight: 800; font-size: calc(30px * {{hs}}); line-height: 1">{{daysLeft}}</span>
+<span style="font-size: calc(11px * {{ts}}); opacity: 0.9">{{daysLabel}}</span>
+</div>
+</div>
+</div>
+
+<section style="display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: {{cardGap}}; flex-wrap: wrap">
+<h2 style="margin: 0; font-family: {{fHead}}; font-weight: 400; font-size: calc(26px * {{hs}})">Päevakava</h2>
+
+<sc-if value="{{notAll}}" hint-placeholder-val="{{ false }}">
+<button type="button" onClick="{{showAll}}" style="background: none; border: 0; padding: 0; cursor: pointer; color: #2F5D8A; font-weight: 600; font-size: calc(14px * {{ts}})">Näita kõiki päevi</button>
+</sc-if>
+</div>
+<div style="display: flex; justify-content: space-between; gap: {{cardGap}}; flex-wrap: wrap; font-size: calc(13px * {{ts}}); color: {{cMuted}}"><span>Ilm Riias</span><span>Prognoos seisuga 30.10 · <a href="https://www.yr.no/en/forecast/daily-table/2-456172/Latvia/R%C4%ABga/R%C4%ABga/Riga" style="color: rgb(47, 93, 138)">värske yr.no-s</a></span></div>
+<div style="display: flex; flex-wrap: wrap; gap: {{cardGap}}; align-items: stretch">
+<div style="flex: 1 1 280px; min-width: 0; background: {{cCard}}; border: 2px solid {{bD1}}; border-radius: {{radius}}; padding: {{cardPadY}} {{cardPad}}; display: flex; flex-direction: column; gap: 10px">
+<button type="button" onClick="{{pickD1}}" style="background: none; border: 0; padding: 0; cursor: pointer; text-align: left; color: {{cText}}; display: flex; justify-content: space-between; align-items: flex-start; gap: {{cardGap}}">
+<div style="min-width: 0">
+<div style="font-family: {{fHead}}; font-weight: 700; font-size: calc(19px * {{hs}})">N 5.11</div>
+<div style="font-size: calc(14px * {{ts}}); color: {{cMuted}}">Kontserdipäev</div>
+</div>
+<div style="display: flex; align-items: center; gap: 6px; flex: none">
+<svg width="36" height="36" viewBox="0 0 52 52" aria-hidden="true"><path d="M15 30a9 9 0 0 1 1-18 12 12 0 0 1 22 4 7 7 0 0 1-1 14z" fill="#E1EAF3" stroke="#2F5D8A" stroke-width="2.5" stroke-linejoin="round"></path><path d="M18 36l-3 6M27 36l-3 6M36 36l-3 6" stroke="#2F5D8A" stroke-width="2.5" stroke-linecap="round" fill="none"></path></svg>
+<div>
+<div style="font-family: {{fHead}}; font-weight: 800; font-size: calc(20px * {{hs}}); line-height: 1">9°</div>
+<div style="font-size: calc(12px * {{ts}}); color: {{cMuted}}">öösel 5°</div>
+</div>
+</div>
+</button>
+<div style="font-size: calc(13px * {{ts}}); color: {{cMuted}}; border-bottom: 1px dashed {{cLine}}; padding-bottom: 8px">Pilves, pärastlõunal vihm · 3,3 mm · tuul 5 m/s</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
+<span style="color: {{cMuted}}">-</span>
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: {{cText}}">Põlvast välja</span></div>
+<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">Sõit umbes 3,5–4 h koos peatusega.&nbsp;</span>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
+<span style="color: {{cMuted}}">-</span>
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: rgb(61, 45, 46)">Lõunasöök: Shōyu</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Shoyu%20ramen%20Ausek%C4%BCa%20iela%2020%20Riga" title="Google Maps" style="flex: 0 0 auto; width: 20px; height: 20px; border-radius: 50%; background: rgb(154, 106, 10); color: rgb(255, 255, 255); font-size: 11px; font-weight: 700; display: grid; place-items: center; text-decoration: none">1</a></div>
+<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">Ramen, Michelini Bib Gourmand. Ausekļa 20, avatud alates 12:00.</span>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
+<span style="color: {{cMuted}}">15:00</span>
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: {{cText}}">Check-in</span></div>
+<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">xx</span>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
+<span style="color: {{cMuted}}">-</span>
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: rgb(61, 45, 46)">Sirutus ja töö</span></div>
+
+</div>
+</div>
+<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
+<span style="color: {{cMuted}}">17:45</span>
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: rgb(61, 45, 46)">Riga Music Week</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Tallinas%20ielas%20kvart%C4%81ls%20Riga" title="Google Maps" style="flex: 0 0 auto; width: 20px; height: 20px; border-radius: 50%; background: rgb(163, 50, 59); color: rgb(255, 255, 255); font-size: 11px; font-weight: 700; display: grid; place-items: center; text-decoration: none">3</a></div>
+<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">Uksed 18:00. Ole varem, SADU on esimene esineja.</span>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
+<span style="color: {{cMuted}}">18:00</span>
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 700; color: {{accent}}">SADU</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Tallinas%20ielas%20kvart%C4%81ls%20Riga" title="Google Maps" style="flex: none; width: 20px; height: 20px; border-radius: 50%; background: #A3323B; color: #FFFFFF; font-size: 11px; font-weight: 700; display: grid; place-items: center; text-decoration: none">3</a></div>
+<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">18:00–18:40, Angārs NA Events lava.</span>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
+<span style="color: {{cMuted}}">18:40</span>
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: rgb(61, 45, 46)">RMW</span></div>
+<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">Vaatame kes esinevad, mis süüa pakutakse</span>
+</div>
+</div>
+</div>
+</div>
+<div style="flex: 1 1 280px; min-width: 0; background: {{cCard}}; border: 2px solid {{bD2}}; border-radius: {{radius}}; padding: {{cardPadY}} {{cardPad}}; display: flex; flex-direction: column; gap: 10px">
+<button type="button" onClick="{{pickD2}}" style="background: none; border: 0; padding: 0; cursor: pointer; text-align: left; color: {{cText}}; display: flex; justify-content: space-between; align-items: flex-start; gap: {{cardGap}}">
+<div style="min-width: 0">
+<div style="font-family: {{fHead}}; font-weight: 700; font-size: calc(19px * {{hs}})">R 6.11</div>
+<div style="font-size: calc(14px * {{ts}}); color: {{cMuted}}">Linn ja shopping</div>
+</div>
+<div style="display: flex; align-items: center; gap: 6px; flex: none">
+<svg width="36" height="36" viewBox="0 0 52 52" aria-hidden="true"><circle cx="20" cy="18" r="8" fill="#C98A12"></circle><path d="M17 40a8 8 0 0 1 1-16 11 11 0 0 1 20 4 6 6 0 0 1-1 12z" fill="#FFFFFF" stroke="#5D6573" stroke-width="2.5" stroke-linejoin="round"></path></svg>
+<div>
+<div style="font-family: {{fHead}}; font-weight: 800; font-size: calc(20px * {{hs}}); line-height: 1">9°</div>
+<div style="font-size: calc(12px * {{ts}}); color: {{cMuted}}">öösel 6°</div>
+</div>
+</div>
+</button>
+<div style="font-size: calc(13px * {{ts}}); color: {{cMuted}}; border-bottom: 1px dashed {{cLine}}; padding-bottom: 8px">Vahelduv pilvisus, kuiv · 0 mm · tuul 4 m/s</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
+<span style="color: {{cMuted}}">-</span>
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: rgb(61, 45, 46)">Hommikusöök: tbd</span></div>
+<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">midagi head kehale ja hingele</span>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
+
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
+
+
+</div>
+</div>
+<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
+
+
+</div>
+<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
+<span style="color: {{cMuted}}">13:00</span>
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: rgb(61, 45, 46)">Lõunasöök: tbd</span></div>
+<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">midagi kiiret, ramen, food court?</span>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
+<span style="color: {{cMuted}}">-</span>
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: {{cText}}">Vintage: Northern Grip + Humana</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Northern%20Grip%20Kri%C5%A1j%C4%81%C5%86a%20Barona%20iela%2044%20Riga" title="Google Maps" style="flex: none; width: 20px; height: 20px; border-radius: 50%; background: #8A4FA0; color: #FFFFFF; font-size: 11px; font-weight: 700; display: grid; place-items: center; text-decoration: none">5</a></div>
+<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">Barona 44, Humana Tērbatas 38 ja Ģertrūdes 16 on kõik paari minuti kaugusel.</span>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
+<span style="color: {{cMuted}}">-</span>
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: {{cText}}">Läti disain: RIIJA</span><a href="https://www.google.com/maps/search/?api=1&amp;query=RIIJA%20T%C4%93rbatas%20iela%206%20Riga" title="Google Maps" style="flex: none; width: 20px; height: 20px; border-radius: 50%; background: #3B7A57; color: #FFFFFF; font-size: 11px; font-weight: 700; display: grid; place-items: center; text-decoration: none">6</a></div>
+<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">Tērbatas 6/8. Avatud ainult E–R 10–18, seega reede on ainus võimalus.</span>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
+<span style="color: {{cMuted}}">-</span>
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: {{cText}}">Kaubanduskeskused</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Galleria%20Riga%20Dzirnavu%20iela%2067" title="Google Maps" style="flex: none; width: 20px; height: 20px; border-radius: 50%; background: #3B7A57; color: #FFFFFF; font-size: 11px; font-weight: 700; display: grid; place-items: center; text-decoration: none">7</a></div>
+<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">Galleria Riga ja Berga Bazārs. Stockmann ja Galerija Centrs on vanalinna servas.</span>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
+<span style="color: {{cMuted}}">-</span>
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: {{cText}}">Jugendstiil Alberta ielal</span></div>
+<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">Kõige ilusamad fassaadid. Pimeneb vara, mine enne 17.</span>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
+<span style="color: {{cMuted}}">19:00</span>
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: rgb(61, 45, 46)">Õhtusöök: tbd</span><a href="https://www.google.com/maps/search/?api=1&amp;query=B7%20restaurant%20Ausek%C4%BCa%20iela%207%20Riga" title="Google Maps" style="flex: 0 0 auto; width: 20px; height: 20px; border-radius: 50%; background: rgb(154, 106, 10); color: rgb(255, 255, 255); font-size: 11px; font-weight: 700; display: none; place-items: center; text-decoration: none">8</a></div>
+<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">Moodne bistroo, Ausekļa 7. Avatud T–L 17–23. Broneeri ette!</span>
+</div>
+</div>
+</div>
+</div>
+<div style="flex: 1 1 280px; min-width: 0; background: {{cCard}}; border: 2px solid {{bD3}}; border-radius: {{radius}}; padding: {{cardPadY}} {{cardPad}}; display: flex; flex-direction: column; gap: 10px">
+<button type="button" onClick="{{pickD3}}" style="background: none; border: 0; padding: 0; cursor: pointer; text-align: left; color: {{cText}}; display: flex; justify-content: space-between; align-items: flex-start; gap: {{cardGap}}">
+<div style="min-width: 0">
+<div style="font-family: {{fHead}}; font-weight: 700; font-size: calc(19px * {{hs}})">L 7.11</div>
+<div style="font-size: calc(14px * {{ts}}); color: {{cMuted}}">Laat ja koju</div>
+</div>
+<div style="display: flex; align-items: center; gap: 6px; flex: none">
+<svg width="36" height="36" viewBox="0 0 52 52" aria-hidden="true"><path d="M15 34a9 9 0 0 1 1-18 12 12 0 0 1 22 4 7 7 0 0 1-1 14z" fill="#FFFFFF" stroke="#5D6573" stroke-width="2.5" stroke-linejoin="round"></path><path d="M24 40l-2 4" stroke="#2F5D8A" stroke-width="2.5" stroke-linecap="round"></path></svg>
+<div>
+<div style="font-family: {{fHead}}; font-weight: 800; font-size: calc(20px * {{hs}}); line-height: 1">9°</div>
+<div style="font-size: calc(12px * {{ts}}); color: {{cMuted}}">öösel 6°</div>
+</div>
+</div>
+</button>
+<div style="font-size: calc(13px * {{ts}}); color: {{cMuted}}; border-bottom: 1px dashed {{cLine}}; padding-bottom: 8px">Pilves, kerge vihm · 1,9 mm · tuul 4 m/s</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
+<span style="color: {{cMuted}}">-</span>
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: rgb(61, 45, 46)">Hommikusöök: tbd</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Yolkhaus%20Dzirnavu%20iela%2042%20Riga" title="Google Maps" style="flex: 0 0 auto; width: 20px; height: 20px; border-radius: 50%; background: rgb(154, 106, 10); color: rgb(255, 255, 255); font-size: 11px; font-weight: 700; display: none; place-items: center; text-decoration: none">9</a></div>
+<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">Hommikusöögikoht, Dzirnavu 42. Laupäeval avatud alates 9:00.</span>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
+<span style="color: {{cMuted}}">11:30</span>
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: {{cText}}">Check-out</span></div>
+<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">Hotellides hiljemalt 12:00.&nbsp;</span>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
+<span style="color: {{cMuted}}">-</span>
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: rgb(61, 45, 46)">tbd</span></div>
+<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">tahame, ei taha..</span>
+</div>
+</div>
+
+
+<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
+
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: {{cardGap}}; flex-wrap: wrap">
+<h2 style="margin: 0; font-family: {{fHead}}; font-weight: 800; font-size: calc(26px * {{hs}})">Kaart</h2>
+<div style="display: flex; gap: 14px; flex-wrap: wrap; font-size: calc(13px * {{ts}}); color: {{cMuted}}">
+<span style="display: inline-flex; gap: 6px; align-items: center"><span style="width: 10px; height: 10px; border-radius: 50%; background: #9A6A0A"></span>Söögikohad</span>
+<span style="display: inline-flex; gap: 6px; align-items: center"><span style="width: 10px; height: 10px; border-radius: 50%; background: #8A4FA0"></span>Kasutatud ja vintage</span>
+<span style="display: inline-flex; gap: 6px; align-items: center"><span style="width: 10px; height: 10px; border-radius: 50%; background: #3B7A57"></span>Kaubamajad ja poed</span>
+<span style="display: inline-flex; gap: 6px; align-items: center"><span style="width: 10px; height: 10px; border-radius: 50%; background: #A3323B"></span>Kontsert</span>
+<span style="display: inline-flex; gap: 6px; align-items: center"><span style="width: 10px; height: 10px; border-radius: 3px; border: 2px solid #1B1F27; box-sizing: border-box"></span>Ööbimine</span>
+</div>
+</div>
+<div style="background: {{cCard}}; border: 1px solid {{cLine}}; border-radius: {{radius}}; overflow: hidden">
+<div style="overflow-x: auto">
+<div style="position: relative; min-width: 0; aspect-ratio: 8 / 5; background: #EEF0F3">
+<svg viewBox="0 0 800 500" style="position: absolute; inset: 0; width: 100%; height: 100%" aria-hidden="true">
+<polygon points="{{river}}" fill="#E1EAF3" stroke="#2F5D8A" stroke-width="1.5"></polygon>
+<polygon points="{{oldtown}}" fill="#F6E3E4"></polygon>
+<polyline points="{{canal}}" fill="none" stroke="#2F5D8A" stroke-width="4" stroke-linecap="round" opacity="0.7"></polyline>
+<sc-for list="{{streets}}" as="s" hint-placeholder-count="4">
+<polyline points="{{s.pts}}" fill="none" stroke="#DADDE3" stroke-width="6" stroke-linecap="round"></polyline>
+</sc-for>
+<polyline points="{{route}}" fill="none" stroke="{{accent}}" stroke-width="2.5" stroke-dasharray="6 6" opacity="0.75"></polyline>
+<text x="210" y="405" fill="#2F5D8A" font-size="16" font-style="italic" font-weight="700" font-family="{{fBody}}" text-anchor="middle">Daugava</text>
+<text x="400" y="290" fill="#A3323B" font-size="11" font-weight="700" letter-spacing="1.5" font-family="{{fBody}}" text-anchor="middle">VANALINN</text>
+<text x="655" y="205" fill="#5D6573" font-size="11" font-weight="700" letter-spacing="1.5" font-family="{{fBody}}" text-anchor="middle">KESKLINN</text>
+<text x="66" y="150" fill="#5D6573" font-size="11" font-weight="700" letter-spacing="1.5" font-family="{{fBody}}" text-anchor="middle">PĀRDAUGAVA</text>
+<text x="772" y="26" fill="#5D6573" font-size="13" font-weight="700" font-family="{{fBody}}" text-anchor="middle">N ↑</text>
+<line x1="20" y1="478" x2="{{scaleX}}" y2="478" stroke="#5D6573" stroke-width="2"></line>
+<text x="20" y="470" fill="#5D6573" font-size="11" font-family="{{fBody}}">500 m</text>
+</svg>
+<sc-for list="{{stayPins}}" as="p" hint-placeholder-count="3">
+<button type="button" onClick="{{p.pick}}" title="{{p.name}}" style="position: absolute; left: {{p.left}}; top: {{p.top}}; transform: translate(-50%, -50%); z-index: 3; padding: 3px 9px; border-radius: 999px; border: 1.5px solid {{cText}}; background: {{p.bg}}; color: {{p.fg}}; font-family: {{fBody}}; font-size: calc(12px * {{ts}}); font-weight: 800; white-space: nowrap; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.18); opacity: {{p.op}}">{{p.price}}</button>
+</sc-for>
+<sc-for list="{{pins}}" as="p" hint-placeholder-count="12">
+<a href="{{p.maps}}" title="{{p.name}}" style="position: absolute; left: {{p.left}}; top: {{p.top}}; transform: translate(-50%, -50%); width: 26px; height: 26px; box-sizing: border-box; border-radius: 50%; border: 2.5px solid #FFFFFF; background: {{p.color}}; color: #FFFFFF; font-size: calc(11px * {{ts}}); font-weight: 700; display: grid; place-items: center; text-decoration: none; opacity: {{p.op}}">{{p.n}}</a>
+</sc-for>
+<sc-if value="{{hasStay}}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; left: 12px; bottom: 12px; width: min(380px, calc(100% - 24px)); z-index: 5; background: {{cCard}}; color: {{cText}}; border-radius: {{radius}}; box-shadow: 0 8px 24px rgba(0,0,0,0.22); display: flex; gap: 12px; padding: 10px; box-sizing: border-box">
+<img src="{{st.img}}" alt="{{st.name}}" style="flex: none; width: 104px; height: 104px; object-fit: cover; object-position: {{st.pos}}; border-radius: {{radiusS}}">
+<div style="min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 2px; padding-right: 22px">
+<b style="font-family: {{fHead}}; font-size: calc(16px * {{hs}}); line-height: 1.2">{{st.name}}</b>
+<span style="font-size: calc(12px * {{ts}}); color: {{cMuted}}">{{st.sub}}</span>
+<span style="font-family: {{fHead}}; font-weight: 700; font-size: calc(17px * {{hs}}); margin-top: 4px">{{st.price}} <span style="font-family: {{fBody}}; font-weight: 500; font-size: calc(12px * {{ts}}); color: {{cMuted}}">· 2 ööd · {{st.pp}}</span></span>
+<div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: auto; font-size: calc(13px * {{ts}}); font-weight: 600">
+<a href="oobimine.html" style="color: {{cLink}}">Vaata lähemalt →</a>
+<a href="{{st.url}}" style="color: {{cLink}}">{{st.site}} ↗</a>
+</div>
+</div>
+<button type="button" onClick="{{closeStay}}" aria-label="Sulge" style="position: absolute; top: 6px; right: 6px; width: 28px; height: 28px; border-radius: 50%; border: 0; background: {{cBg}}; color: {{cText}}; font-size: 16px; line-height: 1; cursor: pointer">×</button>
+</div>
+</sc-if>
+
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 210px), 1fr)); gap: 4px 16px; padding: {{cardPadY}} {{cardPad}}; border-top: 1px solid {{cLine}}">
+<sc-for list="{{pins}}" as="p" hint-placeholder-count="12">
+<a href="{{p.maps}}" style="display: flex; gap: 8px; align-items: center; font-size: calc(14px * {{ts}}); color: {{cText}}; text-decoration: none; padding: 4px 0; opacity: {{p.op}}">
+<span style="flex: none; width: 20px; height: 20px; border-radius: 50%; background: {{p.color}}; color: #FFFFFF; font-size: calc(11px * {{ts}}); font-weight: 700; display: grid; place-items: center">{{p.n}}</span>
+<span>{{p.name}}</span>
+</a>
+</sc-for>
+</div>
+</div>
+<div style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">Skeem, mitte täpne kaart. Vajuta punktile, et avada see Google Mapsis.</div>
+</section>
+
+
+
+
+
+
+
+</div>
+</div>
+</template>
+<script>/* Tiny renderer for the trip page templates: {{holes}}, <sc-for>, <sc-if>, onClick. */
+(function () {
+  function DCLogic(props) { this.props = props || {}; this.state = {}; }
+  DCLogic.prototype.setState = function (patch) {
+    Object.assign(this.state, typeof patch === 'function' ? patch(this.state) : patch);
+    if (this.__render) this.__render();
+  };
+  window.DCLogic = DCLogic;
+
+  var HOLE = /\{\{\s*([^}]+?)\s*\}\}/g;
+  var WHOLE = /^\{\{\s*([^}]+?)\s*\}\}$/;
+
+  function lookup(path, scope) {
+    path = path.trim();
+    if (path === 'true') return true;
+    if (path === 'false') return false;
+    if (/^-?\d+(\.\d+)?$/.test(path)) return Number(path);
+    var parts = path.split('.');
+    var cur;
+    for (var i = scope.length - 1; i >= 0; i--) {
+      if (Object.prototype.hasOwnProperty.call(scope[i], parts[0])) { cur = scope[i][parts[0]]; break; }
+    }
+    for (var j = 1; j < parts.length && cur != null; j++) cur = cur[parts[j]];
+    return cur;
+  }
+  function interp(str, scope) {
+    return str.replace(HOLE, function (_, p) { var v = lookup(p, scope); return v == null ? '' : String(v); });
+  }
+
+  function build(node, scope, out) {
+    if (node.nodeType === 3) {
+      out.appendChild(document.createTextNode(interp(node.nodeValue, scope)));
+      return;
+    }
+    if (node.nodeType !== 1) return;
+    var tag = node.localName;
+    if (tag === 'sc-for') {
+      var m = WHOLE.exec(node.getAttribute('list') || '');
+      var list = m ? lookup(m[1], scope) : null;
+      var as = node.getAttribute('as') || 'item';
+      (list || []).forEach(function (item, idx) {
+        var s = {}; s[as] = item; s.$index = idx;
+        var next = scope.concat([s]);
+        node.childNodes.forEach(function (c) { build(c, next, out); });
+      });
+      return;
+    }
+    if (tag === 'sc-if') {
+      var mv = WHOLE.exec(node.getAttribute('value') || '');
+      if (mv && lookup(mv[1], scope)) node.childNodes.forEach(function (c) { build(c, scope, out); });
+      return;
+    }
+    var el = node.namespaceURI && node.namespaceURI !== 'http://www.w3.org/1999/xhtml'
+      ? document.createElementNS(node.namespaceURI, node.tagName)
+      : document.createElement(tag);
+    for (var a = 0; a < node.attributes.length; a++) {
+      var at = node.attributes[a], name = at.name, val = at.value;
+      if (name.indexOf('hint-') === 0) continue;
+      var w = WHOLE.exec(val);
+      if (/^on[a-z]+$/i.test(name) && w) {
+        var fn = lookup(w[1], scope);
+        if (typeof fn === 'function') el.addEventListener(name.slice(2).toLowerCase(), fn);
+        continue;
+      }
+      el.setAttribute(name, val.indexOf('{{') >= 0 ? interp(val, scope) : val);
+    }
+    if (el.localName === 'a') {
+      var href = el.getAttribute('href') || '';
+      if (/^https?:/.test(href)) { el.setAttribute('target', '_blank'); el.setAttribute('rel', 'noopener'); }
+    }
+    var kids = node.content ? node.content.childNodes : node.childNodes;
+    kids.forEach(function (c) { build(c, scope, el); });
+    out.appendChild(el);
+  }
+
+  window.mountPage = function (Component, props) {
+    var tpl = document.getElementById('tpl');
+    var root = document.getElementById('app');
+    var comp = new Component(props);
+    comp.__render = function () {
+      var vals = comp.renderVals();
+      var frag = document.createDocumentFragment();
+      tpl.content.childNodes.forEach(function (c) { build(c, [vals], frag); });
+      root.replaceChildren(frag);
+    };
+    comp.__render();
+    if (comp.componentDidMount) comp.componentDidMount();
+  };
+})();
+</script>
+<script>
+
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { sel: 'all' }; }
+  renderVals() {
+    var TP = this.props;
+    function num(v, d) { return (typeof v === 'number' && isFinite(v)) ? v : d; }
+    var hf = TP.headingFont || 'Bricolage Grotesque', bf = TP.bodyFont || 'Figtree';
+    var ts = num(TP.textScale, 1), hs = num(TP.headingScale, 1);
+    var T = { fHead: "'" + hf + "', system-ui, sans-serif", fBody: "'" + bf + "', system-ui, sans-serif",
+      ts: String(ts), hs: String(hs), lh: String(num(TP.lineHeight, 1.5)),
+      cBg: TP.bgColor || '#F6F7F9', cCard: TP.cardColor || '#FFFFFF', cText: TP.textColor || '#1B1F27',
+      cMuted: TP.mutedColor || '#5D6573', cLine: TP.lineColor || '#E2E5EB', cLink: TP.linkColor || '#2F5D8A',
+      pageW: num(TP.pageWidth, 1040) + 'px', sideM: num(TP.sideMargin, 24) + 'px', secGap: num(TP.sectionGap, 32) + 'px',
+      cardGap: num(TP.cardGap, 12) + 'px', cardPad: num(TP.cardPadding, 16) + 'px', cardPadY: Math.round(num(TP.cardPadding, 16) * 0.875) + 'px',
+      radius: num(TP.radius, 16) + 'px', radiusS: Math.round(num(TP.radius, 16) * 0.65) + 'px' };
+    var accent = this.props.accent || '#A3323B';
+    var self = this;
+    var sel = this.state.sel;
+    var KC = { food: '#9A6A0A', sight: '#2F5D8A', shop: '#3B7A57', thrift: '#8A4FA0', music: '#A3323B', stay: '#1B1F27', travel: '#5D6573' };
+    var KL = { food: 'Söök', sight: 'Vaatamisväärsus', shop: 'Poed', thrift: 'Kasutatud', music: 'Kontsert', stay: 'Majutus', travel: 'Sõit' };
+    var PL = {
+      shoyu: ['Shōyu · raamen', 56.9603, 24.1128, 'food', 'Shoyu ramen Ausekļa iela 20 Riga'],
+      snatch: ['Snatch · Itaalia köök', 56.9581, 24.1142, 'food', 'Snatch Elizabetes iela 39 Riga'],
+      b7: ['B7 · bistroo', 56.9596, 24.1100, 'food', 'B7 restaurant Ausekļa iela 7 Riga'],
+      yolk: ['Yolkhaus · hommikusöök', 56.95683, 24.11580, 'food', 'Yolkhaus Dzirnavu iela 42 Riga'],
+      angars: ['SADU kontsert · Angārs', 56.9596, 24.1358, 'music', 'Tallinas ielas kvartāls Riga'],
+      rocket: ['Rocket Bean (Miera 29)', 56.9614, 24.1378, 'food', 'Rocket Bean Roastery Miera iela 29 Riga'],
+      freedom: ['Vabadussammas', 56.9515, 24.1133, 'sight', 'Freedom Monument Riga'],
+      peter: ['Peetri kirik + vanalinn', 56.9476, 24.1088, 'sight', "St. Peter's Church Riga"],
+      milda: ['Milda', 56.9461, 24.1096, 'food', 'Milda restaurant Grēcinieku 26 Riga'],
+      alberta: ['Alberta iela (jugend)', 56.9592, 24.1078, 'sight', 'Alberta iela Riga'],
+      kalnciems: ['Kalnciema laat', 56.9518, 24.0760, 'shop', 'Kalnciema kvartāls Riga'],
+      galcentrs: ['Galerija Centrs · kaubanduskeskus', 56.9478, 24.1128, 'shop', 'Galerija Centrs Audēju iela 16 Riga'],
+      stockmann: ['Stockmann · kaubamaja', 56.9465, 24.1185, 'shop', 'Stockmann 13. janvāra iela 8 Riga'],
+      origo: ['Origo · kaubanduskeskus', 56.9468, 24.1207, 'shop', 'Origo Stacijas laukums 2 Riga'],
+      galleria: ['Galleria Riga · kaubanduskeskus', 56.9564, 24.1233, 'shop', 'Galleria Riga Dzirnavu iela 67'],
+      bazars: ['Berga Bazārs · poed ja kohvikud', 56.9523, 24.1210, 'shop', 'Berga Bazārs Riga'],
+      barona: ['Barona Centrs · kaubanduskeskus', 56.9556, 24.1296, 'shop', 'Barona Centrs Krišjāņa Barona iela 46 Riga'],
+      riija: ['RIIJA · Läti disain (E–R)', 56.9537, 24.1180, 'shop', 'RIIJA Tērbatas iela 6 Riga'],
+      miera: ['Miera iela · disain ja vintage', 56.9620, 24.1390, 'shop', 'Miera iela Riga'],
+      ngrip: ['Northern Grip · vintage', 56.9553, 24.1285, 'thrift', 'Northern Grip Krišjāņa Barona iela 44 Riga'],
+      humT: ['Humana · Tērbatas 38', 56.9558, 24.1262, 'thrift', 'Humana Tērbatas iela 38 Riga'],
+      humG: ['Humana · Ģertrūdes 16', 56.9535, 24.1272, 'thrift', 'Humana Ģertrūdes iela 16 Riga'],
+      humM: ['Humana · Marijas 14A', 56.9486, 24.1226, 'thrift', 'Humana Marijas iela 14A Riga'],
+      humA: ['Humana · Aspazijas 24', 56.9503, 24.1128, 'thrift', 'Humana Aspazijas bulvāris 24 Riga'],
+      otraelpa: ['Otrā Elpa · heategevuspood', 56.9600, 24.1305, 'thrift', 'Otrā Elpa Stabu iela 35 Riga'],
+      kram: ['Krāminieks · kirbuturg (L–P)', 56.9442, 24.0832, 'thrift', 'Āgenskalna tirgus Nometņu iela 64 Riga']
+    };
+    var DAYS = [
+      { id: 'd1', date: 'N 5.11', theme: 'Kontserdipäev', hl: 'SADU kell 18:00', icon: 'rain', hi: 9, lo: 5, wx: 'Pilves, pärastlõunal vihm · 3,3 mm · tuul 5 m/s', ev: [
+        ['~09:30', 'travel', null, 'Põlvast välja', 'Sõit umbes 3,5–4 h koos peatusega. Täpne aeg veel lahtine.'],
+        ['13:30', 'food', 'shoyu', 'Lõuna: Shōyu', 'Ramen, Michelini Bib Gourmand. Ausekļa 20, avatud alates 12:00.'],
+        ['15:00', 'stay', null, 'Check-in', 'Hotellides alates 15:00. Asjad maha, kiire puhkus.'],
+        ['15:45', 'shop', 'bazars', 'Kohv ja jalutus Berga Bazāris', 'Väike hoovikvartal poodide ja kohvikutega.'],
+        ['17:45', 'music', 'angars', 'Kohale Angārsisse', 'Uksed 18:00. Ole varem, SADU on esimene esineja.'],
+        ['18:00', 'music', 'angars', 'SADU', '18:00–18:40, Angārs NA Events lava.', true],
+        ['19:15', 'food', 'snatch', 'Õhtusöök: Snatch', 'Moodne Itaalia köök, Elizabetes 39. Broneeri ette! Pärast võib Angārsisse tagasi minna: ELPO 20:40, JKLN 22:00.']
+      ] },
+      { id: 'd2', date: 'R 6.11', theme: 'Linn ja shopping', hl: 'Vanalinn + 3 Pavāri õhtul', icon: 'partly', hi: 9, lo: 6, wx: 'Vahelduv pilvisus, kuiv · 0 mm · tuul 4 m/s', ev: [
+        ['09:30', 'food', 'rocket', 'Hommik: Rocket Bean', 'Väga hea kohv ja munaroad. Kui toas on hommikusöök, jäta vahele.'],
+        ['11:00', 'sight', 'freedom', 'Jalutus vanalinna', 'Vabadussammas → Doma laukums → Mustpeade maja.'],
+        ['11:45', 'sight', 'peter', 'Peetri kiriku torn', 'Parim vaade linnale. Lift üles.'],
+        ['13:00', 'food', 'milda', 'Lõuna: Milda', 'Läti ja Leedu kodutoit, Michelini Bib Gourmand.'],
+        ['14:00', 'thrift', 'ngrip', 'Vintage: Northern Grip + Humana', 'Barona 44, Humana Tērbatas 38 ja Ģertrūdes 16 on kõik paari minuti kaugusel.'],
+        ['15:00', 'shop', 'riija', 'Läti disain: RIIJA', 'Tērbatas 6/8. Avatud ainult E–R 10–18, seega reede on ainus võimalus.'],
+        ['15:45', 'shop', 'galleria', 'Kaubanduskeskused', 'Galleria Riga ja Berga Bazārs. Stockmann ja Galerija Centrs on vanalinna servas.'],
+        ['16:30', 'sight', 'alberta', 'Jugendstiil Alberta ielal', 'Kõige ilusamad fassaadid. Pimeneb vara, mine enne 17.'],
+        ['19:00', 'food', 'b7', 'Õhtusöök: B7', 'Moodne bistroo, Ausekļa 7. Avatud T–L 17–23. Broneeri ette!']
+      ] },
+      { id: 'd3', date: 'L 7.11', theme: 'Laat ja koju', hl: 'Kalnciema laupäevalaat', icon: 'cloud', hi: 9, lo: 6, wx: 'Pilves, kerge vihm · 1,9 mm · tuul 4 m/s', ev: [
+        ['09:30', 'food', 'yolk', 'Hommik: Yolkhaus', 'Hommikusöögikoht, Dzirnavu 42. Laupäeval avatud alates 9:00.'],
+        ['11:30', 'stay', null, 'Check-out', 'Hotellides hiljemalt 12:00. Auto peale.'],
+        ['12:00', 'shop', 'kalnciems', 'Kalnciema kvartāli laat', 'Iga laupäev 10–16. Talunikud, käsitöö, puumajad. Võta sularaha.'],
+        ['13:00', 'food', 'kalnciems', 'Lõuna laadal', 'Tänavatoit otse laadalt.'],
+        ['13:45', 'thrift', 'kram', 'Kirbuturg: Krāminieks', 'Āgenskalna turu hoovis, L–P 8–15. Vanavara, vinüülid, Nõukogude asjad. Kalnciemast 10 min.'],
+        ['~15:00', 'travel', null, 'Koju Põlvasse', 'Āgenskalnast pääseb kiiresti linnast välja.']
+      ] }
+    ];
+    var STAYS = [
+      ['Hotel Bergs Suites', 56.9527, 24.1203, '€160', 'Hotell · Berga Bazārs · parkimine ~€33', 'img/bergs.jpg', '50% 50%', 'https://www.booking.com/hotel/lv/bergs-suites.html', 'Booking', '€80 / in'],
+      ['Maison XIV (korter)', 56.9548, 24.1155, '€129', 'Korter · Esplanāde park · tasuta parkimine', 'img/maison.jpg', '50% 68%', 'https://www.airbnb.com/rooms/1804588600146004786', 'Airbnb', '€64,5 / in'],
+      ['Vanalinna korter', 56.9478, 24.1112, '€172', 'Korter · vanalinn · tasuta maa-alune parkla', 'img/vanalinn.jpg', '50% 50%', 'https://www.airbnb.com/rooms/1526793070921702784', 'Airbnb', '€86 / in']
+    ];
+    var LON0 = 24.068, LON1 = 24.146, LAT0 = 56.9385, LAT1 = 56.9655;
+    function P(lon, lat) { return [(lon - LON0) / (LON1 - LON0) * 800, (LAT1 - lat) / (LAT1 - LAT0) * 500]; }
+    function pts(a) { return a.map(function (q) { var p = P(q[0], q[1]); return p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' '); }
+    function pct(lon, lat) { var p = P(lon, lat); return { left: (p[0] / 8).toFixed(2) + '%', top: (p[1] / 5).toFixed(2) + '%' }; }
+    function gm(q) { return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q); }
+    var KEEP = ['angars', 'shoyu', 'snatch', 'b7', 'yolk', 'galcentrs', 'stockmann', 'origo', 'galleria', 'bazars', 'barona', 'riija', 'miera', 'ngrip', 'humT', 'humG', 'humM', 'humA', 'otraelpa', 'kram'];
+    var order = [];
+    DAYS.forEach(function (d) { d.ev.forEach(function (e) { if (e[2] && KEEP.indexOf(e[2]) >= 0 && order.indexOf(e[2]) < 0) order.push(e[2]); }); });
+    KEEP.forEach(function (k) { if (order.indexOf(k) < 0) order.push(k); });
+    function daysOf(k) { return DAYS.filter(function (d) { return d.ev.some(function (e) { return e[2] === k; }); }).map(function (d) { return d.id; }); }
+    var pins = order.map(function (k, i) {
+      var p = PL[k], xy = pct(p[2], p[1]);
+      var show = sel === 'all' || daysOf(k).indexOf(sel) >= 0;
+      return { n: String(i + 1), name: p[0], left: xy.left, top: xy.top, color: KC[p[3]], maps: gm(p[4]), op: show ? '1' : '0.18' };
+    });
+    var openStay = this.state.stay;
+    var stayPins = STAYS.map(function (s, i) { var xy = pct(s[2], s[1]); var on = openStay === i;
+      return { name: s[0], price: s[3], left: xy.left, top: xy.top, op: (sel === 'all' || on) ? '1' : '0.35',
+        bg: on ? T.cText : T.cCard, fg: on ? T.cCard : T.cText,
+        pick: function () { self.setState({ stay: on ? null : i }); } }; });
+    var cur = (typeof openStay === 'number') ? STAYS[openStay] : null;
+    var st = cur ? { name: cur[0], price: cur[3], sub: cur[4], img: cur[5], pos: cur[6], url: cur[7], site: cur[8], pp: cur[9] } : { name: '', price: '', sub: '', img: '', pos: '50% 50%', url: '', site: '', pp: '' };
+    var route = '';
+    if (sel !== 'all') {
+      var day = DAYS.filter(function (d) { return d.id === sel; })[0], seq = [];
+      day.ev.forEach(function (e) { if (e[2] && KEEP.indexOf(e[2]) >= 0 && seq[seq.length - 1] !== e[2]) seq.push(e[2]); });
+      route = pts(seq.map(function (k) { return [PL[k][2], PL[k][1]]; }));
+    }
+    var days = DAYS.map(function (d) {
+      return { date: d.date, theme: d.theme, hl: d.hl, wxtxt: d.wx, hi: d.hi + '°', lo: 'öösel ' + d.lo + '°',
+        isRain: d.icon === 'rain', isPartly: d.icon === 'partly', isCloud: d.icon === 'cloud',
+        border: sel === d.id ? accent : '#E2E5EB',
+        pick: function () { self.setState({ sel: sel === d.id ? 'all' : d.id }); },
+        ev: d.ev.map(function (e) { return { t: e[0], title: e[3], color: e[5] ? accent : T.cText, weight: e[5] ? '700' : '400' }; }) };
+    });
+    var selEv = [];
+    if (sel !== 'all') {
+      DAYS.filter(function (d) { return d.id === sel; })[0].ev.forEach(function (e) {
+        var k = (e[2] && KEEP.indexOf(e[2]) >= 0) ? e[2] : null;
+        selEv.push({ t: e[0], title: e[3], note: e[4], kind: KL[e[1]],
+          dotColor: e[5] ? accent : KC[e[1]], dotBg: e[5] ? accent : T.cCard, rowBg: e[5] ? '#F6E3E4' : 'transparent',
+          hasPin: !!k, n: k ? String(order.indexOf(k) + 1) : '', pinColor: k ? KC[PL[k][3]] : '', maps: k ? gm(PL[k][4]) : '' });
+      });
+    }
+    var diff = Date.UTC(2026, 10, 5, 16, 0) - Date.now(), dl = Math.ceil(diff / 864e5);
+    return Object.assign(T, {
+      accent: accent,
+      daysLeft: diff > 0 ? String(dl) : '♪', daysLabel: diff > 0 ? (dl === 1 ? 'päev veel' : 'päeva veel') : 'läbi',
+      isAll: sel === 'all', notAll: sel !== 'all',
+      pickD1: days[0].pick, pickD2: days[1].pick, pickD3: days[2].pick, bD1: sel === 'd1' ? accent : T.cLine, bD2: sel === 'd2' ? accent : T.cLine, bD3: sel === 'd3' ? accent : T.cLine,
+      selDay: days.filter(function (x, i) { return DAYS[i].id === sel; })[0] || days[0],
+      showAll: function () { self.setState({ sel: 'all' }); },
+      days: days, selEv: selEv, pins: pins, stayPins: stayPins, route: route,
+      st: st, hasStay: !!cur, closeStay: function () { self.setState({ stay: null }); },
+      river: pts([[24.146, 56.9375], [24.122, 56.9405], [24.112, 56.943], [24.1045, 56.9465], [24.099, 56.950], [24.094, 56.955], [24.089, 56.960], [24.086, 56.966], [24.075, 56.966], [24.079, 56.959], [24.083, 56.953], [24.088, 56.948], [24.095, 56.943], [24.105, 56.9395], [24.120, 56.937]]),
+      oldtown: pts([[24.1045, 56.9465], [24.112, 56.943], [24.117, 56.9445], [24.114, 56.950], [24.111, 56.953], [24.107, 56.9555], [24.099, 56.950]]),
+      canal: pts([[24.117, 56.9435], [24.118, 56.9465], [24.115, 56.950], [24.112, 56.953], [24.108, 56.9558], [24.101, 56.9568]]),
+      streets: [
+        { pts: pts([[24.1133, 56.9515], [24.122, 56.9555], [24.135, 56.9612], [24.146, 56.9655]]) },
+        { pts: pts([[24.1155, 56.9548], [24.125, 56.9528], [24.146, 56.948]]) },
+        { pts: pts([[24.104, 56.9585], [24.118, 56.9535], [24.128, 56.9480]]) },
+        { pts: pts([[24.083, 56.9535], [24.068, 56.9515]]) }
+      ],
+      scaleX: (20 + 0.5 / 60.6 / (LON1 - LON0) * 800).toFixed(1)
+    });
+  }
+}
+
+mountPage(Component, {"headingFont": "Major Mono Display", "bodyFont": "Karla", "textScale": 0.95, "headingScale": 1.05, "lineHeight": 1.5, "accent": "#9bb7d4", "bgColor": "#f0ebda", "cardColor": "#FFFFFF", "textColor": "#3d2d2e", "mutedColor": "#5D6573", "lineColor": "#E2E5EB", "linkColor": "#2F5D8A", "pageWidth": 1040, "sideMargin": 24, "sectionGap": 32, "cardGap": 12, "cardPadding": 16, "radius": 16});
+</script>
+</body>
+</html>

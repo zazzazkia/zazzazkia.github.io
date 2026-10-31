@@ -24,10 +24,7 @@ button{font:inherit}
 
 <header style="display: flex; justify-content: space-between; align-items: center; gap: {{cardGap}}; flex-wrap: wrap; padding-bottom: 12px">
 <div style="font-family: {{fHead}}; font-weight: 800; font-size: calc(18px * {{ts}})">triptrip</div>
-<nav style="display: flex; gap: 4px; background: {{cCard}}; border: 1px solid {{cLine}}; border-radius: 999px; padding: 3px" aria-label="Vaated">
-<span style="background: {{cText}}; color: {{cBg}}; font-weight: 600; font-size: calc(14px * {{ts}}); padding: 6px 14px; border-radius: 999px">Ülevaade</span>
-<a href="oobimine.html" style="color: {{cMuted}}; text-decoration: none; font-weight: 600; font-size: calc(14px * {{ts}}); padding: 6px 14px; border-radius: 999px">Ööbimine</a>
-</nav>
+
 </header>
 
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 24px">
@@ -49,6 +46,33 @@ button{font:inherit}
 </div>
 </div>
 </div>
+
+<section style="display: flex; flex-direction: column; gap: 14px">
+<h2 style="margin: 0; font-family: {{fHead}}; font-weight: 400; font-size: calc(26px * {{hs}})">Ööbimine</h2>
+<article style="background: {{cCard}}; border: 1px solid {{cLine}}; border-radius: {{radius}}; padding: {{cardPad}}; display: flex; flex-wrap: wrap; gap: {{cardGap}}; min-width: 0">
+<img src="img/vanalinn.jpg" alt="Vanalinna korter" style="display: block; flex: 1 1 300px; min-width: 0; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: {{radiusS}}">
+<div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: {{cardGap}}">
+<div>
+<div style="font-size: calc(12px * {{ts}}); text-transform: uppercase; letter-spacing: 0.09em; color: {{cMuted}}; font-weight: 600">Valitud · 5.–7. nov · 2 ööd</div>
+<h3 style="margin: 4px 0 0; font-family: {{fHead}}; font-size: calc(22px * {{hs}})">Vanalinna korter</h3>
+<div style="font-size: calc(14px * {{ts}}); color: {{cMuted}}">Peetri kiriku lähedal, vanalinnas · 5. korrus, lift</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px; font-size: calc(12px * {{ts}}); font-weight: 600">
+<span style="padding: 2px 8px; border-radius: 6px; background: #E1EAF3; color: #2F5D8A">5,0 ★ (41)</span>
+<span style="padding: 2px 8px; border-radius: 6px; background: #E1EAF3; color: #2F5D8A">Superhost</span>
+<span style="padding: 2px 8px; border-radius: 6px; background: #E1EAF3; color: #2F5D8A">Tasuta maa-alune parkla</span>
+<span style="padding: 2px 8px; border-radius: 6px; background: #E1EAF3; color: #2F5D8A">Köök + pesumasin</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr)); gap: 8px">
+<div style="padding: 10px 12px; border-radius: {{radiusS}}; background: {{cBg}}"><div style="font-size: calc(12px * {{ts}}); color: {{cMuted}}">Hind kokku</div><div style="font-family: {{fHead}}; font-weight: 700; font-size: calc(19px * {{hs}})">€172</div><div style="font-size: calc(12px * {{ts}}); color: {{cMuted}}">€86 inimese kohta</div></div>
+<div style="padding: 10px 12px; border-radius: {{radiusS}}; background: {{cBg}}"><div style="font-size: calc(12px * {{ts}}); color: {{cMuted}}">Sisse / välja</div><div style="font-weight: 700; font-size: calc(15px * {{ts}})">N 5.11 → L 7.11</div><div style="font-size: calc(12px * {{ts}}); color: {{cMuted}}">kellaajad Airbnb broneeringus</div></div>
+</div>
+<div style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: auto; font-size: calc(14px * {{ts}}); font-weight: 600">
+<a href="https://www.airbnb.com/rooms/1526793070921702784" style="color: {{cLink}}">Airbnb kuulutus ↗</a>
+</div>
+</div>
+</article>
+</section>
 
 <section style="display: flex; flex-direction: column; gap: 14px">
 <div style="display: flex; justify-content: space-between; align-items: baseline; gap: {{cardGap}}; flex-wrap: wrap">
@@ -94,7 +118,7 @@ button{font:inherit}
 <span style="color: {{cMuted}}">15:00</span>
 <div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
 <div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: {{cText}}">Check-in</span></div>
-<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">xx</span>
+<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">Vanalinna korter. Auto tasuta maa-alusesse parklasse. Täpne aeg Airbnb broneeringus.</span>
 </div>
 </div>
 <div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
@@ -232,7 +256,7 @@ button{font:inherit}
 <span style="color: {{cMuted}}">11:30</span>
 <div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
 <div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: {{cText}}">Check-out</span></div>
-<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">Hotellides hiljemalt 12:00.&nbsp;</span>
+<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">Korterist välja, täpne aeg Airbnb broneeringus. Auto peale.</span>
 </div>
 </div>
 <div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
@@ -264,7 +288,7 @@ button{font:inherit}
 <span style="display: inline-flex; gap: 6px; align-items: center"><span style="width: 10px; height: 10px; border-radius: 50%; background: #8A4FA0"></span>Kasutatud ja vintage</span>
 <span style="display: inline-flex; gap: 6px; align-items: center"><span style="width: 10px; height: 10px; border-radius: 50%; background: #3B7A57"></span>Kaubamajad ja poed</span>
 <span style="display: inline-flex; gap: 6px; align-items: center"><span style="width: 10px; height: 10px; border-radius: 50%; background: #A3323B"></span>Kontsert</span>
-<span style="display: inline-flex; gap: 6px; align-items: center"><span style="width: 10px; height: 10px; border-radius: 3px; border: 2px solid #1B1F27; box-sizing: border-box"></span>Ööbimine</span>
+<span style="display: inline-flex; gap: 6px; align-items: center"><span style="width: 10px; height: 10px; border-radius: 3px; border: 2px solid #1B1F27; box-sizing: border-box"></span>Meie korter</span>
 </div>
 </div>
 <div style="background: {{cCard}}; border: 1px solid {{cLine}}; border-radius: {{radius}}; overflow: hidden">
@@ -300,7 +324,6 @@ button{font:inherit}
 <span style="font-size: calc(12px * {{ts}}); color: {{cMuted}}">{{st.sub}}</span>
 <span style="font-family: {{fHead}}; font-weight: 700; font-size: calc(17px * {{hs}}); margin-top: 4px">{{st.price}} <span style="font-family: {{fBody}}; font-weight: 500; font-size: calc(12px * {{ts}}); color: {{cMuted}}">· 2 ööd · {{st.pp}}</span></span>
 <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: auto; font-size: calc(13px * {{ts}}); font-weight: 600">
-<a href="oobimine.html" style="color: {{cLink}}">Vaata lähemalt →</a>
 <a href="{{st.url}}" style="color: {{cLink}}">{{st.site}} ↗</a>
 </div>
 </div>
@@ -474,7 +497,7 @@ class Component extends DCLogic {
       { id: 'd1', date: 'N 5.11', theme: 'Kontserdipäev', hl: 'SADU kell 18:00', icon: 'rain', hi: 9, lo: 5, wx: 'Pilves, pärastlõunal vihm · 3,3 mm · tuul 5 m/s', ev: [
         ['~09:30', 'travel', null, 'Põlvast välja', 'Sõit umbes 3,5–4 h koos peatusega. Täpne aeg veel lahtine.'],
         ['13:30', 'food', 'shoyu', 'Lõuna: Shōyu', 'Ramen, Michelini Bib Gourmand. Ausekļa 20, avatud alates 12:00.'],
-        ['15:00', 'stay', null, 'Check-in', 'Hotellides alates 15:00. Asjad maha, kiire puhkus.'],
+        ['15:00', 'stay', null, 'Check-in', 'Vanalinna korter. Auto tasuta maa-alusesse parklasse.'],
         ['15:45', 'shop', 'bazars', 'Kohv ja jalutus Berga Bazāris', 'Väike hoovikvartal poodide ja kohvikutega.'],
         ['17:45', 'music', 'angars', 'Kohale Angārsisse', 'Uksed 18:00. Ole varem, SADU on esimene esineja.'],
         ['18:00', 'music', 'angars', 'SADU', '18:00–18:40, Angārs NA Events lava.', true],
@@ -493,7 +516,7 @@ class Component extends DCLogic {
       ] },
       { id: 'd3', date: 'L 7.11', theme: 'Laat ja koju', hl: 'Kalnciema laupäevalaat', icon: 'cloud', hi: 9, lo: 6, wx: 'Pilves, kerge vihm · 1,9 mm · tuul 4 m/s', ev: [
         ['09:30', 'food', 'yolk', 'Hommik: Yolkhaus', 'Hommikusöögikoht, Dzirnavu 42. Laupäeval avatud alates 9:00.'],
-        ['11:30', 'stay', null, 'Check-out', 'Hotellides hiljemalt 12:00. Auto peale.'],
+        ['11:30', 'stay', null, 'Check-out', 'Korterist välja. Auto peale.'],
         ['12:00', 'shop', 'kalnciems', 'Kalnciema kvartāli laat', 'Iga laupäev 10–16. Talunikud, käsitöö, puumajad. Võta sularaha.'],
         ['13:00', 'food', 'kalnciems', 'Lõuna laadal', 'Tänavatoit otse laadalt.'],
         ['13:45', 'thrift', 'kram', 'Kirbuturg: Krāminieks', 'Āgenskalna turu hoovis, L–P 8–15. Vanavara, vinüülid, Nõukogude asjad. Kalnciemast 10 min.'],
@@ -501,9 +524,7 @@ class Component extends DCLogic {
       ] }
     ];
     var STAYS = [
-      ['Hotel Bergs Suites', 56.9527, 24.1203, '€160', 'Hotell · Berga Bazārs · parkimine ~€33', 'img/bergs.jpg', '50% 50%', 'https://www.booking.com/hotel/lv/bergs-suites.html', 'Booking', '€80 / in'],
-      ['Maison XIV (korter)', 56.9548, 24.1155, '€129', 'Korter · Esplanāde park · tasuta parkimine', 'img/maison.jpg', '50% 68%', 'https://www.airbnb.com/rooms/1804588600146004786', 'Airbnb', '€64,5 / in'],
-      ['Vanalinna korter', 56.9478, 24.1112, '€172', 'Korter · vanalinn · tasuta maa-alune parkla', 'img/vanalinn.jpg', '50% 50%', 'https://www.airbnb.com/rooms/1526793070921702784', 'Airbnb', '€86 / in']
+      ['Vanalinna korter', 56.9478, 24.1112, '€172', 'Meie korter · vanalinn · tasuta maa-alune parkla', 'img/vanalinn.jpg', '50% 50%', 'https://www.airbnb.com/rooms/1526793070921702784', 'Airbnb', '€86 / in']
     ];
     var LON0 = 24.068, LON1 = 24.146, LAT0 = 56.9385, LAT1 = 56.9655;
     function P(lon, lat) { return [(lon - LON0) / (LON1 - LON0) * 800, (LAT1 - lat) / (LAT1 - LAT0) * 500]; }
@@ -522,8 +543,8 @@ class Component extends DCLogic {
     });
     var openStay = this.state.stay;
     var stayPins = STAYS.map(function (s, i) { var xy = pct(s[2], s[1]); var on = openStay === i;
-      return { name: s[0], price: s[3], left: xy.left, top: xy.top, op: (sel === 'all' || on) ? '1' : '0.35',
-        bg: on ? T.cText : T.cCard, fg: on ? T.cCard : T.cText,
+      return { name: s[0], price: 'Meie korter', left: xy.left, top: xy.top, op: '1',
+        bg: on ? T.cCard : T.cText, fg: on ? T.cText : T.cCard,
         pick: function () { self.setState({ stay: on ? null : i }); } }; });
     var cur = (typeof openStay === 'number') ? STAYS[openStay] : null;
     var st = cur ? { name: cur[0], price: cur[3], sub: cur[4], img: cur[5], pos: cur[6], url: cur[7], site: cur[8], pp: cur[9] } : { name: '', price: '', sub: '', img: '', pos: '50% 50%', url: '', site: '', pp: '' };

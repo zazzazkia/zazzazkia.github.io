@@ -82,7 +82,7 @@ button{font:inherit}
 <button type="button" onClick="{{showAll}}" style="background: none; border: 0; padding: 0; cursor: pointer; color: #2F5D8A; font-weight: 600; font-size: calc(14px * {{ts}})">Näita kõiki päevi</button>
 </sc-if>
 </div>
-<div style="display: flex; justify-content: space-between; gap: {{cardGap}}; flex-wrap: wrap; font-size: calc(13px * {{ts}}); color: {{cMuted}}"><span>Ilm Riias</span><span>Prognoos seisuga 30.10 · <a href="https://www.yr.no/en/forecast/daily-table/2-456172/Latvia/R%C4%ABga/R%C4%ABga/Riga" style="color: rgb(47, 93, 138)">värske yr.no-s</a></span></div>
+<div style="display: flex; justify-content: space-between; gap: {{cardGap}}; flex-wrap: wrap; font-size: calc(13px * {{ts}}); color: {{cMuted}}"><span>Ilm Riias</span><span>Prognoos seisuga 3.11 · <a href="https://www.yr.no/en/forecast/daily-table/2-456172/Latvia/R%C4%ABga/R%C4%ABga/Riga" style="color: rgb(47, 93, 138)">värske yr.no-s</a></span></div>
 <div style="display: flex; flex-wrap: wrap; gap: {{cardGap}}; align-items: stretch">
 <div style="flex: 1 1 280px; min-width: 0; background: {{cCard}}; border: 2px solid {{bD1}}; border-radius: {{radius}}; padding: {{cardPadY}} {{cardPad}}; display: flex; flex-direction: column; gap: 10px">
 <button type="button" onClick="{{pickD1}}" style="background: none; border: 0; padding: 0; cursor: pointer; text-align: left; color: {{cText}}; display: flex; justify-content: space-between; align-items: flex-start; gap: {{cardGap}}">
@@ -91,64 +91,76 @@ button{font:inherit}
 <div style="font-size: calc(14px * {{ts}}); color: {{cMuted}}">Kontserdipäev</div>
 </div>
 <div style="display: flex; align-items: center; gap: 6px; flex: none">
-<svg width="36" height="36" viewBox="0 0 52 52" aria-hidden="true"><path d="M15 30a9 9 0 0 1 1-18 12 12 0 0 1 22 4 7 7 0 0 1-1 14z" fill="#E1EAF3" stroke="#2F5D8A" stroke-width="2.5" stroke-linejoin="round"></path><path d="M18 36l-3 6M27 36l-3 6M36 36l-3 6" stroke="#2F5D8A" stroke-width="2.5" stroke-linecap="round" fill="none"></path></svg>
+<svg width="36" height="36" viewBox="0 0 52 52" aria-hidden="true"><path d="M15 34a9 9 0 0 1 1-18 12 12 0 0 1 22 4 7 7 0 0 1-1 14z" fill="#FFFFFF" stroke="#5D6573" stroke-width="2.5" stroke-linejoin="round"></path></svg>
 <div>
-<div style="font-family: {{fHead}}; font-weight: 800; font-size: calc(20px * {{hs}}); line-height: 1">9°</div>
-<div style="font-size: calc(12px * {{ts}}); color: {{cMuted}}">öösel 5°</div>
+<div style="font-family: {{fHead}}; font-weight: 800; font-size: calc(20px * {{hs}}); line-height: 1">11°</div>
+<div style="font-size: calc(12px * {{ts}}); color: {{cMuted}}">öösel 8°</div>
 </div>
 </div>
 </button>
-<div style="font-size: calc(13px * {{ts}}); color: {{cMuted}}; border-bottom: 1px dashed {{cLine}}; padding-bottom: 8px">Pilves, pärastlõunal vihm · 3,3 mm · tuul 5 m/s</div>
+<div style="font-size: calc(13px * {{ts}}); color: {{cMuted}}; border-bottom: 1px dashed {{cLine}}; padding-bottom: 8px">Pilves, õhtul vahelduv pilvisus · 0 mm · tuul 7 m/s</div>
 <div style="display: flex; flex-direction: column; gap: 10px">
 <div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
-<span style="color: {{cMuted}}">-</span>
+<span style="color: {{cMuted}}">12:00</span>
 <div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
 <div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: {{cText}}">Põlvast välja</span></div>
 <span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">Sõit umbes 3,5–4 h koos peatusega.&nbsp;</span>
 </div>
 </div>
-<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
-<span style="color: {{cMuted}}">-</span>
-<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
-<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: rgb(61, 45, 46)">Lõunasöök: Shōyu</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Shoyu%20ramen%20Ausek%C4%BCa%20iela%2020%20Riga" title="Google Maps" style="flex: 0 0 auto; width: 20px; height: 20px; border-radius: 50%; background: rgb(154, 106, 10); color: rgb(255, 255, 255); font-size: 11px; font-weight: 700; display: grid; place-items: center; text-decoration: none">1</a></div>
-<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">Ramen, Michelini Bib Gourmand. Ausekļa 20, avatud alates 12:00.</span>
-</div>
-</div>
-<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
-<span style="color: {{cMuted}}">15:00</span>
+<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}}); height: 20px">
+<span style="color: {{cMuted}}; height: 21px">15:00</span>
 <div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
 <div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: {{cText}}">Check-in</span></div>
-<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">Vanalinna korter. Auto tasuta maa-alusesse parklasse. Täpne aeg Airbnb broneeringus.</span>
+<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}"><br></span>
 </div>
-</div>
-<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
-<span style="color: {{cMuted}}">-</span>
+</div><div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
+<span style="color: {{cMuted}}">17:45</span>
 <div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
-<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: rgb(61, 45, 46)">Sirutus ja töö</span></div>
+<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: rgb(61, 45, 46)">Riga Music Week</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Tallinas%20ielas%20kvart%C4%81ls%20Riga" title="Google Maps" style="flex: 0 0 auto; width: 20px; height: 20px; border-radius: 50%; background: rgb(163, 50, 59); color: rgb(255, 255, 255); font-size: 11px; font-weight: 700; display: grid; place-items: center; text-decoration: none">1</a></div>
+<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">Uksed 18:00. Ole varem, SADU on esimene esineja.</span>
+</div>
+</div><div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
+<span style="color: {{cMuted}}">18:00</span>
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 700; color: {{accent}}">SADU</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Tallinas%20ielas%20kvart%C4%81ls%20Riga" title="Google Maps" style="flex: none; width: 20px; height: 20px; border-radius: 50%; background: #A3323B; color: #FFFFFF; font-size: 11px; font-weight: 700; display: none; place-items: center; text-decoration: none">1</a></div>
+<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">Angārs NA Events lava.</span>
+</div>
+</div><div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
+<span style="color: {{cMuted}}">19:20</span>
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 700; color: {{accent}}"><div><span style="font-size: 13.3px">ELLE VALENCI</span><br></div></span><a href="https://www.google.com/maps/search/?api=1&amp;query=Tallinas%20ielas%20kvart%C4%81ls%20Riga" title="Google Maps" style="flex: none; width: 20px; height: 20px; border-radius: 50%; background: #A3323B; color: #FFFFFF; font-size: 11px; font-weight: 700; display: none; place-items: center; text-decoration: none">1</a></div>
+<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">Angārs NA Events lava.</span>
+</div>
+</div><div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
+<span style="color: {{cMuted}}">22:15</span>
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 700; color: {{accent}}">Frankie Animal</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Tallinas%20ielas%20kvart%C4%81ls%20Riga" title="Google Maps" style="flex: none; width: 20px; height: 20px; border-radius: 50%; background: #A3323B; color: #FFFFFF; font-size: 11px; font-weight: 700; display: none; place-items: center; text-decoration: none">1</a></div>
+<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">Angārs Atmosphere lava.</span>
+</div>
+</div><div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
+
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
+
+
+</div>
+</div><div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
+
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
+
 
 </div>
 </div>
+
 <div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
-<span style="color: {{cMuted}}">17:45</span>
+
 <div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
-<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: rgb(61, 45, 46)">Riga Music Week</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Tallinas%20ielas%20kvart%C4%81ls%20Riga" title="Google Maps" style="flex: 0 0 auto; width: 20px; height: 20px; border-radius: 50%; background: rgb(163, 50, 59); color: rgb(255, 255, 255); font-size: 11px; font-weight: 700; display: grid; place-items: center; text-decoration: none">3</a></div>
-<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">Uksed 18:00. Ole varem, SADU on esimene esineja.</span>
+
+
 </div>
 </div>
-<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
-<span style="color: {{cMuted}}">18:00</span>
-<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
-<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 700; color: {{accent}}">SADU</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Tallinas%20ielas%20kvart%C4%81ls%20Riga" title="Google Maps" style="flex: none; width: 20px; height: 20px; border-radius: 50%; background: #A3323B; color: #FFFFFF; font-size: 11px; font-weight: 700; display: grid; place-items: center; text-decoration: none">3</a></div>
-<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">18:00–18:40, Angārs NA Events lava.</span>
-</div>
-</div>
-<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
-<span style="color: {{cMuted}}">18:40</span>
-<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
-<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: rgb(61, 45, 46)">RMW</span></div>
-<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">Vaatame kes esinevad, mis süüa pakutakse</span>
-</div>
-</div>
+
+
+
 </div>
 </div>
 <div style="flex: 1 1 280px; min-width: 0; background: {{cCard}}; border: 2px solid {{bD2}}; border-radius: {{radius}}; padding: {{cardPadY}} {{cardPad}}; display: flex; flex-direction: column; gap: 10px">
@@ -161,17 +173,30 @@ button{font:inherit}
 <svg width="36" height="36" viewBox="0 0 52 52" aria-hidden="true"><circle cx="20" cy="18" r="8" fill="#C98A12"></circle><path d="M17 40a8 8 0 0 1 1-16 11 11 0 0 1 20 4 6 6 0 0 1-1 12z" fill="#FFFFFF" stroke="#5D6573" stroke-width="2.5" stroke-linejoin="round"></path></svg>
 <div>
 <div style="font-family: {{fHead}}; font-weight: 800; font-size: calc(20px * {{hs}}); line-height: 1">9°</div>
-<div style="font-size: calc(12px * {{ts}}); color: {{cMuted}}">öösel 6°</div>
+<div style="font-size: calc(12px * {{ts}}); color: {{cMuted}}">öösel 7°</div>
 </div>
 </div>
 </button>
-<div style="font-size: calc(13px * {{ts}}); color: {{cMuted}}; border-bottom: 1px dashed {{cLine}}; padding-bottom: 8px">Vahelduv pilvisus, kuiv · 0 mm · tuul 4 m/s</div>
-<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="font-size: calc(13px * {{ts}}); color: {{cMuted}}; border-bottom: 1px dashed {{cLine}}; padding-bottom: 8px">Hommikul selge, pärastlõunal vahelduv pilvisus · 0 mm · tuul 5 m/s</div>
+
 <div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
-<span style="color: {{cMuted}}">-</span>
+<span style="color: {{cMuted}}">12:00</span>
 <div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
-<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: rgb(61, 45, 46)">Hommikusöök: tbd</span></div>
-<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">midagi head kehale ja hingele</span>
+<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: {{cText}}">Lõuna: Shōyu</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Northern%20Grip%20Kri%C5%A1j%C4%81%C5%86a%20Barona%20iela%2044%20Riga" title="Google Maps" style="flex: none; width: 20px; height: 20px; border-radius: 50%; color: #FFFFFF; font-size: 11px; font-weight: 700; display: grid; place-items: center; text-decoration: none; background-color: #9A6A09">3</a></div>
+<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">Dzirnavu iela 42</span>
+</div>
+</div><div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
+<span style="color: {{cMuted}}">18:00-20:00</span>
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: rgb(61, 45, 46)">Õhtusöök: Snatch</span><a href="https://www.google.com/maps/search/?api=1&amp;query=B7%20restaurant%20Ausek%C4%BCa%20iela%207%20Riga" title="Google Maps" style="flex: 0 0 auto; width: 20px; height: 20px; border-radius: 50%; background: rgb(154, 106, 10); color: rgb(255, 255, 255); font-size: 11px; font-weight: 700; display: none; place-items: center; text-decoration: none">8</a></div>
+<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">Moodne itaalia restoran<br>Elizabetes iela 39</span>
+</div>
+</div><div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
+
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
+
+
+
 </div>
 </div>
 <div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
@@ -181,53 +206,14 @@ button{font:inherit}
 
 </div>
 </div>
-<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
 
 
-</div>
-<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
-<span style="color: {{cMuted}}">13:00</span>
-<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
-<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: rgb(61, 45, 46)">Lõunasöök: tbd</span></div>
-<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">midagi kiiret, ramen, food court?</span>
-</div>
-</div>
-<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
-<span style="color: {{cMuted}}">-</span>
-<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
-<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: {{cText}}">Vintage: Northern Grip + Humana</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Northern%20Grip%20Kri%C5%A1j%C4%81%C5%86a%20Barona%20iela%2044%20Riga" title="Google Maps" style="flex: none; width: 20px; height: 20px; border-radius: 50%; background: #8A4FA0; color: #FFFFFF; font-size: 11px; font-weight: 700; display: grid; place-items: center; text-decoration: none">5</a></div>
-<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">Barona 44, Humana Tērbatas 38 ja Ģertrūdes 16 on kõik paari minuti kaugusel.</span>
-</div>
-</div>
-<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
-<span style="color: {{cMuted}}">-</span>
-<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
-<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: {{cText}}">Läti disain: RIIJA</span><a href="https://www.google.com/maps/search/?api=1&amp;query=RIIJA%20T%C4%93rbatas%20iela%206%20Riga" title="Google Maps" style="flex: none; width: 20px; height: 20px; border-radius: 50%; background: #3B7A57; color: #FFFFFF; font-size: 11px; font-weight: 700; display: grid; place-items: center; text-decoration: none">6</a></div>
-<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">Tērbatas 6/8. Avatud ainult E–R 10–18, seega reede on ainus võimalus.</span>
-</div>
-</div>
-<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
-<span style="color: {{cMuted}}">-</span>
-<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
-<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: {{cText}}">Kaubanduskeskused</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Galleria%20Riga%20Dzirnavu%20iela%2067" title="Google Maps" style="flex: none; width: 20px; height: 20px; border-radius: 50%; background: #3B7A57; color: #FFFFFF; font-size: 11px; font-weight: 700; display: grid; place-items: center; text-decoration: none">7</a></div>
-<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">Galleria Riga ja Berga Bazārs. Stockmann ja Galerija Centrs on vanalinna servas.</span>
-</div>
-</div>
-<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
-<span style="color: {{cMuted}}">-</span>
-<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
-<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: {{cText}}">Jugendstiil Alberta ielal</span></div>
-<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">Kõige ilusamad fassaadid. Pimeneb vara, mine enne 17.</span>
-</div>
-</div>
-<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
-<span style="color: {{cMuted}}">19:00</span>
-<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
-<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: rgb(61, 45, 46)">Õhtusöök: tbd</span><a href="https://www.google.com/maps/search/?api=1&amp;query=B7%20restaurant%20Ausek%C4%BCa%20iela%207%20Riga" title="Google Maps" style="flex: 0 0 auto; width: 20px; height: 20px; border-radius: 50%; background: rgb(154, 106, 10); color: rgb(255, 255, 255); font-size: 11px; font-weight: 700; display: none; place-items: center; text-decoration: none">8</a></div>
-<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">Moodne bistroo, Ausekļa 7. Avatud T–L 17–23. Broneeri ette!</span>
-</div>
-</div>
-</div>
+
+
+
+
+
+
 </div>
 <div style="flex: 1 1 280px; min-width: 0; background: {{cCard}}; border: 2px solid {{bD3}}; border-radius: {{radius}}; padding: {{cardPadY}} {{cardPad}}; display: flex; flex-direction: column; gap: 10px">
 <button type="button" onClick="{{pickD3}}" style="background: none; border: 0; padding: 0; cursor: pointer; text-align: left; color: {{cText}}; display: flex; justify-content: space-between; align-items: flex-start; gap: {{cardGap}}">
@@ -236,27 +222,27 @@ button{font:inherit}
 <div style="font-size: calc(14px * {{ts}}); color: {{cMuted}}">Laat ja koju</div>
 </div>
 <div style="display: flex; align-items: center; gap: 6px; flex: none">
-<svg width="36" height="36" viewBox="0 0 52 52" aria-hidden="true"><path d="M15 34a9 9 0 0 1 1-18 12 12 0 0 1 22 4 7 7 0 0 1-1 14z" fill="#FFFFFF" stroke="#5D6573" stroke-width="2.5" stroke-linejoin="round"></path><path d="M24 40l-2 4" stroke="#2F5D8A" stroke-width="2.5" stroke-linecap="round"></path></svg>
+<svg width="36" height="36" viewBox="0 0 52 52" aria-hidden="true"><path d="M15 34a9 9 0 0 1 1-18 12 12 0 0 1 22 4 7 7 0 0 1-1 14z" fill="#FFFFFF" stroke="#5D6573" stroke-width="2.5" stroke-linejoin="round"></path></svg>
 <div>
-<div style="font-family: {{fHead}}; font-weight: 800; font-size: calc(20px * {{hs}}); line-height: 1">9°</div>
+<div style="font-family: {{fHead}}; font-weight: 800; font-size: calc(20px * {{hs}}); line-height: 1">8°</div>
 <div style="font-size: calc(12px * {{ts}}); color: {{cMuted}}">öösel 6°</div>
 </div>
 </div>
 </button>
-<div style="font-size: calc(13px * {{ts}}); color: {{cMuted}}; border-bottom: 1px dashed {{cLine}}; padding-bottom: 8px">Pilves, kerge vihm · 1,9 mm · tuul 4 m/s</div>
+<div style="font-size: calc(13px * {{ts}}); color: {{cMuted}}; border-bottom: 1px dashed {{cLine}}; padding-bottom: 8px">Pilves terve päev · 0 mm · tuul 4 m/s</div>
 <div style="display: flex; flex-direction: column; gap: 10px">
-<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
-<span style="color: {{cMuted}}">-</span>
-<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
-<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: rgb(61, 45, 46)">Hommikusöök: tbd</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Yolkhaus%20Dzirnavu%20iela%2042%20Riga" title="Google Maps" style="flex: 0 0 auto; width: 20px; height: 20px; border-radius: 50%; background: rgb(154, 106, 10); color: rgb(255, 255, 255); font-size: 11px; font-weight: 700; display: none; place-items: center; text-decoration: none">9</a></div>
-<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">Hommikusöögikoht, Dzirnavu 42. Laupäeval avatud alates 9:00.</span>
-</div>
-</div>
+
 <div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
 <span style="color: {{cMuted}}">11:30</span>
 <div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
 <div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: {{cText}}">Check-out</span></div>
-<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">Korterist välja, täpne aeg Airbnb broneeringus. Auto peale.</span>
+<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">Korterist välja, täpne aeg Airbnb broneeringus.&nbsp;</span>
+</div>
+</div><div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
+<span style="color: {{cMuted}}">-</span>
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; gap: 6px; align-items: center"><span style="font-weight: 600; color: {{cText}}">Hommikusöök: YOLKHOUSE</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Northern%20Grip%20Kri%C5%A1j%C4%81%C5%86a%20Barona%20iela%2044%20Riga" title="Google Maps" style="flex: none; width: 20px; height: 20px; border-radius: 50%; color: #FFFFFF; font-size: 11px; font-weight: 700; display: grid; place-items: center; text-decoration: none; background-color: #9A6A09">9</a></div>
+<span style="font-size: calc(13px * {{ts}}); color: {{cMuted}}">Dzirnavu iela 42</span>
 </div>
 </div>
 <div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
@@ -268,13 +254,7 @@ button{font:inherit}
 </div>
 
 
-<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; font-size: calc(14px * {{ts}})">
 
-<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
-
-
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -283,12 +263,10 @@ button{font:inherit}
 <section style="display: flex; flex-direction: column; gap: 14px">
 <div style="display: flex; justify-content: space-between; align-items: baseline; gap: {{cardGap}}; flex-wrap: wrap">
 <h2 style="margin: 0; font-family: {{fHead}}; font-weight: 800; font-size: calc(26px * {{hs}})">Kaart</h2>
-<div style="display: flex; gap: 14px; flex-wrap: wrap; font-size: calc(13px * {{ts}}); color: {{cMuted}}">
-<span style="display: inline-flex; gap: 6px; align-items: center"><span style="width: 10px; height: 10px; border-radius: 50%; background: #9A6A0A"></span>Söögikohad</span>
-<span style="display: inline-flex; gap: 6px; align-items: center"><span style="width: 10px; height: 10px; border-radius: 50%; background: #8A4FA0"></span>Kasutatud ja vintage</span>
-<span style="display: inline-flex; gap: 6px; align-items: center"><span style="width: 10px; height: 10px; border-radius: 50%; background: #3B7A57"></span>Kaubamajad ja poed</span>
-<span style="display: inline-flex; gap: 6px; align-items: center"><span style="width: 10px; height: 10px; border-radius: 50%; background: #A3323B"></span>Kontsert</span>
-<span style="display: inline-flex; gap: 6px; align-items: center"><span style="width: 10px; height: 10px; border-radius: 3px; border: 2px solid #1B1F27; box-sizing: border-box"></span>Meie korter</span>
+<div style="display: flex; gap: 6px; flex-wrap: wrap; font-size: calc(13px * {{ts}})">
+<sc-for list="{{chips}}" as="c" hint-placeholder-count="5">
+<button type="button" onClick="{{c.pick}}" style="display: inline-flex; gap: 6px; align-items: center; padding: 5px 11px; border-radius: 999px; border: 1px solid {{cLine}}; background: {{c.bg}}; color: {{c.fg}}; font-family: {{fBody}}; font-size: calc(13px * {{ts}}); font-weight: 600; cursor: pointer"><sc-if value="{{c.hasDot}}" hint-placeholder-val="{{ true }}"><span style="width: 9px; height: 9px; border-radius: 50%; background: {{c.dot}}"></span></sc-if>{{c.label}}</button>
+</sc-for>
 </div>
 </div>
 <div style="background: {{cCard}}; border: 1px solid {{cLine}}; border-radius: {{radius}}; overflow: hidden">
@@ -311,10 +289,17 @@ button{font:inherit}
 <text x="20" y="470" fill="#5D6573" font-size="11" font-family="{{fBody}}">500 m</text>
 </svg>
 <sc-for list="{{stayPins}}" as="p" hint-placeholder-count="3">
-<button type="button" onClick="{{p.pick}}" title="{{p.name}}" style="position: absolute; left: {{p.left}}; top: {{p.top}}; transform: translate(-50%, -50%); z-index: 3; padding: 3px 9px; border-radius: 999px; border: 1.5px solid {{cText}}; background: {{p.bg}}; color: {{p.fg}}; font-family: {{fBody}}; font-size: calc(12px * {{ts}}); font-weight: 800; white-space: nowrap; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.18); opacity: {{p.op}}">{{p.price}}</button>
+<span aria-hidden="true" style="position: absolute; left: {{p.left}}; top: {{p.top}}; transform: translate(-50%, -50%); z-index: 3; width: 12px; height: 12px; box-sizing: border-box; border-radius: 3px; background: {{cText}}; border: 2px solid {{cCard}}"></span>
+<span aria-hidden="true" style="position: absolute; left: {{p.left}}; top: {{p.top}}; transform: translate(-6px, -50%); z-index: 3; width: 10px; height: 2px; margin-left: -10px; background: {{cText}}"></span>
+<button type="button" onClick="{{p.pick}}" title="{{p.name}}" style="position: absolute; left: {{p.left}}; top: {{p.top}}; transform: translate(calc(-100% - 16px), -50%); z-index: 3; padding: 3px 9px; border-radius: 999px; border: 1.5px solid {{cText}}; background: {{p.bg}}; color: {{p.fg}}; font-family: {{fBody}}; font-size: calc(12px * {{ts}}); font-weight: 800; white-space: nowrap; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.18); opacity: {{p.op}}">{{p.price}}</button>
 </sc-for>
 <sc-for list="{{pins}}" as="p" hint-placeholder-count="12">
+<sc-if value="{{p.isFood}}" hint-placeholder-val="{{ false }}">
+<button type="button" onClick="{{p.pick}}" title="{{p.name}}" style="position: absolute; left: {{p.left}}; top: {{p.top}}; transform: translate(-50%, -50%); z-index: 2; width: 28px; height: 28px; padding: 0; box-sizing: border-box; border-radius: 50%; border: 2.5px solid {{p.ring}}; background: {{p.color}}; color: #FFFFFF; font-family: {{fBody}}; font-size: calc(11px * {{ts}}); font-weight: 700; display: grid; place-items: center; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.2); opacity: {{p.op}}">{{p.n}}</button>
+</sc-if>
+<sc-if value="{{p.notFood}}" hint-placeholder-val="{{ true }}">
 <a href="{{p.maps}}" title="{{p.name}}" style="position: absolute; left: {{p.left}}; top: {{p.top}}; transform: translate(-50%, -50%); width: 26px; height: 26px; box-sizing: border-box; border-radius: 50%; border: 2.5px solid #FFFFFF; background: {{p.color}}; color: #FFFFFF; font-size: calc(11px * {{ts}}); font-weight: 700; display: grid; place-items: center; text-decoration: none; opacity: {{p.op}}">{{p.n}}</a>
+</sc-if>
 </sc-for>
 <sc-if value="{{hasStay}}" hint-placeholder-val="{{ false }}">
 <div style="position: absolute; left: 12px; bottom: 12px; width: min(380px, calc(100% - 24px)); z-index: 5; background: {{cCard}}; color: {{cText}}; border-radius: {{radius}}; box-shadow: 0 8px 24px rgba(0,0,0,0.22); display: flex; gap: 12px; padding: 10px; box-sizing: border-box">
@@ -330,15 +315,51 @@ button{font:inherit}
 <button type="button" onClick="{{closeStay}}" aria-label="Sulge" style="position: absolute; top: 6px; right: 6px; width: 28px; height: 28px; border-radius: 50%; border: 0; background: {{cBg}}; color: {{cText}}; font-size: 16px; line-height: 1; cursor: pointer">×</button>
 </div>
 </sc-if>
+<sc-if value="{{hasFood}}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; left: 12px; bottom: 12px; width: min(380px, calc(100% - 24px)); z-index: 5; background: {{cCard}}; color: {{cText}}; border-radius: {{radius}}; box-shadow: 0 8px 24px rgba(0,0,0,0.22); display: flex; gap: 12px; padding: 10px; box-sizing: border-box">
+<sc-if value="{{fd.hasImg}}" hint-placeholder-val="{{ false }}"><img src="{{fd.img}}" alt="{{fd.name}}" style="flex: none; width: 104px; height: 104px; object-fit: cover; border-radius: {{radiusS}}"></sc-if>
+<sc-if value="{{fd.noImg}}" hint-placeholder-val="{{ true }}">
+<div style="flex: none; width: 104px; min-height: 104px; border-radius: {{radiusS}}; background: {{fd.color}}; color: #FFFFFF; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; text-align: center; padding: 8px; box-sizing: border-box">
+<span style="font-family: {{fHead}}; font-weight: 800; font-size: calc(34px * {{hs}}); line-height: 1">{{fd.n}}</span>
+<span style="font-size: calc(11px * {{ts}}); font-weight: 600; opacity: 0.9">{{fd.when}}</span>
+</div>
+</sc-if>
+<div style="min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 2px; padding-right: 22px">
+<b style="font-family: {{fHead}}; font-size: calc(16px * {{hs}}); line-height: 1.2">{{fd.name}}</b>
+<span style="font-size: calc(12px * {{ts}}); color: {{cMuted}}">{{fd.kind}}</span>
+<span style="font-size: calc(13px * {{ts}}); margin-top: 4px">{{fd.addr}}</span>
+<span style="font-size: calc(12px * {{ts}}); color: {{cMuted}}">{{fd.hours}}</span>
+<div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 6px; font-size: calc(13px * {{ts}}); font-weight: 600">
+<sc-if value="{{fd.hasLink}}" hint-placeholder-val="{{ false }}"><a href="{{fd.link}}" style="color: {{cLink}}">{{fd.linkLabel}}</a></sc-if>
+<a href="{{fd.maps}}" style="color: {{cLink}}">Google Maps ↗</a>
+</div>
+</div>
+<button type="button" onClick="{{closeFood}}" aria-label="Sulge" style="position: absolute; top: 6px; right: 6px; width: 28px; height: 28px; border-radius: 50%; border: 0; background: {{cBg}}; color: {{cText}}; font-size: 16px; line-height: 1; cursor: pointer">×</button>
+</div>
+</sc-if>
+
 
 </div>
 </div>
-<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 210px), 1fr)); gap: 4px 16px; padding: {{cardPadY}} {{cardPad}}; border-top: 1px solid {{cLine}}">
-<sc-for list="{{pins}}" as="p" hint-placeholder-count="12">
-<a href="{{p.maps}}" style="display: flex; gap: 8px; align-items: center; font-size: calc(14px * {{ts}}); color: {{cText}}; text-decoration: none; padding: 4px 0; opacity: {{p.op}}">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 16px 28px; padding: {{cardPad}}; border-top: 1px solid {{cLine}}">
+<sc-for list="{{groups}}" as="g" hint-placeholder-count="4">
+<div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+<div style="display: flex; gap: 8px; align-items: center; font-size: calc(12px * {{ts}}); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; color: {{cMuted}}; padding-bottom: 4px; border-bottom: 2px solid {{g.color}}; margin-bottom: 4px">{{g.label}}</div>
+<sc-for list="{{g.items}}" as="p" hint-placeholder-count="4">
+<sc-if value="{{p.isFood}}" hint-placeholder-val="{{ true }}">
+<button type="button" onClick="{{p.pick}}" style="display: flex; gap: 8px; align-items: center; width: 100%; text-align: left; background: none; border: 0; cursor: pointer; font-family: {{fBody}}; font-size: calc(14px * {{ts}}); color: {{cText}}; padding: 4px 0; opacity: {{p.op}}; min-width: 0">
 <span style="flex: none; width: 20px; height: 20px; border-radius: 50%; background: {{p.color}}; color: #FFFFFF; font-size: calc(11px * {{ts}}); font-weight: 700; display: grid; place-items: center">{{p.n}}</span>
-<span>{{p.name}}</span>
+<span style="flex: 1; min-width: 0">{{p.name}}</span>
+</button>
+</sc-if>
+<sc-if value="{{p.notFood}}" hint-placeholder-val="{{ false }}">
+<a href="{{p.maps}}" style="display: flex; gap: 8px; align-items: center; font-size: calc(14px * {{ts}}); color: {{cText}}; text-decoration: none; padding: 4px 0; opacity: {{p.op}}; min-width: 0">
+<span style="flex: none; width: 20px; height: 20px; border-radius: 50%; background: {{p.color}}; color: #FFFFFF; font-size: calc(11px * {{ts}}); font-weight: 700; display: grid; place-items: center">{{p.n}}</span>
+<span style="flex: 1; min-width: 0">{{p.name}}</span>
 </a>
+</sc-if>
+</sc-for>
+</div>
 </sc-for>
 </div>
 </div>
@@ -463,14 +484,18 @@ class Component extends DCLogic {
     var accent = this.props.accent || '#A3323B';
     var self = this;
     var sel = this.state.sel;
-    var KC = { food: '#9A6A0A', sight: '#2F5D8A', shop: '#3B7A57', thrift: '#8A4FA0', music: '#A3323B', stay: '#1B1F27', travel: '#5D6573' };
-    var KL = { food: 'Söök', sight: 'Vaatamisväärsus', shop: 'Poed', thrift: 'Kasutatud', music: 'Kontsert', stay: 'Majutus', travel: 'Sõit' };
+    var KC = { food: '#9A6A0A', sight: '#2F5D8A', shop: '#3B7A57', thrift: '#8A4FA0', furniture: '#2F5D8A', music: '#A3323B', stay: '#1B1F27', travel: '#5D6573' };
+    var KL = { food: 'Söök', sight: 'Vaatamisväärsus', shop: 'Poed', thrift: 'Kasutatud', furniture: 'Mööbel', music: 'Kontsert', stay: 'Majutus', travel: 'Sõit' };
     var PL = {
       shoyu: ['Shōyu · raamen', 56.9603, 24.1128, 'food', 'Shoyu ramen Ausekļa iela 20 Riga'],
+      tavi: ['Tavi Draugi · heategevuspood', 56.9552, 24.1290, 'thrift', 'Tavi Draugi charity shop Ģertrūdes iela 32 Riga'],
+      skand: ['Skandināvs · kasutatud mööbel', 56.9442, 24.0832, 'furniture', 'Skandinavs Nometņu iela 64 Riga'],
+      pnv: ['Preces no Vācijas · kasutatud mööbel', 56.9575, 24.1365, 'furniture', 'Preces no Vācijas Matīsa iela 23 Riga'],
+      smor: ['SMØR · bistroo', 56.9585, 24.1170, 'food', 'SMOR bistro Krišjāņa Valdemāra iela 27 Riga'],
       snatch: ['Snatch · Itaalia köök', 56.9581, 24.1142, 'food', 'Snatch Elizabetes iela 39 Riga'],
       b7: ['B7 · bistroo', 56.9596, 24.1100, 'food', 'B7 restaurant Ausekļa iela 7 Riga'],
       yolk: ['Yolkhaus · hommikusöök', 56.95683, 24.11580, 'food', 'Yolkhaus Dzirnavu iela 42 Riga'],
-      angars: ['SADU kontsert · Angārs', 56.9596, 24.1358, 'music', 'Tallinas ielas kvartāls Riga'],
+      angars: ['Riga Music Week', 56.9596, 24.1358, 'music', 'Tallinas ielas kvartāls Riga'],
       rocket: ['Rocket Bean (Miera 29)', 56.9614, 24.1378, 'food', 'Rocket Bean Roastery Miera iela 29 Riga'],
       freedom: ['Vabadussammas', 56.9515, 24.1133, 'sight', 'Freedom Monument Riga'],
       peter: ['Peetri kirik + vanalinn', 56.9476, 24.1088, 'sight', "St. Peter's Church Riga"],
@@ -490,20 +515,19 @@ class Component extends DCLogic {
       humG: ['Humana · Ģertrūdes 16', 56.9535, 24.1272, 'thrift', 'Humana Ģertrūdes iela 16 Riga'],
       humM: ['Humana · Marijas 14A', 56.9486, 24.1226, 'thrift', 'Humana Marijas iela 14A Riga'],
       humA: ['Humana · Aspazijas 24', 56.9503, 24.1128, 'thrift', 'Humana Aspazijas bulvāris 24 Riga'],
-      otraelpa: ['Otrā Elpa · heategevuspood', 56.9600, 24.1305, 'thrift', 'Otrā Elpa Stabu iela 35 Riga'],
-      kram: ['Krāminieks · kirbuturg (L–P)', 56.9442, 24.0832, 'thrift', 'Āgenskalna tirgus Nometņu iela 64 Riga']
+      otraelpa: ['Otrā Elpa · heategevuspood', 56.9600, 24.1305, 'thrift', 'Otrā Elpa Stabu iela 35 Riga']
     };
     var DAYS = [
-      { id: 'd1', date: 'N 5.11', theme: 'Kontserdipäev', hl: 'SADU kell 18:00', icon: 'rain', hi: 9, lo: 5, wx: 'Pilves, pärastlõunal vihm · 3,3 mm · tuul 5 m/s', ev: [
+      { id: 'd1', date: 'N 5.11', theme: 'Kontserdipäev', hl: 'SADU kell 18:00', icon: 'cloud', hi: 11, lo: 8, wx: 'Pilves, õhtul vahelduv pilvisus · 0 mm · tuul 7 m/s', ev: [
         ['~09:30', 'travel', null, 'Põlvast välja', 'Sõit umbes 3,5–4 h koos peatusega. Täpne aeg veel lahtine.'],
-        ['13:30', 'food', 'shoyu', 'Lõuna: Shōyu', 'Ramen, Michelini Bib Gourmand. Ausekļa 20, avatud alates 12:00.'],
+        ['13:30', 'food', null, 'Lõuna: Shōyu', 'Ramen, Michelini Bib Gourmand. Ausekļa 20, avatud alates 12:00.'],
         ['15:00', 'stay', null, 'Check-in', 'Vanalinna korter. Auto tasuta maa-alusesse parklasse.'],
         ['15:45', 'shop', 'bazars', 'Kohv ja jalutus Berga Bazāris', 'Väike hoovikvartal poodide ja kohvikutega.'],
         ['17:45', 'music', 'angars', 'Kohale Angārsisse', 'Uksed 18:00. Ole varem, SADU on esimene esineja.'],
         ['18:00', 'music', 'angars', 'SADU', '18:00–18:40, Angārs NA Events lava.', true],
         ['19:15', 'food', 'snatch', 'Õhtusöök: Snatch', 'Moodne Itaalia köök, Elizabetes 39. Broneeri ette! Pärast võib Angārsisse tagasi minna: ELPO 20:40, JKLN 22:00.']
       ] },
-      { id: 'd2', date: 'R 6.11', theme: 'Linn ja shopping', hl: 'Vanalinn + 3 Pavāri õhtul', icon: 'partly', hi: 9, lo: 6, wx: 'Vahelduv pilvisus, kuiv · 0 mm · tuul 4 m/s', ev: [
+      { id: 'd2', date: 'R 6.11', theme: 'Linn ja shopping', hl: 'Vanalinn + 3 Pavāri õhtul', icon: 'partly', hi: 9, lo: 7, wx: 'Hommikul selge, pärastlõunal vahelduv pilvisus · 0 mm · tuul 5 m/s', ev: [
         ['09:30', 'food', 'rocket', 'Hommik: Rocket Bean', 'Väga hea kohv ja munaroad. Kui toas on hommikusöök, jäta vahele.'],
         ['11:00', 'sight', 'freedom', 'Jalutus vanalinna', 'Vabadussammas → Doma laukums → Mustpeade maja.'],
         ['11:45', 'sight', 'peter', 'Peetri kiriku torn', 'Parim vaade linnale. Lift üles.'],
@@ -514,38 +538,92 @@ class Component extends DCLogic {
         ['16:30', 'sight', 'alberta', 'Jugendstiil Alberta ielal', 'Kõige ilusamad fassaadid. Pimeneb vara, mine enne 17.'],
         ['19:00', 'food', 'b7', 'Õhtusöök: B7', 'Moodne bistroo, Ausekļa 7. Avatud T–L 17–23. Broneeri ette!']
       ] },
-      { id: 'd3', date: 'L 7.11', theme: 'Laat ja koju', hl: 'Kalnciema laupäevalaat', icon: 'cloud', hi: 9, lo: 6, wx: 'Pilves, kerge vihm · 1,9 mm · tuul 4 m/s', ev: [
+      { id: 'd3', date: 'L 7.11', theme: 'Laat ja koju', hl: 'Kalnciema laupäevalaat', icon: 'cloud', hi: 8, lo: 6, wx: 'Pilves terve päev · 0 mm · tuul 4 m/s', ev: [
         ['09:30', 'food', 'yolk', 'Hommik: Yolkhaus', 'Hommikusöögikoht, Dzirnavu 42. Laupäeval avatud alates 9:00.'],
         ['11:30', 'stay', null, 'Check-out', 'Korterist välja. Auto peale.'],
         ['12:00', 'shop', 'kalnciems', 'Kalnciema kvartāli laat', 'Iga laupäev 10–16. Talunikud, käsitöö, puumajad. Võta sularaha.'],
         ['13:00', 'food', 'kalnciems', 'Lõuna laadal', 'Tänavatoit otse laadalt.'],
-        ['13:45', 'thrift', 'kram', 'Kirbuturg: Krāminieks', 'Āgenskalna turu hoovis, L–P 8–15. Vanavara, vinüülid, Nõukogude asjad. Kalnciemast 10 min.'],
         ['~15:00', 'travel', null, 'Koju Põlvasse', 'Āgenskalnast pääseb kiiresti linnast välja.']
       ] }
     ];
     var STAYS = [
-      ['Vanalinna korter', 56.9478, 24.1112, '€172', 'Meie korter · vanalinn · tasuta maa-alune parkla', 'img/vanalinn.jpg', '50% 50%', 'https://www.airbnb.com/rooms/1526793070921702784', 'Airbnb', '€86 / in']
+      ['Vanalinna korter', 56.9460, 24.1108, '€172', 'Meie korter · vanalinn · tasuta maa-alune parkla', 'img/vanalinn.jpg', '50% 50%', 'https://www.airbnb.com/rooms/1526793070921702784', 'Airbnb', '€86 / in']
     ];
     var LON0 = 24.068, LON1 = 24.146, LAT0 = 56.9385, LAT1 = 56.9655;
     function P(lon, lat) { return [(lon - LON0) / (LON1 - LON0) * 800, (LAT1 - lat) / (LAT1 - LAT0) * 500]; }
     function pts(a) { return a.map(function (q) { var p = P(q[0], q[1]); return p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' '); }
     function pct(lon, lat) { var p = P(lon, lat); return { left: (p[0] / 8).toFixed(2) + '%', top: (p[1] / 5).toFixed(2) + '%' }; }
     function gm(q) { return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q); }
-    var KEEP = ['angars', 'shoyu', 'snatch', 'b7', 'yolk', 'galcentrs', 'stockmann', 'origo', 'galleria', 'bazars', 'barona', 'riija', 'miera', 'ngrip', 'humT', 'humG', 'humM', 'humA', 'otraelpa', 'kram'];
+    var KEEP = ['angars', 'snatch', 'yolk', 'galcentrs', 'stockmann', 'galleria', 'riija', 'miera', 'ngrip', 'humT', 'humG', 'humA', 'otraelpa', 'smor', 'shoyu', 'pnv', 'skand', 'tavi'];
     var order = [];
-    DAYS.forEach(function (d) { d.ev.forEach(function (e) { if (e[2] && KEEP.indexOf(e[2]) >= 0 && order.indexOf(e[2]) < 0) order.push(e[2]); }); });
-    KEEP.forEach(function (k) { if (order.indexOf(k) < 0) order.push(k); });
+    var CATS = [['music', 'Kontsert'], ['food', 'Söök'], ['thrift', 'Vintage ja second hand'], ['furniture', 'Kasutatud mööbel'], ['shop', 'Disain ja kaubanduskeskused']];
+    var CORDER = { music: ['angars'], food: ['yolk', 'shoyu', 'snatch', 'smor'], thrift: ['ngrip', 'humT', 'humG', 'humA', 'otraelpa', 'tavi'], shop: ['riija', 'miera', 'galleria', 'galcentrs', 'stockmann'] };
+    CATS.forEach(function (c) {
+      (CORDER[c[0]] || []).forEach(function (k) { if (KEEP.indexOf(k) >= 0 && PL[k] && order.indexOf(k) < 0) order.push(k); });
+      KEEP.forEach(function (k) { if (PL[k] && PL[k][3] === c[0] && order.indexOf(k) < 0) order.push(k); });
+    });
+    KEEP.forEach(function (k) { if (PL[k] && order.indexOf(k) < 0) order.push(k); });
+    var cat = this.state.cat || 'all';
     function daysOf(k) { return DAYS.filter(function (d) { return d.ev.some(function (e) { return e[2] === k; }); }).map(function (d) { return d.id; }); }
+    var LINKS = {
+      tavi: ['https://www.instagram.com/labodarbuveikals/', '@labodarbuveikals'],
+      skand: ['https://www.instagram.com/skandinavs_riga/', '@skandinavs_riga'],
+      pnv: ['https://www.facebook.com/PrecesNoVacijas', 'Facebook ↗'],
+      smor: ['https://www.instagram.com/smor.bistro/', '@smor.bistro'],
+      angars: ['https://www.bilesuserviss.lv/en/series/EQA34OIVD3/riga-music-week-2026', 'Ajakava ja piletid ↗'],
+      shoyu: ['https://www.instagram.com/shoyu.riga/', '@shoyu.riga'],
+      b7: ['https://www.instagram.com/b7_resto/', '@b7_resto'],
+      snatch: ['https://snatch.lv/', 'snatch.lv ↗'],
+      yolk: ['https://yolkhaus.tablein.com/lv', 'Broneeri ↗'],
+      ngrip: ['https://www.instagram.com/thenortherngrip/', '@thenortherngrip'],
+      riija: ['https://www.instagram.com/conceptstore_riija/', '@conceptstore_riija'],
+      galleria: ['https://galleriariga.lv/en/stores', 'Poodide nimekiri ↗'],
+      galcentrs: ['https://www.galerijacentrs.lv/en/shop/', 'Poodide nimekiri ↗']
+    };
+    var IMGS = { yolk: 'img/yolk.jpg', shoyu: 'img/shoyu.jpg', smor: 'img/smor.jpg', angars: 'img/rmw.jpg', snatch: 'img/snatch.jpg', ngrip: 'img/ngrip.jpg', riija: 'img/riija.jpg', galleria: 'img/galleria.jpg', galcentrs: 'img/galcentrs.jpg', stockmann: 'img/stockmann.jpg', miera: 'img/miera.jpg', humT: 'img/humT.jpg', humG: 'img/humG.jpg', otraelpa: 'img/otraelpa.jpg', humA: 'img/humA.jpg' };
+    var FOOD = {
+      tavi: ['Heategevuspood: nõud, raamatud, riided, vintage · tulu läheb Ukraina ja Läti abiprojektidele', 'Ģertrūdes iela 32', 'E–R 10–19 · L 11–17 · P suletud', 'vintage'],
+      skand: ['Skandinaavia mööbel, sisustus, vintage-riided ja kangad', 'Nometņu iela 64 · Āgenskalna turg', 'E 9–17 · T–L 9–19 · P 9–17', 'mööbel'],
+      pnv: ['Mööbel, nõud, plaadimängijad ja vinüülid Saksamaalt', 'Matīsa iela 23 (uus asukoht oktoobrist)', 'E–R 11–19 · L 11–17', 'mööbel'],
+      smor: ['Põhjamaa-prantsuse bistroo · Michelini Bib Gourmand', 'Krišjāņa Valdemāra iela 27-29', 'E–N 12–22 · R–L 12–23 · P 12–21', 'söök'],
+      angars: ['SADU 18:00–18:40 · Angārs NA Events lava', 'Tallinas ielas kvartāls (Tallinas iela 10)', 'N 5.11 · uksed 18:00, ole varem', 'kontsert'],
+      shoyu: ['Raamen · Michelini Bib Gourmand', 'Ausekļa iela 20', 'E, T, P 12–21 · K–L 12–22', 'söök'],
+      snatch: ['Moodne Itaalia trattoria · broneeri ette', 'Elizabetes iela 39', 'E–N 12–23 · R–L 12–24 · P 14–23', 'söök'],
+      b7: ['Moodne bistroo · broneeri ette', 'Ausekļa iela 7', 'T–L 17–23 · E ja P suletud', 'söök'],
+      yolk: ['Hommikusöök ja brunch', 'Dzirnavu iela 42', 'E–N 8–16 · R 8–23 · L 9–23 · P 10–18', 'hommik'],
+      bazars: ['Hoovikvartal poodide ja kohvikutega', 'Elizabetes ja Marijas iela vahel', '', 'poed'],
+      ngrip: ['Valitud vintage, nahk ja denim', 'Krišjāņa Barona iela 44', '', 'vintage'],
+      riija: ['Läti disain ja kodukaubad', 'Tērbatas iela 6/8', 'E–R 10–18 · L–P suletud', 'disain'],
+      galleria: ['Kaubanduskeskus', 'Dzirnavu iela 67', '', 'pood'],
+      galcentrs: ['Kaubanduskeskus vanalinnas', 'Audēju iela 16', '', 'pood'],
+      stockmann: ['Kaubamaja', '13. janvāra iela 8', 'E–R 9–22 · L–P 10–22', 'kaubamaja'],
+      origo: ['Kaubanduskeskus raudteejaama juures', 'Stacijas laukums', '', 'pood'],
+      barona: ['Kaubanduskeskus', 'Krišjāņa Barona iela', '', 'pood'],
+      miera: ['Tänav disaini- ja vintagepoodidega (M50, Ze Store)', 'Miera iela', '', 'tänav'],
+      humT: ['Second hand · Humana', 'Tērbatas iela 38', '', 'vintage'],
+      humG: ['Second hand · Humana · hea nahk- ja teksajakkide valik', 'Ģertrūdes iela 16', '', 'vintage'],
+      humM: ['Second hand · Humana', 'Marijas iela 14A', '', 'vintage'],
+      humA: ['Second hand · Humana · ooperi lähedal', 'Aspazijas bulvāris 24', '', 'vintage'],
+      otraelpa: ['Heategevuspood · kuu viimasel päeval kuni −50%', 'Stabu iela 35', '', 'vintage']
+    };
+    var openFood = this.state.food;
     var pins = order.map(function (k, i) {
       var p = PL[k], xy = pct(p[2], p[1]);
       var show = sel === 'all' || daysOf(k).indexOf(sel) >= 0;
-      return { n: String(i + 1), name: p[0], left: xy.left, top: xy.top, color: KC[p[3]], maps: gm(p[4]), op: show ? '1' : '0.18' };
+      var L = LINKS[k] || [gm(p[4]), 'Google Maps ↗'];
+      var isFood = !!FOOD[k];
+      return { n: String(i + 1), name: p[0], left: xy.left, top: xy.top, color: KC[p[3]], maps: gm(p[4]), link: L[0], linkLabel: L[1], op: ((show && (cat === 'all' || cat === p[3])) || openFood === k) ? '1' : '0.18', cat: p[3],
+        isFood: isFood, notFood: !isFood, ring: openFood === k ? T.cText : '#FFFFFF',
+        pick: function () { self.setState({ food: openFood === k ? null : k, stay: null }); } };
     });
+    var fd = { img: '', hasImg: false, noImg: true, hasLink: false, name: '', kind: '', addr: '', hours: '', when: '', n: '', color: '', link: '', linkLabel: '', maps: '' };
+    pins.forEach(function (p, i) { var k = order[i]; if (k === openFood && FOOD[k]) { var F = FOOD[k];
+      fd = { name: p.name.split(' · ')[0], kind: F[0], addr: F[1], hours: F[2] ? F[2] + ' (kontrolli enne)' : 'Lahtiolekuaeg Google Mapsis', hasLink: !!LINKS[k], img: IMGS[k] || '', hasImg: !!IMGS[k], noImg: !IMGS[k], when: F[3], n: p.n, color: p.color, link: p.link, linkLabel: p.linkLabel, maps: p.maps }; } });
     var openStay = this.state.stay;
     var stayPins = STAYS.map(function (s, i) { var xy = pct(s[2], s[1]); var on = openStay === i;
       return { name: s[0], price: 'Meie korter', left: xy.left, top: xy.top, op: '1',
         bg: on ? T.cCard : T.cText, fg: on ? T.cText : T.cCard,
-        pick: function () { self.setState({ stay: on ? null : i }); } }; });
+        pick: function () { self.setState({ stay: on ? null : i, food: null }); } }; });
     var cur = (typeof openStay === 'number') ? STAYS[openStay] : null;
     var st = cur ? { name: cur[0], price: cur[3], sub: cur[4], img: cur[5], pos: cur[6], url: cur[7], site: cur[8], pp: cur[9] } : { name: '', price: '', sub: '', img: '', pos: '50% 50%', url: '', site: '', pp: '' };
     var route = '';
@@ -580,6 +658,10 @@ class Component extends DCLogic {
       showAll: function () { self.setState({ sel: 'all' }); },
       days: days, selEv: selEv, pins: pins, stayPins: stayPins, route: route,
       st: st, hasStay: !!cur, closeStay: function () { self.setState({ stay: null }); },
+      groups: CATS.map(function (c) { return { label: c[1], color: KC[c[0]], items: pins.filter(function (p) { return p.cat === c[0]; }) }; }).filter(function (g) { return g.items.length; }),
+      chips: [['all', 'Kõik', '']].concat(CATS).map(function (c) { var on = cat === c[0]; return { label: c[1], dot: c[0] === 'all' ? 'transparent' : KC[c[0]], hasDot: c[0] !== 'all',
+        bg: on ? T.cText : T.cCard, fg: on ? T.cCard : T.cText, pick: function () { self.setState({ cat: c[0], food: null }); } }; }),
+      fd: fd, hasFood: !!fd.name, closeFood: function () { self.setState({ food: null }); },
       river: pts([[24.146, 56.9375], [24.122, 56.9405], [24.112, 56.943], [24.1045, 56.9465], [24.099, 56.950], [24.094, 56.955], [24.089, 56.960], [24.086, 56.966], [24.075, 56.966], [24.079, 56.959], [24.083, 56.953], [24.088, 56.948], [24.095, 56.943], [24.105, 56.9395], [24.120, 56.937]]),
       oldtown: pts([[24.1045, 56.9465], [24.112, 56.943], [24.117, 56.9445], [24.114, 56.950], [24.111, 56.953], [24.107, 56.9555], [24.099, 56.950]]),
       canal: pts([[24.117, 56.9435], [24.118, 56.9465], [24.115, 56.950], [24.112, 56.953], [24.108, 56.9558], [24.101, 56.9568]]),
